@@ -1,4 +1,4 @@
-package jp.afternoon.fe;
+package fe.afternoon.h28a;
 
 import java.util.Stack;
 
