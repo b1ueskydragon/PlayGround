@@ -26,6 +26,7 @@ public class ToDo {
 		}
 		this.subject = subject;
 		this.deadline = deadline;
+		this.priority = priority; // 書き忘れてたらmainでpriorityが全nullだった・・・。
 		this.id = id;
 		this.state = state; // this書いたら初期化エラーなくなった〜。
 	}
