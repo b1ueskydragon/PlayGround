@@ -1,6 +1,16 @@
 package code.with.play;
 
+import java.awt.Toolkit;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -69,6 +79,108 @@ public class MySnake extends Application {
 
 		stage.setScene(new Scene(root));
 		stage.show(); // setting visibility to true
+
+		// クライアント領域の幅と高さ
+		ClientHeight = (int) stage.getScene().getHeight(); // 本来はdouble型
+		ClientWidth = (int) stage.getScene().getWidth();
+
+		// スタート座標
+		cx = ClientWidth / 2;
+		cy = ClientHeight / 2;
+
+		/*
+		 * java.utilのAPIとインナークラス
+		 *
+		 * バックグラウンド・スレッドで将来実行されるタスクをスケジュールする、スレッドのための機能です。
+		 */
+		Timer timer = new Timer();
+		class GameTask extends TimerTask {
+
+			private BooleanProperty gameover = new SimpleBooleanProperty(this, "gameover", false);
+
+			public ReadOnlyBooleanProperty gameoverProperty() {
+				return gameover;
+			}
+
+			/*
+			 * gameoverの状態のgetter/setter
+			 */
+			@SuppressWarnings("unused")
+			public boolean isGameOver() {
+				return gameover.get();
+			}
+
+			private void setGameover(boolean value) {
+				gameover.set(value);
+			}
+
+			// TimerTaskのrun()をオーバーライド
+			@Override
+			public void run() {
+				// TODO 自動生成されたメソッド・スタブ
+
+				cx += dx;
+				cy += dy;
+				gc.fillRect(cx, cy, 2, 2);
+				point += 1;
+
+				// isTheGameOverメソッドはこのクラス内に記載
+				if (isTheGameOver()) {
+					Toolkit.getDefaultToolkit().beep();
+
+					////
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							setGameover(true);
+						}
+					});
+					////
+
+					this.cancel();
+				}
+				data[cx][cy] = true;
+			}
+
+			boolean isTheGameOver() {
+				if(cx<0) return true;
+				if(cy <0) return true;
+				if(cx > ClientWidth) return true;
+				if(cy > ClientHeight-2) return true;
+				if(data[cx][cy] == true) return true;
+
+				return false;
+			}
+		}
+
+		GameTask task = new GameTask();
+		stage.setOnCloseRequest(
+
+				event -> {
+					if(task !=null)
+						task.cancel();
+					if(timer != null)
+						timer.cancel();
+				}
+
+				);
+		timer.schedule(task, 1000, 100);
+
+		Toolkit.getDefaultToolkit().beep();
+
+		task.gameoverProperty().addListener(
+
+				// ?はワイルドカード型らしい
+				new ChangeListener<Boolean>(){
+					@Override
+					public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2){
+						if(task.gameoverProperty().get())
+							gameOver();
+					}
+
+				}
+
+				);
 
 	}
 
