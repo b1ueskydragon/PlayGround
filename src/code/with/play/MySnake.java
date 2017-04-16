@@ -17,6 +17,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -187,11 +188,33 @@ public class MySnake extends Application {
 	// キーが押された時の処理
 	void onKeyPressed(KeyEvent event) {
 
+		// KeyCodeは、Set of key codes for KeyEvent objects.
+		if(event.getCode() == KeyCode.UP){
+			dx =0;
+			dy = -2;
+		}
+		if(event.getCode() == KeyCode.DOWN){
+			dx =0;
+			dy = 2;
+		}
+		if(event.getCode() == KeyCode.RIGHT){
+			dx = 2;
+			dy = 0;
+		}
+		if(event.getCode() == KeyCode.LEFT){
+			dx = -2;
+			dy = 0;
+		}
+
 	}
 
 	// ゲームオーバー対応
 	void gameOver() {
 
+		dlg.setTitle("");
+		dlg.setHeaderText(String.format("げーむおーばー : 得点=%d", point));
+		dlg.showAndWait();
+		Platform.exit();
 	}
 
 }
