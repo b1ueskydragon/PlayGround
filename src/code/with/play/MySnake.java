@@ -40,10 +40,12 @@ public class MySnake extends Application {
 
 	int cx = 0; // マークの座標
 	int cy = 0;
-	int dx = 0; // マークの進む量
+	int dx = 2; // マークの進む量
 	int dy = 0;
 	boolean data[][] = new boolean[WIDTH][HEIGHT];
 	int point = 0;
+
+	// ゲームオーバーの処理(ダイアログボックスを表示し終了)
 	Alert dlg = new Alert(AlertType.INFORMATION);
 
 	/*
@@ -51,7 +53,7 @@ public class MySnake extends Application {
 	 *
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
 	 *
-	 * 外側
+	 * startがメインメソッド
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -70,10 +72,8 @@ public class MySnake extends Application {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		// onKeyPressedメソッドはこのクラス内に記載
-		canvas.setOnKeyPressed(event -> onKeyPressed(event)); // Sets the value
-																// of the
-																// property
-																// onKeyPressed.
+		// Sets the value of the property onKeyPressed.
+		canvas.setOnKeyPressed(event -> onKeyPressed(event));
 		canvas.setFocusTraversable(true); // デフォルトはfalse
 
 		root.getChildren().add(canvas); // リストにadd
@@ -211,8 +211,8 @@ public class MySnake extends Application {
 	// ゲームオーバー対応
 	void gameOver() {
 
-		dlg.setTitle("");
-		dlg.setHeaderText(String.format("げーむおーばー : 得点=%d", point));
+		dlg.setTitle("げーむおーばー");
+		dlg.setHeaderText(String.format("お疲れ : 移動距離=%d", point));
 		dlg.showAndWait();
 		Platform.exit();
 	}
