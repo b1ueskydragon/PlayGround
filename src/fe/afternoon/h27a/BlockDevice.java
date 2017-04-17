@@ -1,5 +1,6 @@
 package fe.afternoon.h27a;
 
+// 読み取り専用
 class BlockDevice {
 
 	private final byte[][] blocks = new byte[100][512];

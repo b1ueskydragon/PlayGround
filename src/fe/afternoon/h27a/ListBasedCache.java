@@ -3,7 +3,8 @@ package fe.afternoon.h27a;
 import java.util.ArrayList;
 import java.util.List;
 
-// この子も抽象クラス
+
+// この人も抽象クラス
 public abstract class ListBasedCache extends Cache {
 
 	// Listで抽象クラスCacheの一部を実装
@@ -71,6 +72,7 @@ public abstract class ListBasedCache extends Cache {
 	// First In First Out
 	// abstractのCacheを継承するのはできないので、具体化した小クラを継承。
 	// Cacheをextendsするとそこのメソッドも実装しなければならない(orこのクラスも抽象化)。
+	// そもそもhitを実装するための継承。
 	static class Fifo extends ListBasedCache {
 		void hit(Entry entry) {
 			// 無操作 //
