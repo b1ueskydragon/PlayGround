@@ -69,7 +69,8 @@ public abstract class ListBasedCache extends Cache {
 	}
 
 	// First In First Out
-	// abstractのCacheを継承するのはできないので、具体化した小クラを継承
+	// abstractのCacheを継承するのはできないので、具体化した小クラを継承。
+	// Cacheをextendsするとそこのメソッドも実装しなければならない(orこのクラスも抽象化)。
 	static class Fifo extends ListBasedCache {
 		void hit(Entry entry) {
 			// 無操作 //
