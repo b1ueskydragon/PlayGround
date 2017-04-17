@@ -1,9 +1,12 @@
 package fe.afternoon.h28h;
 
+import static fe.afternoon.h28h.ToDo.Priority.*;
+import static fe.afternoon.h28h.ToDo.State.*;
+
 public class ToDoListTester {
 	public static void main(String[] args) {
 		ToDoList list = new ToDoList();
-		list.add(new ToDo("メール送信", "201604181500", ToDo.Priority.HIGH));
+		list.add(new ToDo("メール送信", "201604181500", HIGH)); // static import 使ってた
 		list.add(new ToDo("ホテル予約", "20160420", ToDo.Priority.LOW));
 		list.add(new ToDo("チケット購入", "20160430", ToDo.Priority.MIDDLE));
 		list.add(new ToDo("報告書作成", "20160428", ToDo.Priority.HIGH));
@@ -11,7 +14,7 @@ public class ToDoListTester {
 		list.update(new ToDo("PC購入", "20160531", ToDo.Priority.HIGH));
 
 		for (ToDo todo : list.select()) {
-			todo.setState(ToDo.State.STARTED);
+			todo.setState(STARTED); // static import 使ってた
 			list.update(todo);
 		}
 
@@ -33,7 +36,7 @@ public class ToDoListTester {
 				return todo.getPriority().equals(ToDo.Priority.HIGH);
 			}
 		};
-		
+
 		for(ToDo todo : list.select(condition1, condition2)){
 			System.out.println(todo);
 		}

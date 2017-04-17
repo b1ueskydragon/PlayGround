@@ -22,6 +22,7 @@ public class ToDoList {
 		}
 	}
 
+	// Condition Interface、不特定複数のコンディションたちがあることを示す
 	public List<ToDo> select(Condition... conditions) {
 		List<ToDo> result = new ArrayList<>();
 		for (ToDo todo : todoList) {

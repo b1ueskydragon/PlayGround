@@ -34,12 +34,13 @@ public class ToDo {
 	public ToDo(String subject, String deadline, Priority priority) {
 		this(subject, deadline, priority, UUID.randomUUID().toString(), State.NOT_YET_STARTED);
 	}
-	
+	// こっちがメインクラスで使われる
+
 	public ToDo(ToDo todo){
 		this(todo.subject, todo.deadline, todo.priority, todo.id, todo.state);
-	} 
+	}
 	//書き忘れてた
-	// コンストラクター？　
+	// コンストラクター！！
 
 	public String getSubject() {
 		return subject;
@@ -79,11 +80,11 @@ public class ToDo {
 
 /*
  * http://d.hatena.ne.jp/simply-k/20100816/1281985399
- * 
+ *
  * instanceof演算子の演算結果は、左辺のオブジェクトが以下の条件のどれかを満たす場合にtrueとなります。
- * 
+ *
  * 右辺に指定したクラスのオブジェクトである。 右辺に指定したクラスのサブクラスのオブジェクトである。 右辺に指定したインターフェースの実装クラスである。
  * 右辺に指定したインターフェースの実装クラスのサブクラスである。
  * instanceof演算子の演算結果がtrueになった場合、左辺のオブジェクトを右辺のクラスにキャストし、メンバにアクセスすることが可能です。
- * 
+ *
  */
