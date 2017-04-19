@@ -7,7 +7,7 @@ public class FizzBuzzFoo {
 	/*
 	 * 2017年3月2日作成, 速度改良・シンプル化必要？
 	 */
-	void fizzbuzz() {
+	private static void fizzbuzz() {
 
 		int i = 0;
 		List<Integer> ary = new ArrayList<Integer>();
@@ -35,8 +35,8 @@ public class FizzBuzzFoo {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		new FizzBuzzFoo().fizzbuzz();
+	public static void main(String[] args) {
+		fizzbuzz();
 		System.out.println("やった!");
 	}
 
