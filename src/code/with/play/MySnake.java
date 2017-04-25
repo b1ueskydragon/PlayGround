@@ -44,7 +44,10 @@ public class MySnake extends Application {
 	int cy = 0;
 	int dx = 2; // マークの進む量
 	int dy = 0;
-	boolean data[][] = new boolean[WIDTH][HEIGHT];
+	
+	boolean data[][] = new boolean[WIDTH][HEIGHT]; 
+	// trueかfalseを保存する2次元配列 → すでにその座標に線画書かれているかどうかの情報を保存。 
+	
 	int point = 0;
 
 	// ゲームオーバーの処理(ダイアログボックスを表示し終了)
@@ -52,9 +55,7 @@ public class MySnake extends Application {
 
 	/*
 	 * (非 Javadoc)
-	 *
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
-	 *
 	 * startがメインメソッド
 	 */
 	@Override
@@ -96,8 +97,7 @@ public class MySnake extends Application {
 		 *
 		 * バックグラウンド・スレッドで将来実行されるタスクをスケジュールする、スレッドのための機能です。
 		 *
-		 * while(true)を使うと、CPUが繰り返し処理に夢中になって、キー操作などができなくなるので、
-		 * 代わりにTimerでタスク管理。
+		 * while(true)を使うと、CPUが繰り返し処理に夢中になって、キー操作などができなくなるので、 代わりにTimerでタスク管理。
 		 */
 		Timer timer = new Timer();
 		class GameTask extends TimerTask {
@@ -109,7 +109,13 @@ public class MySnake extends Application {
 			}
 
 			/*
-			 * gameoverの状態のgetter/setter
+			 * gameoverの状態(プロパティ)のgetter/setter
+			 * 
+			 * Applicationクラスとは異なる他のクラスから直接Alterクラス(のダイアログボックス)を表示するのはできない。
+			 * ↓
+			 * TimerTaskクラスの中にgameoverという名のプロパティ作成、
+			 * ゲームオーバー判定時にプロパティ値をfalseからtrueに変更。
+			 * (Alertクラスの間接的な呼び出し)
 			 */
 			@SuppressWarnings("unused")
 			public boolean isGameOver() {
@@ -123,25 +129,21 @@ public class MySnake extends Application {
 			// TimerTaskのrun()をオーバーライド
 			@Override
 			public void run() {
-				// TODO 自動生成されたメソッド・スタブ
-
 				cx += dx;
 				cy += dy;
 				gc.fillRect(cx, cy, 2, 2);
 				point += 1;
 
-				// isTheGameOverメソッドはこのクラス内に記載
 				if (isTheGameOver()) {
 					Toolkit.getDefaultToolkit().beep();
 
-					////
+					// 競合が起きないように
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
 							setGameover(true);
 						}
 					});
-					////
 
 					this.cancel();
 				}
@@ -149,11 +151,16 @@ public class MySnake extends Application {
 			}
 
 			boolean isTheGameOver() {
-				if(cx<0) return true;
-				if(cy <0) return true;
-				if(cx > ClientWidth) return true;
-				if(cy > ClientHeight-2) return true;
-				if(data[cx][cy] == true) return true;
+				if (cx < 0)
+					return true;
+				if (cy < 0)
+					return true;
+				if (cx > ClientWidth)
+					return true;
+				if (cy > ClientHeight - 2)
+					return true;
+				if (data[cx][cy] == true)
+					return true;
 
 				return false;
 			}
@@ -163,31 +170,30 @@ public class MySnake extends Application {
 		stage.setOnCloseRequest(
 
 				event -> {
-					if(task !=null)
+					if (task != null)
 						task.cancel();
-					if(timer != null)
+					if (timer != null)
 						timer.cancel();
 				}
 
-				);
+		);
 		timer.schedule(task, 1000, 100); // taskを1000ms後に実行して、100msごとにrun()実行。
 
 		Toolkit.getDefaultToolkit().beep();
 
 		task.gameoverProperty().addListener(
 
-				// ?はワイルドカード型らしい
-				// applicationクラスの中で直接使えないのでプロパティ化してプロパティを渡している
-				new ChangeListener<Boolean>(){
+				// gameoverプロパティ値がfalseからtrueに変わったら、change()を呼び出してゲームオーバーの処理をする。
+				new ChangeListener<Boolean>() {
 					@Override
-					public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2){
-						if(task.gameoverProperty().get())
+					public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2) {
+						if (task.gameoverProperty().get())
 							gameOver();
 					}
 
 				}
 
-				);
+		);
 
 	}
 
@@ -195,26 +201,27 @@ public class MySnake extends Application {
 	void onKeyPressed(KeyEvent event) {
 
 		// KeyCodeは、Set of key codes for KeyEvent objects.
-		if(event.getCode() == KeyCode.UP){
-			dx =0;
+		if (event.getCode() == KeyCode.UP) {
+			dx = 0;
 			dy = -2;
 		}
-		if(event.getCode() == KeyCode.DOWN){
-			dx =0;
+		if (event.getCode() == KeyCode.DOWN) {
+			dx = 0;
 			dy = 2;
 		}
-		if(event.getCode() == KeyCode.RIGHT){
+		if (event.getCode() == KeyCode.RIGHT) {
 			dx = 2;
 			dy = 0;
 		}
-		if(event.getCode() == KeyCode.LEFT){
+		if (event.getCode() == KeyCode.LEFT) {
 			dx = -2;
 			dy = 0;
 		}
 
 	}
 
-	// ゲームオーバー対応
+	// ゲームオーバー処理。
+	// 直接Alertクラスを呼び出し。
 	void gameOver() {
 
 		dlg.setTitle("げーむおーばー");
@@ -223,8 +230,7 @@ public class MySnake extends Application {
 		Platform.exit();
 	}
 
-
-	public static void main(String[]args){
+	public static void main(String[] args) {
 
 		new JFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Application.launch(args);
