@@ -1,6 +1,6 @@
 package fe.afternoon.h27a;
 
-public abstract class Cache {
+public abstract class Cache{
 
 	public enum Policy{
 		FIFO, LIRU

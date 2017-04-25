@@ -5,6 +5,7 @@ class BlockDevice {
 
 	private final byte[][] blocks = new byte[100][512];
 
+
 	// コンストラクター
 	static BlockDevice open(){
 		return new BlockDevice();
@@ -12,6 +13,8 @@ class BlockDevice {
 
 	int getBlockSize(){
 		return blocks[0].length;
+
+
 	}
 
 	void readBlock(int index, byte[] buffer){

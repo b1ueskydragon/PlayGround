@@ -82,7 +82,7 @@ public abstract class ListBasedCache extends Cache {
 	// Least Recently Used
 	static class Lru extends ListBasedCache {
 		void hit(Entry entry) {
-			// 最近もっとも使われてないデータを捨てて
+
 			entries.remove(entry);
 			// 指定されたキャッシュエントリをListの先頭に格納
 			// entryは「新しいデータ（とそのインデックス）」

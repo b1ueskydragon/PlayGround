@@ -4,6 +4,8 @@ import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JFrame;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -224,6 +226,7 @@ public class MySnake extends Application {
 
 	public static void main(String[]args){
 
+		new JFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Application.launch(args);
 
 	}
