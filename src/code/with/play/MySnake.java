@@ -93,6 +93,9 @@ public class MySnake extends Application {
 		 * java.utilのAPIとインナークラス
 		 *
 		 * バックグラウンド・スレッドで将来実行されるタスクをスケジュールする、スレッドのための機能です。
+		 *
+		 * while(true)を使うと、CPUが繰り返し処理に夢中になって、キー操作などができなくなるので、
+		 * 代わりにTimerでタスク管理。
 		 */
 		Timer timer = new Timer();
 		class GameTask extends TimerTask {
@@ -165,13 +168,14 @@ public class MySnake extends Application {
 				}
 
 				);
-		timer.schedule(task, 1000, 100);
+		timer.schedule(task, 1000, 100); // taskを1000ms後に実行して、100msごとにrun()実行。
 
 		Toolkit.getDefaultToolkit().beep();
 
 		task.gameoverProperty().addListener(
 
 				// ?はワイルドカード型らしい
+				// applicationクラスの中で直接使えないのでプロパティ化してプロパティを渡している
 				new ChangeListener<Boolean>(){
 					@Override
 					public void changed(ObservableValue<? extends Boolean> arg0, Boolean arg1, Boolean arg2){
