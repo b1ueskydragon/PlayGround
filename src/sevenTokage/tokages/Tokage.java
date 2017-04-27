@@ -9,9 +9,30 @@ import sevenTokage.attributes.Element;
  */
 public abstract class Tokage  {
 
-	String Name ;
+	String name ;
 	Color color;
 	Element element;
+
+	public void setName(String name){
+		this.name = name;
+	}
+	public String getName(){
+		return name;
+	}
+
+	public void setColor(Color color){
+		this.color = color;
+	}
+	public Color getColor(){
+		return color;
+	}
+
+	public void setElement(Element element){
+		this.element = element;
+	}
+	public Element getElement(){
+		return element;
+	}
 
 
 
