@@ -13,6 +13,11 @@ public abstract class Tokage  {
 	Color color;
 	Element element;
 
+	Tokage(){
+		System.out.println(" /|_/|");
+		System.out.println("(・・ )");
+	}
+
 	public void setName(String name){
 		this.name = name;
 	}
@@ -33,6 +38,7 @@ public abstract class Tokage  {
 	public Element getElement(){
 		return element;
 	}
+
 
 
 
