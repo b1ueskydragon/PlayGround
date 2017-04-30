@@ -1,5 +1,7 @@
 package sevenTokage.tokages;
 
+import java.util.List;
+
 import sevenTokage.attributes.Color;
 import sevenTokage.attributes.Element;
 
@@ -12,6 +14,7 @@ public abstract class Tokage  {
 	String name ;
 	Color color;
 	Element element;
+	List<Color> colorList = Color.colorList();
 
 	Tokage(){
 		System.out.println(" /|_/|");

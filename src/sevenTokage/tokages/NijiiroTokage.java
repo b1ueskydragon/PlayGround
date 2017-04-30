@@ -1,6 +1,5 @@
 package sevenTokage.tokages;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -11,26 +10,36 @@ import sevenTokage.attributes.Color;
  * ７つの色を持つ万能なトカゲ。でもテキトーに混ざっている。
  * ちょっと特別なトカゲ。
  */
-public abstract class NijiiroTokage extends Tokage {
+public class NijiiroTokage extends Tokage {
 
-	List<Color> colorList = color.colorList();
+	public NijiiroTokage() {
+		System.out.println(" |   |7");
+	}
+
 	Scanner sc = null;
 
-	public int inputInt() {
+	public Color setNumGetColor() {
 
-		System.out.println("0から10まで、今日は何番の気分?");
 		int thisOne = 0;
+		System.out.println("「0から10まで、今日は何番の気分?」");
+		thisOne = inputNum(thisOne);
+
+		return colorList.get(thisOne);
+	}
+
+	private int inputNum(int thisOne) {
 
 		while (true) {
 			try {
 				sc = new Scanner(System.in);
 				thisOne = sc.nextInt();
+
 				if (thisOne <= colorList.size())
 					break;
-				else{
-					System.out.print("List Size超えてるわ");
+				else {
+					System.out.println("List Size超えてるわ");
 					continue;
-					}
+				}
 			} catch (NoSuchElementException e) {
 				System.out.print("おこ--");
 				continue;
@@ -40,10 +49,6 @@ public abstract class NijiiroTokage extends Tokage {
 		sc.close();
 
 		return thisOne;
-	}
-
-	public void setNumGetColor(int i) {
-		colorList.get(i);
 	}
 
 }
