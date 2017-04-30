@@ -21,10 +21,12 @@ public class NijiiroTokage extends Tokage {
 	public Color setNumGetColor() {
 
 		int thisOne = 0;
-		System.out.println("「0から10まで、今日は何番の気分?」");
+		System.out.println("「1から10まで、今日は何番の気分?」");
 		thisOne = inputNum(thisOne);
 
-		return colorList.get(thisOne);
+		this.color = colorList.get(thisOne);
+
+		return color;
 	}
 
 	private int inputNum(int thisOne) {
@@ -32,15 +34,15 @@ public class NijiiroTokage extends Tokage {
 		while (true) {
 			try {
 				sc = new Scanner(System.in);
-				thisOne = sc.nextInt();
+				thisOne = sc.nextInt() - 1;
 
-				if (thisOne <= colorList.size())
+				if (thisOne <= getColorList().size() - 1 && thisOne >= 0)
 					break;
 				else {
 					System.out.println("List Size超えてるわ");
 					continue;
 				}
-			} catch (NoSuchElementException e) {
+			} catch (NoSuchElementException | IndexOutOfBoundsException e) {
 				System.out.print("おこ--");
 				continue;
 			}
