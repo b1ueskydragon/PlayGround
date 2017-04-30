@@ -15,10 +15,9 @@ public class Dragon extends Tokage {
 	private final static String name = "ちゃんドラゴン";
 	private Color color = Color.LIGHTBLUE;
 
-	public Dragon(){
+	public Dragon() {
 		System.out.println(" |   |¥");
 	}
-
 
 	// 外部からゲットできる装置
 	@Override
@@ -26,6 +25,7 @@ public class Dragon extends Tokage {
 		return name;
 	}
 
+	@Override
 	public Color getColor() {
 		return color;
 	}
