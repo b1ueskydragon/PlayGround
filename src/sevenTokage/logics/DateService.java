@@ -1,7 +1,6 @@
 package sevenTokage.logics;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /*
  * 時間によってトカゲたちの居場所が変わります。
@@ -11,30 +10,32 @@ public class DateService {
 
 	Calendar calendar = Calendar.getInstance();
 
-	public String getDay(){
+	public void whatTimeIsIt() {
 
-		// if else elseif
+		int hourOfDay = Calendar.HOUR_OF_DAY;
 
-		return "Afternonn";
+		isAfternoon(hourOfDay);
 	}
 
+	private void isAfternoon(int hourOfDay) {
 
-	private void whatTimeIsIt(){
-
-		Date now = calendar.getTime();
-
-		// morning, noon, afternoon にわけて getDayに渡す
-
-
-		System.out.println(calendar.getTime());
-
-
-	}
-
-	public static void main(String[]args){
-
-		new DateService().whatTimeIsIt();
-
+		if (hourOfDay >= 0 && hourOfDay < 6) {
+			//System.out.println(hourOfDay);
+			System.out.println("夜明け");
+		} else if (hourOfDay >= 6 && hourOfDay <= 12) {
+			//System.out.println(hourOfDay);
+			System.out.println("朝");
+		} else if (hourOfDay > 12 && hourOfDay < 20) {
+			//System.out.println(hourOfDay);
+			System.out.println("午後");
+			// Tea Time
+			if (hourOfDay >= 14 && hourOfDay <= 15) {
+				System.out.println("のTea Time !");
+			}
+		} else {
+			//System.out.println(hourOfDay);
+			System.out.println("夜");
+		}
 
 	}
 
