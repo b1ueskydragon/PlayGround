@@ -41,16 +41,6 @@ public class HappyTanabata {
 			swapMore(targetAry, i, i, new Character(tanabata.toCharArray()[i]).toString());
 		}
 
-		int r = 1;
-		while (r < targetAry.length) {
-			swap(targetAry, 1, r);
-			r++;
-			if (targetAry[1].equals(ZERO)) {
-				r = 0;
-				break;
-			}
-		}
-
 		String target = "";
 		for (String el : targetAry) {
 			target += el;
