@@ -17,7 +17,6 @@ public class HappyTanabata {
 		return false;
 	}
 
-
 	private static void swap(String[] target, int idx1, int idx2) {
 		String box = target[idx1];
 		target[idx1] = target[idx2];
@@ -38,15 +37,9 @@ public class HappyTanabata {
 
 		String[] targetAry = { SEVEN, SEVEN, SEVEN, ZERO, ZERO, ZERO, TWO, ONE };
 
-
-		swapMore(targetAry, 0, 0, new Character(tanabata.toCharArray()[0]).toString());
-		swapMore(targetAry, 1, 1, new Character(tanabata.toCharArray()[1]).toString());
-		swapMore(targetAry, 2, 2, new Character(tanabata.toCharArray()[2]).toString());
-		swapMore(targetAry, 3, 3, new Character(tanabata.toCharArray()[3]).toString());
-		swapMore(targetAry, 4, 4, new Character(tanabata.toCharArray()[4]).toString());
-		swapMore(targetAry, 5, 5, new Character(tanabata.toCharArray()[5]).toString());
-		swapMore(targetAry, 6, 6, new Character(tanabata.toCharArray()[6]).toString());
-		swapMore(targetAry, 7, 7, new Character(tanabata.toCharArray()[7]).toString());
+		for (int i = 0; i < tanabata.length(); i++) {
+			swapMore(targetAry, i, i, new Character(tanabata.toCharArray()[i]).toString());
+		}
 
 		int r = 1;
 		while (r < targetAry.length) {
@@ -62,7 +55,6 @@ public class HappyTanabata {
 		for (String el : targetAry) {
 			target += el;
 		}
-
 
 		wellIsTanabata(target);
 
