@@ -4,20 +4,23 @@ public class BigBangTheory {
 
 	public static void main(String ... args) {
 		Scientist scientist = new Sheldon() {
-			public void search() {
+			// BigBangTheory.searchをオーバーライド
+			public int search() {
 				System.out.println("This is my new spot !");
+				return 2;
 			}
 		};
-		scientist.search();
+		System.out.println(scientist.search());
 	}
 
 	interface Scientist {
-		void search();
+		int search();
 	}
 
 	static class Sheldon implements Scientist {
-		public void search() {
+		public int search() {
 			System.out.println("This is my spot.");
+			return 5;
 		}
 	}
 
