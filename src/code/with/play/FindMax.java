@@ -1,37 +1,43 @@
 package code.with.play;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * target の可変性を考慮し配列からリストへ変更
+ */
 public class FindMax {
 
-  private static int find(int [] ary){
-      int centerIdx = ary.length / 2;
-      int [] a = new int[ary.length/2];
-      int [] b = new int[ary.length/2];
+  private static int find(List<Integer> list){
+      int centerIdx = list.size() / 2;
+      List<Integer> a = new ArrayList<>();
+      List<Integer> b = new ArrayList<>();
 
+      // 左半分 (a)
       int idx = 0;
-      for(int i : ary) {
-        a[idx] = i;
+      for(int i : list) {
+        a.add(i);
         idx += 1;
         if(idx == centerIdx)
           break;
       }
 
-      int idx_ = 0;
-      for(int i = centerIdx ; i < ary.length ; i ++){
-        b[idx_++] = ary[i];
+      // 右半分 (b)
+      for(int i = centerIdx ; i < list.size() ; i ++){
+        b.add(list.get(i));
       }
 
-    if(a.length == 1 && b.length == 1) {
-        return a[0] > b[0] ? a[0] : b[0];
+    // basic case と recursive case
+    if(a.size() == 1 && b.size() == 1) {
+        return a.get(0) > b.get(0) ? a.get(0) : b.get(0);
     }else{
         return find(a) > find(b) ? find(a) : find(b);
     }
   }
 
   public static void main(String [] args){
-
-    // TODO lengthが2のn乗ではない場合は？
-    int [] target = {2, 9, 6, 12, 34, 100, 11, 2};
+    List<Integer> target = Arrays.asList(2, 9, 6, 12, 34, 100, 11, 2, 99, 101);
     System.out.println(find(target));
-
   }
 }
