@@ -37,7 +37,7 @@ public class FindMax {
   }
 
   public static void main(String [] args){
-    List<Integer> target = Arrays.asList(2, 9, 6, 12, 34, 100, 11, 2, 99, 101);
+    List<Integer> target = Arrays.asList(200, 6, 12, 34, 100, 11, 2, 99, 101);
     System.out.println(find(target));
   }
 }
