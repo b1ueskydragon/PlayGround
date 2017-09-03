@@ -1,5 +1,8 @@
 package code.with.play;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class HappyTanabata {
 
 	private static final String tanabata = "20170707";
@@ -8,7 +11,7 @@ public class HappyTanabata {
 	private static final String TWO = "2";
 	private static final String ONE = "1";
 
-	private static boolean wellIsTanabata(String target) {
+	private static boolean isTanabata(String target) {
 
 		if (target.equals(tanabata)) {
 			System.out.println("Happy Tanabata ! " + target);
@@ -38,7 +41,7 @@ public class HappyTanabata {
 		String[] targetAry = { SEVEN, SEVEN, SEVEN, ZERO, ZERO, ZERO, TWO, ONE };
 
 		for (int i = 0; i < tanabata.length(); i++) {
-			swapMore(targetAry, i, i, new Character(tanabata.toCharArray()[i]).toString());
+			swapMore(targetAry, i, i, Character.toString(tanabata.toCharArray()[i]));
 		}
 
 		String target = "";
@@ -46,8 +49,7 @@ public class HappyTanabata {
 			target += el;
 		}
 
-		wellIsTanabata(target);
-
+		isTanabata(target);
 	}
 
 }
