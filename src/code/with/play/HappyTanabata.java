@@ -1,8 +1,5 @@
 package code.with.play;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class HappyTanabata {
 
 	private static final String tanabata = "20170707";
