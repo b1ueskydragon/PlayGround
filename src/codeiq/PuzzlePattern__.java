@@ -41,14 +41,12 @@ public class PuzzlePattern__ {
     return flag;
   }
 
-  public static void main(String[]args) {
-
+  public static void test(int sumDefalt){
     List<Integer> board = new ArrayList<>();
     // 初期状態
     for (int i = 0 ; i < 16 ; i++) {
-      board.add(0);
+      board.add(sumDefalt);
     }
-
     List<Integer> resultBoard = setBoard(board);
 
     for(int i : resultBoard){
@@ -57,5 +55,12 @@ public class PuzzlePattern__ {
 
     System.out.println("");
     System.out.println(resultBoard.stream().mapToInt(Integer::intValue).sum());
+  }
+
+  public static void main(String[]args) {
+    test(0);
+    test(4);
+    test(16);
+    test(48);
   }
 }
