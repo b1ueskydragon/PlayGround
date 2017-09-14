@@ -11,16 +11,16 @@ public class PuzzlePattern__ {
   private static final List<Integer> notTargetW = new ArrayList<>(Arrays.asList(0, 4, 8, 12));
   private static  final List<Integer> notTargetH = new ArrayList<>(Arrays.asList(0,1,2,3));
 
-  private static int getScore(){
-    List<Integer> elementList = new ArrayList<>(Arrays.asList(2,4,8,16));
-    int el =  elementList.get(new Random().nextInt(4));
+  private int getScore(){
+    List<Integer> elementList = new ArrayList<>(Arrays.asList(2,4,8,16,32));
+    int el =  elementList.get(new Random().nextInt(elementList.size()));
     return el * ((int)(Math.log(el)/Math.log(2)) -1);
   }
 
   private static List<Integer> setBoard(List<Integer>board){
     for (int i = 0 ; i < 16 ; i++) {
       while (sameFlag(board, i)) {
-        board.set(i, getScore());
+        board.set(i, new PuzzlePattern__().getScore());
       }
     }
     return board;
@@ -41,26 +41,40 @@ public class PuzzlePattern__ {
     return flag;
   }
 
-  public static void test(int sumDefalt){
+  public static void test(){
     List<Integer> board = new ArrayList<>();
-    // 初期状態
     for (int i = 0 ; i < 16 ; i++) {
-      board.add(sumDefalt);
+      board.add(new PuzzlePattern__().getScore());
     }
+
     List<Integer> resultBoard = setBoard(board);
 
-    for(int i : resultBoard){
-      System.out.print("[" +i+ "]");
-    }
+    int sum = resultBoard.stream()
+            .filter(i -> i!=0)
+            .mapToInt(Integer::intValue)
+            .sum();
+    if (sum <= 500) {
+      for (int i : resultBoard) {
+        System.out.print("[" + i + "]");
+      }
 
-    System.out.println("");
-    System.out.println(resultBoard.stream().mapToInt(Integer::intValue).sum());
+      System.out.println("");
+      System.out.println(sum);
+    }
+  }
+
+  public static int count(){
+
+    return count();
   }
 
   public static void main(String[]args) {
-    test(0);
-    test(4);
-    test(16);
-    test(48);
+    test();
+    test();
+    test();
+    test();
+    test();
+    test();
+    test();
   }
 }
