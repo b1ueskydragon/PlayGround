@@ -7,58 +7,58 @@ import java.util.Random;
 
 public class PuzzlePattern___ {
 
-  public static int[] scores = {0, 4, 16, 48, 128};
+  // 規則に従って次のマスを埋める
+  private static void setBlocks(int[] scores, int[] blocks, int idx) {
+    blocks[idx] = scores[new Random().nextInt(scores.length)];
 
-  private static final List<Integer> notTargetW = new ArrayList<>(Arrays.asList(0, 4, 8, 12));
-  private static  final List<Integer> notTargetH = new ArrayList<>(Arrays.asList(0,1,2,3));
-
-  private static void setBlocks (int [] scores, int [] blocks, int idx){
-    while (idx < 16) {
-      blocks[idx] = scores[new Random().nextInt(5)];
-
-      if(flag(blocks, idx)) setBlocks(scores, blocks, idx);
-      idx ++;
+    if (flag(blocks, idx)) {
+      setBlocks(scores, blocks, idx);
     }
   }
 
-  private static boolean flag(int [] blocks, int idx) {
-    boolean flag = false;
-    if (!notTargetW.contains(idx)) {
-      flag =
-          blocks[idx] == blocks[idx - 1];
-    }
-    if (!notTargetH.contains(idx)) {
-      flag =
-          blocks[idx] == blocks[idx - 4];
-    }
-    if (!notTargetW.contains(idx) && !notTargetH.contains(idx)) {
-      flag =
-          blocks[idx] == blocks[idx - 1]
-      && blocks[idx] == blocks[idx - 4];
-    }
+  // ただのフラグ
+  private static boolean flag(int[] blocks, int idx) {
+    List<Integer> up = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15));
+    List<Integer> left = new ArrayList<>(Arrays.asList(1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15));
 
+    boolean flag = false;
+    // 上
+    if (up.contains(idx)) {
+      flag = blocks[idx] == blocks[idx - 4];
+    }
+    // 左
+    if (left.contains(idx)) {
+      flag = blocks[idx] == blocks[idx - 1];
+    }
     return flag;
   }
 
-  private static int sum(int[] scores, int idx, int goal) {
-
-    if (idx == 0) {
-      return scores[idx] + (goal - scores[idx]);
-
-    } else if (goal < 0 || idx >= scores.length) {
-      return 0;
-
+  // goal の合計を満たす条件をカウントする
+  private static int sum(int[] scores, int[] blocks, int idx, int goal) {
+    if (goal == 0) {
+      return 1;
+    } else if (goal < 0 || idx >= blocks.length) {
+      return 0; // 不正な条件なのでゼロ count
     } else {
-      return sum(scores, idx, goal) + sum(scores, idx + 1, goal);
-
+      return sum(scores, blocks, idx, goal - blocks[idx]) + sum(scores, blocks, idx + 1, goal);
     }
   }
 
   public static void main(String[] args) {
-      int [] blocks = new int[16];
-      setBlocks(scores, blocks, 0);
+    // 16個のマスを生成
+    int[] blocks = new int[16];
+    // マスになれる子たち
+    //int[] scores = {0, 4, 16, 48, 128};
+    int[] scores = {0, 4};
 
-      for (int e : blocks) System.out.println(e);
+    System.out.println(sum(scores, blocks, 0, 32));
 
+
+//      // とりあえず出してみよう
+//      int i = 0;
+//      for (int e : blocks) {
+//        System.out.println("[" + i + "]" + e);
+//        i ++;
+//      }
   }
 }
