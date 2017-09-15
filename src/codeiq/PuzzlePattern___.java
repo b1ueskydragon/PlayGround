@@ -34,14 +34,13 @@ public class PuzzlePattern___ {
   }
 
   // goal の合計を満たす条件をカウントする
-  private static int sum(int[] scores, int[] blocks, int idx, int goal) {
-    if (goal == 0) {
+  private static int count(int goal, int idx, int [] block) {
+    if (goal == 0)
       return 1;
-    } else if (goal < 0 || idx >= blocks.length) {
-      return 0; // 不正な条件なのでゼロ count
-    } else {
-      return sum(scores, blocks, idx, goal - blocks[idx]) + sum(scores, blocks, idx + 1, goal);
-    }
+    else if (goal < 0 || idx >= block.length)
+      return 0;
+    else
+      return count(goal - block[idx], idx, block) + count(goal, idx + 1, block);
   }
 
   public static void main(String[] args) {
@@ -51,19 +50,7 @@ public class PuzzlePattern___ {
     //int[] scores = {0, 4, 16, 48, 128};
     int[] scores = {0, 4};
 
-    System.out.println(sum(scores, blocks, 0, 32));
+    System.out.println(count(32, 0, scores));
 
-
-//    int idx = 0;
-//    while(idx < 16){
-//      setBlocks(scores,blocks,idx);
-//      idx++;
-//    }
-//      // とりあえず出してみよう
-//      int i = 0;
-//      for (int e : blocks) {
-//        System.out.println("[" + i + "]" + e);
-//        i ++;
-//      }
   }
 }
