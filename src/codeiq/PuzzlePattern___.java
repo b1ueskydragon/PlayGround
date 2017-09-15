@@ -54,6 +54,11 @@ public class PuzzlePattern___ {
     System.out.println(sum(scores, blocks, 0, 32));
 
 
+//    int idx = 0;
+//    while(idx < 16){
+//      setBlocks(scores,blocks,idx);
+//      idx++;
+//    }
 //      // とりあえず出してみよう
 //      int i = 0;
 //      for (int e : blocks) {
