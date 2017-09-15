@@ -5,41 +5,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PuzzlePattern___ {
-    private static final List<Integer> notTargetW = new ArrayList<>(Arrays.asList(0, 4, 8, 12));
-    private static  final List<Integer> notTargetH = new ArrayList<>(Arrays.asList(0,1,2,3));
 
-    int cents[] = {2,4,8,16,32};
+  public static int[] scores = {0, 4, 16, 48, 128};
 
-    public int count(int amount) {
-        return count(amount, 0);
+  private static boolean flag(int idx) {
+    boolean flag = false;
+    if (idx > 0) {
+      flag = idx == idx - 1;
     }
-
-    private int count(int amount, int idx) {
-        if (amount == 0)
-            return 1;
-        else if (amount < 0 || idx >= cents.length)
-            return 0;
-        else
-            return count(amount - cents[idx], idx) + count(amount, idx + 1);
+    if (idx > 4) {
+      flag = idx == idx - 4;
     }
+    return flag;
+  }
 
-    private static boolean sameFlag(List<Integer> list, int idx){
-        boolean flag = false;
-        if(!notTargetW.contains(idx)){
-            if(list.get(idx - 1).equals(list.get(idx))) {
-                flag = true;
-            }
-        }
-        if (!notTargetH.contains(idx)) {
-            if (list.get(idx - 4).equals(list.get(idx))) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
+  private static int sum(int[] scores, int idx, int goal) {
 
-    public static void main(String[] args) {
-         System.out.println(new PuzzlePattern___().count(32));
+    if (idx == 0) {
+      return scores[idx] + (goal - scores[idx]);
+
+    } else if (goal < 0 || idx >= scores.length) {
+      return 0;
+
+    } else {
+      return sum(scores, idx, goal) + sum(scores, idx + 1, goal);
+
     }
-    // ありうる合計 0, 4, 16, 48, 128
+  }
+
+  public static void main(String[] args) {
+
+    System.out.println(sum(scores, 0, 32));
+
+//    int count = 0; // 足した回数
+//    while (count < 16) {
+//
+//      count++;
+//    }
+
+  }
+
 }

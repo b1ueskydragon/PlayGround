@@ -16,6 +16,15 @@ public class PuzzlePattern__ {
     return el * ((int)(Math.log(el)/Math.log(2)) -1);
   }
 
+  private static List<Integer> getScoreList(){
+    List<Integer> elementList = new ArrayList<>(Arrays.asList(2,4,8,16,32));
+    List<Integer> scoreList = new ArrayList<>();
+    for (Integer el : elementList) {
+      scoreList.add(el * ((int) (Math.log(el) / Math.log(2)) - 1));
+    }
+    return scoreList;
+  }
+
   private static List<Integer> setBoard(List<Integer>board){
     for (int i = 0 ; i < 16 ; i++) {
       while (sameFlag(board, i)) {
