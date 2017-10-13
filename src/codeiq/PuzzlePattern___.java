@@ -48,9 +48,9 @@ public class PuzzlePattern___ {
     int[] blocks = new int[16];
     // マスになれる子たち
     //int[] scores = {0, 4, 16, 48, 128};
-    int[] scores = {4, 16, 48};
+    int[] scores = {4, 16, 48, 128};
 
-    System.out.println(count(16, 0, scores));
+    System.out.println(count(500, 0, scores));
 
   }
 }
