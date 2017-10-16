@@ -34,6 +34,48 @@ public class ByteLength {
 
 
 
+  private int max;
+
+  private boolean isByteSizeValid(String value) {
+
+    float len = 0f;
+
+    for (char c : value.toCharArray()) {
+      System.out.println(c);
+
+      boolean isHalfWidth =
+          (c <= '\u007e') || (c == '\u00a5') || (c == '\u203e') || (c >= '\uff61' && c <= '\uff9f');
+
+      len += isHalfWidth ? 0.5f : 1.0f; // int だと少数の足し算が不正確
+    }
+
+    System.out.println(len);
+
+    return (len <= max);
+  }
+
+
+  private boolean isByteSizeValid_original(String value) {
+
+    int len = 0;
+    for (char c : value.toCharArray()) {
+      if (String.valueOf(c).getBytes().length > 1) {
+        len += 2;
+      } else {
+        len += 1;
+      }
+    }
+
+    System.out.println(len);
+
+    if (len > max) {
+      return false;
+    }
+    return true;
+  }
+
+
+
   private int test(String value) {
     int sum = 0;
     for (char c : value.toCharArray()) {
@@ -49,24 +91,29 @@ public class ByteLength {
 
   public static void main(String [] args) {
 
-    String value = "ぎゃおー！";
-    char [] chars = value.toCharArray();
+//    String value = "ぎゃおー！";
+//    char [] chars = value.toCharArray();
+//
+//    long zen = Arrays.asList(chars) // char []
+//        .stream()
+//        .map(c -> String.valueOf(c).getBytes().length)
+//        .filter(l -> l > 1)
+//        .count();
+//
+//    Arrays.asList(value).stream().map(cs -> value.toCharArray()).forEach(System.out::println);
+//
+//
+//
+//   System.out.println( new ByteLength().test(value));
+//
+//
+//   // Another Test
+//    charAndCode();
 
-    long zen = Arrays.asList(chars) // char []
-        .stream()
-        .map(c -> String.valueOf(c).getBytes().length)
-        .filter(l -> l > 1)
-        .count();
+    ByteLength byteLength = new ByteLength();
+    byteLength.max = 40;
+    System.out.println(byteLength.isByteSizeValid("aasdfsaaaaaaaaaaaaaaaaaaaaaaaaaasdfsdfsadfsaasdfsdfsadfsaasdfsdfsadfaaaaaaaaaaaa"));
 
-    Arrays.asList(value).stream().map(cs -> value.toCharArray()).forEach(System.out::println);
-
-
-
-   System.out.println( new ByteLength().test(value));
-
-
-   // Another Test
-    charAndCode();
 
 
   }
