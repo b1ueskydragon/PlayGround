@@ -112,9 +112,32 @@ public class ByteLength {
 
     ByteLength byteLength = new ByteLength();
     byteLength.max = 40;
-    System.out.println(byteLength.isByteSizeValid("aasdfsaaaaaaaaaaaaaaaaaaaaaaaaaasdfsdfsadfsaasdfsdfsadfsaasdfsdfsadfaaaaaaaaaaaa"));
+  //  System.out.println(byteLength.isByteSizeValid("aasdfsaaaaaaaaaaaaaaaaaaaaaaaaaasdfsdfsadfsaasdfsdfsadfsaasdfsdfsadfaaaaaaaaaaaa"));
+
+
+
+    System.out.println(byteLength.isByteSizeValid_8("DRAGON"));
 
 
 
   }
+
+
+ // 最終形態
+  private boolean isByteSizeValid_8(String value) {
+
+    double len = value
+        .chars() // value 一文字ずつの char コードの IntStream が返ってくる
+        .map(c -> isHalfWidth((char)c) ? 1 : 2)
+        .sum() * 0.5d; // 省略しても OK
+
+    System.out.println(len);
+
+    return (len <= max);
+  }
+
+  private boolean isHalfWidth(char c) {
+    return (c <= '\u007e') || (c == '\u00a5') || (c == '\u203e') || (c >= '\uff61' && c <= '\uff9f');
+  }
+
 }
