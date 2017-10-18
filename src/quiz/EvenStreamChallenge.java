@@ -16,6 +16,6 @@ public class EvenStreamChallenge {
         .findFirst();
 
     System.out.println(number);
-
+    System.out.println(number == null);
   }
 }
