@@ -1,4 +1,4 @@
-package word.to.code;
+package letters;
 
 import java.util.ArrayList;
 import java.util.List;

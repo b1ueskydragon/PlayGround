@@ -1,4 +1,4 @@
-package word.to.code.demo;
+package letters.demo;
 
 /**
  *

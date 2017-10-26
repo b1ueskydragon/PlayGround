@@ -1,4 +1,4 @@
-package word.to.code;
+package letters;
 
 public class WorkHere {
 
