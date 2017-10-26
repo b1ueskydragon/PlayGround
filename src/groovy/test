@@ -1,0 +1,6 @@
+def hoge = ["h", "o", "g", "e", "h", "o", "g", "e"]
+def fuga = ["f", "u", "g", "a", "f", "u", "g", "a"]
+
+[hoge, fuga].transpose().each { h, f ->
+    println "$h $f"
+}
