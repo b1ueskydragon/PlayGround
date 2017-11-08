@@ -1,6 +1,6 @@
 package quiz;
 
-public class LogicalOperatiorsChallenge2 {
+public class LogicalOperatorsChallenge2 {
 
   public static void main(String[] args) {
     int num1 = 5;
