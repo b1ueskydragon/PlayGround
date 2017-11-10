@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 public class StreamChallenge2 {
 
   public static void main(String[] args) {
-    List<Jedi> jediList = List.of(new Jedi("Luke", 10), new Jedi("Anakin", 10), new Jedi("ObiWan", 11));
+    List<Jedi> jediList = List.of(new Jedi("Luke", 10), new Jedi("Anakin", 10),
+        new Jedi("ObiWan", 11));
+
     Map<Integer, List<Jedi>> jediByAge =
         jediList.stream()
             .filter(j -> j.age < 10)
