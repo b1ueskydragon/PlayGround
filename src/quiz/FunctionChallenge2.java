@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class FunctionChallenge2 {
 
   public static void main(String[] args) {
-    String starWars = "Luke, DarthVder";
+    String starWars = "Luke, DarthVader";
 
     Function<String, Stream<String>> lineSplitter =
         l -> Pattern.compile("\\w").splitAsStream(l);
