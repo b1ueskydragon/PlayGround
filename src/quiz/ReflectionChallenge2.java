@@ -30,18 +30,22 @@ public class ReflectionChallenge2 {
   }
 
   /**
-   * 実行する際にも JVM に、そのアノテーションの情報が読み込まれる
+   * classファイルに記録され実行時に参照できる
+   * (実行する際にも JVM に、そのアノテーションの情報が読み込まれる)
    */
   @Retention(RetentionPolicy.RUNTIME)
   @interface Table {
     String name();
   }
 
+  // ちなみに、RetentionPolicy.SOURCE はコンパイル時に破棄される
+
   /**
    * ＠Retention が省略された場合のデフォルト値。
+   * classファイルに記録されるが実行時には保持されない
    *
-   * コンパイルした class ファイル内にそのアノテーションの情報が保持されるが、
-   * 実行時には読み込まれない。
+   * (コンパイルした class ファイル内にそのアノテーションの情報が保持されるが、
+   * 実行時には読み込まれない)
    */
   @interface Column {
     String name();

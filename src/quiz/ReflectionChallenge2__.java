@@ -4,12 +4,17 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.Arrays;
 
 public class ReflectionChallenge2__ {
 
   public static void main(String... args) {
     System.out.println(Jedi.class.getAnnotation(Table.class).name());
-    System.out.println(Jedi.class.getAnnotation(Column.class).name()); // NullPointerException
+    System.out.println();
+
+    Arrays.stream(Jedi.class.getAnnotations())
+        .forEach(System.out::println);
+    // @ReflectionChallenge2__$Table(name="jedi")
   }
 
   @Table(name = "jedi")
