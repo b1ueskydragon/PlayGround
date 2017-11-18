@@ -6,11 +6,19 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Arrays;
 
+/**
+ * Filed をも動かした
+ */
 public class ReflectionChallenge2__ {
 
   public static void main(String... args) {
     System.out.println(Jedi.class.getAnnotation(Table.class).name());
-    System.out.println();
+
+    try {
+      System.out.println(Jedi.class.getDeclaredField("attackType").getAnnotation(Column.class).name());
+    } catch (NoSuchFieldException e) {
+      e.printStackTrace();
+    }
 
     Arrays.stream(Jedi.class.getAnnotations())
         .forEach(System.out::println);
