@@ -14,6 +14,7 @@ public class GenericsChallenge2 {
     T t;
 
     void attack(T t) {
+     // this.t = t;
       System.out.println(this.t);
     }
   }
