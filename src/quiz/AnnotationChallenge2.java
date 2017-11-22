@@ -10,7 +10,7 @@ public class AnnotationChallenge2 {
     System.out.println(Jedi.class.getDeclaredFields()[1].getAnnotation(Column.class).name());
     System.out.println(Jedi.class.getDeclaredFields()[2].getAnnotation(Column.class).name());
 
-    // returns an array of objects reflecting all the fields
+    // returns an array of objects reflecting all the fields even if it is private. but exclude inherited fields
     Arrays.stream(Jedi.class.getDeclaredFields()).forEach(System.out::println);
   }
 
