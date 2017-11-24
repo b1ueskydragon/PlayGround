@@ -7,7 +7,7 @@ public class WildCardsChallenge2 {
 
   public static void main(String[] args) {
     wild(new Generic<String>());
-    List<Number> list = wild2(new ArrayList<Number());
+    List<Number> list = wild2(new ArrayList<Number>());
 
     list.forEach(System.out::println);
   }
