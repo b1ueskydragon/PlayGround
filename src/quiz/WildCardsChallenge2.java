@@ -7,7 +7,8 @@ public class WildCardsChallenge2 {
 
   public static void main(String[] args) {
     wild(new Generic<String>());
-    List<Number> list = wild2(new ArrayList<Number>());
+    List<Number> list = wild2(new ArrayList<Number>()); // Object cannot be cast to Number
+   // List<Object> list = wild2(new ArrayList<>());
 
     list.forEach(System.out::println);
   }
