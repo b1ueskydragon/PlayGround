@@ -15,8 +15,6 @@ public class StaticChallenge2 {
 
     System.out.println(homerSimpson.name + bartSimpson.name); // BartBart
     System.out.println(homerSimpson.age + bartSimpson.age); // 9 + 9 == 18
-
-
   }
 
   static class Simpson {
