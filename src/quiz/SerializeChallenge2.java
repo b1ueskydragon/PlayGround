@@ -2,13 +2,18 @@ package quiz;
 
 import java.io.*;
 
+/**
+ * シリアライズ: オブジェクトをバイト配列に変換すること
+ *
+ * オブジェクトをファイルやデータベース保存、ネットワーにク経由の送受信などで利用する
+ */
 public class SerializeChallenge2 {
   public static void main(String[] args) {
     Xmen xmen = new Xmen();
     try (FileOutputStream fs = new FileOutputStream("SerTest.ser");
          ObjectOutputStream os = new ObjectOutputStream(fs)) {
-      xmen.name = "Wolverine"; //
-      xmen.power = "Healing and defensive powers"; //
+      xmen.name = "Wolverine";
+      xmen.power = "Healing and defensive powers";
 
       os.writeObject(xmen);
     } catch (Exception exception) {
@@ -29,7 +34,7 @@ public class SerializeChallenge2 {
   static class Xmen implements Serializable {
     private static final long serialVersionUID = 632L;
     String name;
-    transient String power;
+    transient String power; // シリアライズの対象から除外
 
     private void readObject(ObjectInputStream aInputStream) throws ClassNotFoundException, IOException {
       name = aInputStream.readUTF();
