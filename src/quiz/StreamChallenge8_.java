@@ -8,6 +8,8 @@ import java.util.List;
  * dropWhile
  *
  * 最初の要素の段階でひっかからないと、何も take || drop されない
+ *
+ * つまりフィルターではない
  */
 public class StreamChallenge8_ {
   public static void main(String[] args) {
@@ -27,7 +29,37 @@ public class StreamChallenge8_ {
         .takeWhile(i -> i % 2 == 0)
         .forEach(System.out::println);
 
-    // 2
+    // 0, 2
+
+    System.out.println("- - - - - - - - - - -");
+
+    List<Integer> oneMoreList = Arrays.asList(2, 4, 6, 8, 10, 11);
+
+    oneMoreList.stream()
+        .takeWhile(i -> i % 2 == 0)
+        .forEach(System.out::println);
+
+    // 2, 4, 6, 8, 10
+
+    System.out.println("- - - - - - - - - - -");
+
+    List<Integer> anotherList = Arrays.asList(3, 4, 6, 8, 10, 11);
+
+    anotherList.stream()
+        .takeWhile(i -> i % 2 == 0)
+        .forEach(System.out::println);
+
+    // null
+
+    System.out.println("- - - - - - - - - - -");
+
+    List<Integer> theOtherList = Arrays.asList(1, 3, 5, 7, 9, 12);
+
+    theOtherList.stream()
+        .dropWhile(i -> i % 2 == 0)
+        .forEach(System.out::println);
+
+    // 1, 3, 5, 7, 9, 12
 
     System.out.println("- - - - - - - - - - -");
 
