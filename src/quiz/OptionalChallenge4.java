@@ -16,5 +16,19 @@ public class OptionalChallenge4 {
             .or(() -> Optional.of(777));
 
     System.out.println(number);
+
+
+    Optional<Integer> test =
+        list.stream()
+            .dropWhile(i -> i > 9)
+            .findFirst()
+            .or(() -> Optional.of(1));
+
+    System.out.println(test);
+
+    list.stream()
+        .takeWhile(i -> i > 5)
+        //.dropWhile(i -> i > 9)
+        .forEach(System.out::println);
   }
 }
