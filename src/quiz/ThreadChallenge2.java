@@ -4,6 +4,10 @@ package quiz;
  * a Daemon is a computer program that runs as a background process,
  * rather than being under the direct control of an interactive user.
  *
+ * A daemon thread is a thread that does not prevent the JVM from exiting when the program finishes but the thread is still running.
+ * An example for a daemon thread is the garbage collection.
+ * You can use the setDaemon(boolean) method to change the Thread daemon properties before the thread starts.
+ *
  * setDaemon(true)
  *
  * プログラム終了のタイミングで、スレッド処理が破棄される
