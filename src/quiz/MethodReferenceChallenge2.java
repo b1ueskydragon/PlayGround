@@ -40,5 +40,10 @@ public class MethodReferenceChallenge2 {
     public String shoot() {
       return null;
     }
+
+//    @Override
+//    public String reload() {
+//      return "overwritten!!";
+//    }
   }
 }
