@@ -3,27 +3,27 @@ package quiz;
 public class MethodReference {
 
   public static void main(String[] args) {
-    jump(MethodReference::printJump);
+    // static メソッド
+    wakeUp(MethodReference::printWakeUp);
 
     System.out.print(" and ");
 
+    // インスタンスメソッド
     MethodReference mr = new MethodReference();
     mr.goToilet(mr::printGoToilet);
-
-    mr.somthing(MethodReference.class);
   }
 
   interface Human {
     void doSomething();
   }
 
-  static void jump(Human human) {
+  static void wakeUp(Human human) {
     human.doSomething();
   }
 
-  static void printJump() {
-    String jump = "jump";
-    System.out.print(jump);
+  static void printWakeUp() {
+    String wakeUp = "wake up";
+    System.out.print(wakeUp);
   }
 
   void goToilet(Human human) {
@@ -33,9 +33,5 @@ public class MethodReference {
   void printGoToilet() {
     String toilet = "happy toilet";
     System.out.print(toilet);
-  }
-
-  // 上記と関係なし、パラメータに this. でクラス渡したい
-  void somthing(Class<?> clazz) {
   }
 }
