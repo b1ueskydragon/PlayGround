@@ -5,6 +5,8 @@ public class MethodReference {
   public static void main(String[] args) {
     jump(MethodReference::printJump);
 
+    System.out.print(" and ");
+
     MethodReference mr = new MethodReference();
     mr.goToilet(mr::printGoToilet);
 
@@ -20,7 +22,7 @@ public class MethodReference {
   }
 
   static void printJump() {
-    String jump = "jump and ";
+    String jump = "jump";
     System.out.print(jump);
   }
 
