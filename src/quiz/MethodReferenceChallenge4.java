@@ -3,11 +3,11 @@ package quiz;
 import java.util.function.BiFunction;
 
 public class MethodReferenceChallenge4 {
-  public static int add(double a, double b) {
+  private static int add(double a, double b) {
     return (int) (a + b);
   }
 
-  public static int subtract(double a, double b) {
+  private static int subtract(double a, double b) {
     return (int) (a - b + a);
   }
 
