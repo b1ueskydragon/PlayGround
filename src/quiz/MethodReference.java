@@ -7,6 +7,8 @@ public class MethodReference {
 
     MethodReference mr = new MethodReference();
     mr.goToilet(mr::printGoToilet);
+
+    mr.somthing(MethodReference.class);
   }
 
   interface Human {
@@ -18,8 +20,8 @@ public class MethodReference {
   }
 
   static void printJump() {
-    String jump = "jump";
-    System.out.println(jump);
+    String jump = "jump and ";
+    System.out.print(jump);
   }
 
   void goToilet(Human human) {
@@ -28,6 +30,10 @@ public class MethodReference {
 
   void printGoToilet() {
     String toilet = "happy toilet";
-    System.out.println(toilet);
+    System.out.print(toilet);
+  }
+
+  // 上記と関係なし、パラメータに this. でクラス渡したい
+  void somthing(Class<?> clazz) {
   }
 }
