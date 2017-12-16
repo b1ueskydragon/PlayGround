@@ -1,8 +1,5 @@
 package quiz;
 
-import java.lang.reflect.Method;
-import java.util.function.Consumer;
-
 /**
  * メソッド参照
  *
