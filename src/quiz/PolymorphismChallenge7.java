@@ -8,10 +8,11 @@ public class PolymorphismChallenge7 {
   }
 
   private abstract static class Person {
-    protected String present;
+    protected String present; // private だと sub class で アクセス不可
 
     Person(String present) {
       this.present = present;
+      System.out.println(present + " <- Person constructor");
     }
 
     void givePresent() {
@@ -26,7 +27,7 @@ public class PolymorphismChallenge7 {
   private static class SantaClaus extends Person {
     public SantaClaus(String present) {
       super(present); // 親の？
-      System.out.println(present + " <- super");
+      System.out.println(present + " <- SantaClaus constructor");
     }
 
     @Override
