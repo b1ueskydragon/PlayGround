@@ -7,7 +7,7 @@ public class StringBufferChallenge {
     buffer.append("nobugs ");
     buffer.append("project ");
     buffer.append(nullObj);
-    buffer.insert(14, '1'); // int offset, char c
+    buffer.insert(14, '!'); // int offset, char c
     System.out.println(buffer);
   }
 }
