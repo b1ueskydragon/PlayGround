@@ -1,4 +1,4 @@
-package graffiti;
+package game;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

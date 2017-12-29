@@ -1,4 +1,4 @@
-package graffiti;
+package game;
 
 import java.awt.Toolkit;
 import java.util.Timer;
