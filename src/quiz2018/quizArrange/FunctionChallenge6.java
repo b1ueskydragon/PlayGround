@@ -1,4 +1,4 @@
-package quiz2018;
+package quiz2018.quizArrange;
 
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
@@ -16,9 +16,13 @@ public class FunctionChallenge6 {
     BiFunction<Integer, Integer, Integer> func =
         add.andThen(sub).andThen(sub).andThen(sub);
     int firstResult = func.apply(2, 2);
+    System.out.println(firstResult);
 
-    add.andThen(sub).andThen(mult); // dummy?
+    int dummyResult = add.andThen(sub).andThen(mult).apply(2, 2);
+    System.out.println(dummyResult);
+
     int secondResult = add.apply(2, 2);
+    System.out.println(secondResult);
 
     consumer.accept(firstResult, secondResult);
   }
