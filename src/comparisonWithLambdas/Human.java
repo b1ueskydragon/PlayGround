@@ -1,6 +1,5 @@
-package quiz2018.comparisonWithLambdas;
+package comparisonWithLambdas;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Human {

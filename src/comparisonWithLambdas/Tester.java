@@ -1,4 +1,4 @@
-package quiz2018.comparisonWithLambdas;
+package comparisonWithLambdas;
 
 import org.junit.Test;
 
