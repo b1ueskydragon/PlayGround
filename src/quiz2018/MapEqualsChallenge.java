@@ -10,10 +10,15 @@ public class MapEqualsChallenge {
     map.put(new Stark("Arya"), "1");
     map.put(new Stark("Ned"), "2");
     map.put(new Stark("Sansa"), "3");
-    map.put(new Stark("Bran"), "4");
-    map.put(new Stark("Jaime"), "5");
+    map.put(new Stark("Bran"), "4"); // 4文字で key が同じなのでここの value に上書きされる
+    map.put(new Stark("Jaime"), "5"); // 5文字で key が同じなのでここの value に上書きされる
 
     map.forEach((k, v) -> System.out.println(v));
+
+//    for (Stark s : map.keySet()) {
+//      System.out.println(s.name);
+//      System.out.println(map.get(s));
+//    }
   }
 
   static class Stark {
