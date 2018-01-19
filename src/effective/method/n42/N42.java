@@ -1,4 +1,4 @@
-package effective.variableArityMethod.n42;
+package effective.method.n42;
 
 public class N42 {
   // 可変長引数の単純な利用(0個以上の引数)
@@ -31,6 +31,5 @@ public class N42 {
 
     System.out.println(sum);
   }
-
 }
 
