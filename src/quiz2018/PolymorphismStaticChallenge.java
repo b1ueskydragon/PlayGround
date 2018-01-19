@@ -8,6 +8,11 @@ public class PolymorphismStaticChallenge {
 
   public static void main(String... args) {
     class MichaelCorleone extends VitoCorleone {
+
+      private MichaelCorleone(){
+        System.out.println("aa");
+      }
+
       {
         System.out.println("SMichael");
       }
