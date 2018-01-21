@@ -5,6 +5,11 @@ public class GenericsChallenge6 {
   public static void main(String... args) {
     new Homer<>("goHomer", 10) {
       // can override a method inside here
+
+      @Override
+      <Krusty extends Number> void print(Krusty krusty) {
+        System.out.println("Override!");
+      }
     }.<Double>print(10D);
   }
 
