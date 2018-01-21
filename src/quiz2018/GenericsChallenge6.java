@@ -3,7 +3,9 @@ package quiz2018;
 public class GenericsChallenge6 {
 
   public static void main(String... args) {
-    new Homer<>("goHomer", 10) {}.<Double>print(10D);
+    new Homer<>("goHomer", 10) {
+      // can override a method inside here
+    }.<Double>print(10D);
   }
 
   static class Homer<T, O extends Integer> {
