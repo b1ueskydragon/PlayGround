@@ -11,6 +11,8 @@ public class ExceptionChallenge2 {
 
     try (closeIt) {
       System.out.println(soprano.matches(null)); // NullPointerException
+    } catch (NullPointerException nullPointerException) {
+      System.out.println("nullPointerException"); // arrange
     } catch (Exception exception) {
       System.out.println("exception");
     } catch (Throwable throwable) {
