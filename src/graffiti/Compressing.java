@@ -14,12 +14,9 @@ public class Compressing {
     List<Object> list = Arrays.asList("a", 1, "b", 1, "b", "c", "c", "d", "a", 1);
     List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
 
-    for (int i = 0; i < list.size() - 1; i++) {
-      if (i == list.size() - 1) break;
-      list = generalCompress(list, i);
-    }
-
-    list.forEach(System.out::println);
+    generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
+    System.out.print(System.getProperty("line.separator"));
+    generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
   }
 
   /**
@@ -28,9 +25,8 @@ public class Compressing {
    * @param list          リスト
    * @param comparisonIdx 比較基準となる要素のインデックス
    * @param <T>           この段階では決まっていない要素の型
-   * @return              圧縮を一度施したリスト
+   * @return              圧縮したリスト
    */
-  // TODO ループもこの中で完結させる -> 再帰
   private static <T> List<T> generalCompress(List<T> list, int comparisonIdx) {
 
     T comparisonHead = list.get(comparisonIdx); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
@@ -40,8 +36,12 @@ public class Compressing {
         .filter(el -> !el.equals(comparisonHead))
         .collect(Collectors.toList());
 
-    result.add(comparisonIdx, comparisonHead);
+    result.add(comparisonIdx ++, comparisonHead); // 全ての工程が終わったら, 基準インデックスを一つ進める.
 
-    return result;
+    if (comparisonIdx == result.size() - 1) {
+      return result; // exit case.
+    } else {
+      return generalCompress(result, comparisonIdx);
+    }
   }
 }
