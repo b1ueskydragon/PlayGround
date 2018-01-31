@@ -11,22 +11,12 @@ import java.util.stream.Collectors;
  */
 public class Compressing {
   public static void main(String[] args) {
-    List<Object> list = Arrays.asList("a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1);
+    List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
     List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
 
-    for (int i = 0; i < list.size() - 1; i++) {
-      if (i == list.size() - 1) break;
-      list = generalCompress(list, i);
-    }
-
-    for (int i = 0; i < strList.size() - 1; i++) {
-      if (i == strList.size() - 1) break;
-      strList = generalCompress(strList, i);
-    }
-
-    list.forEach(e -> System.out.printf(e + " ", e));
+    generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
-    strList.forEach(e -> System.out.printf(e + " ", e));
+    generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
   }
 
   /**
@@ -35,9 +25,8 @@ public class Compressing {
    * @param list          リスト
    * @param comparisonIdx 比較基準となる要素のインデックス
    * @param <T>           この段階では決まっていない要素の型
-   * @return              圧縮を一度施したリスト
+   * @return              圧縮したリスト
    */
-  // TODO ループもこの中で完結させる -> 再帰
   private static <T> List<T> generalCompress(List<T> list, int comparisonIdx) {
 
     T comparisonHead = list.get(comparisonIdx); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
@@ -49,6 +38,12 @@ public class Compressing {
 
     result.add(comparisonIdx, comparisonHead);
 
-    return result;
+    // 全ての工程が終わり, 現在のインデックスが出来上がったリストの最後のインデックスなのか評価してから, 基準インデックスを一つ進める (進めてから比較しないこと).
+    if (comparisonIdx++ == result.size() - 1) {
+      return result; // exit case.
+    } else {
+      // 評価式ではなく, ここでインクリメントさせた方がいいかと.
+      return generalCompress(result, comparisonIdx);
+    }
   }
 }
