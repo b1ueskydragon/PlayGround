@@ -38,11 +38,10 @@ public class Compressing {
 
     result.add(comparisonIdx, comparisonHead);
 
-    // 全ての工程が終わり, 現在のインデックスが出来上がったリストの最後のインデックスなのか評価してから, 基準インデックスを一つ進める (進めてから比較しないこと).
-    if (comparisonIdx++ == result.size() - 1) {
+    if (comparisonIdx == result.size() - 1) {
       return result; // exit case.
     } else {
-      // 評価式ではなく, ここでインクリメントさせた方がいいかと.
+      comparisonIdx ++; // standard case のみインクリさせる. 進めてから再帰.
       return generalCompress(result, comparisonIdx);
     }
   }
