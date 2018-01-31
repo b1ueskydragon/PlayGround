@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class Compressing {
   public static void main(String[] args) {
     List<Object> list = Arrays.asList("a", 1, "b", 1, "b", "c", "c", "d", "a", 1);
+    List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
 
     for (int i = 0; i < list.size() - 1; i++) {
       if (i == list.size() - 1) break;
@@ -29,7 +30,7 @@ public class Compressing {
    * @param <T>           この段階では決まっていない要素の型
    * @return              圧縮を一度施したリスト
    */
-  // TODO ループもこの中で完結させる.
+  // TODO ループもこの中で完結させる -> 再帰
   private static <T> List<T> generalCompress(List<T> list, int comparisonIdx) {
 
     T comparisonHead = list.get(comparisonIdx); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
