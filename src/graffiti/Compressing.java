@@ -27,6 +27,7 @@ public class Compressing {
    * @param <T>           この段階では決まっていない要素の型
    * @return              圧縮したリスト
    */
+  // TODO 型安全の観点で raw type コレクション や case 変更が必要な Object type コレクションと変わらない
   private static <T> List<T> generalCompress(List<T> list, int comparisonIdx) {
 
     T comparisonHead = list.get(comparisonIdx); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
