@@ -1,4 +1,4 @@
-package graffiti.sort.merge;
+package sort.merge;
 
 import java.util.Arrays;
 
