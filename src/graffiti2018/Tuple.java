@@ -1,6 +1,6 @@
 package graffiti2018;
 
-public class Tuple<V, W> {
+public class Tuple {
   public static class Tuple2<V, W> {
     private final V v;
     private final W w;
