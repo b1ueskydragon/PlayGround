@@ -1,4 +1,4 @@
-package graffiti;
+package graffiti2018;
 
 public class HelloChar {
   public static void main(String... args) {
