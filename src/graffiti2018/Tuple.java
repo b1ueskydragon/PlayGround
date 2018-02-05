@@ -1,21 +1,34 @@
 package graffiti2018;
 
 public class Tuple {
-  public static class Tuple2<V, W> {
-    private final V v;
-    private final W w;
+  public static class Tuple2<A, B> {
+    private final A a;
+    private final B b;
 
-    Tuple2(V v, W w) {
-      this.v = v;
-      this.w = w;
+    public Tuple2(A a, B b) {
+      this.a = a;
+      this.b = b;
     }
 
-    V getV() {
-      return v;
+    public A getA() {
+      return a;
     }
 
-    W getW() {
-      return w;
+    public B getB() {
+      return b;
+    }
+  }
+
+  public static class Tuple3<A, B, C> extends Tuple2<A, B> {
+    private final C c;
+
+    public Tuple3(A a, B b, C c) {
+      super(a, b);
+      this.c = c;
+    }
+
+    public C getC() {
+      return c;
     }
   }
 }
