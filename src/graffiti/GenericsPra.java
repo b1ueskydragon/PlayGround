@@ -1,6 +1,7 @@
 package graffiti;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GenericsPra {
@@ -39,7 +40,7 @@ public class GenericsPra {
     objList.add(1);
     objList.add(new Inagon());
 
-    objList.forEach(el -> System.out.println((String)el));
+  //  objList.forEach(el -> System.out.println((String)el)); // 実行時エラー (cast)
 
 
    List rawList =  new ArrayList();
@@ -47,7 +48,7 @@ public class GenericsPra {
    rawList.add(1);
    rawList.add(new Inagon());
 
-   rawList.forEach(el -> System.out.println((String)el));
+   // rawList.forEach(el -> System.out.println((String)el));  // 実行時エラー (cast)
 
 
 
@@ -55,6 +56,12 @@ public class GenericsPra {
     //printObjList(strList()); // コンパイルエラー
 
     printList(rawList()); // できる (型安全ではない)
+
+    printAry(strAry(new String[]{"a", "b", "c"}));
+
+    Object[] objAry = new String[10];
+    objAry[0] = 1;
+    System.out.println(objAry[0]);
 
   }
 
@@ -82,5 +89,14 @@ public class GenericsPra {
 
   private static void printList(List rawList) {
     rawList.forEach(System.out::println);
+  }
+
+  private static void printAry(Object[] objAry) {
+    Arrays.stream(objAry).forEach(System.out::println);
+  }
+
+
+  private static String[] strAry(String[] strAry) {
+    return strAry;
   }
 }
