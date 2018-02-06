@@ -25,4 +25,62 @@ public class GenericsPra {
     return output;
   }
 
+  public static void main(String... args ) {
+
+    // List<Object> objList = new ArrayList<String>(); // List<String> は List のサブタイプであり、List<Object> のサブタイプではない
+
+   List<? extends Number> exNumList = new ArrayList<Integer>();
+   List<?> someTypeList = new ArrayList<String>();
+
+
+   List<Object> objList = new ArrayList<>();
+
+    objList.add("a");
+    objList.add(1);
+    objList.add(new Inagon());
+
+    objList.forEach(el -> System.out.println((String)el));
+
+
+   List rawList =  new ArrayList();
+   rawList.add("a");
+   rawList.add(1);
+   rawList.add(new Inagon());
+
+   rawList.forEach(el -> System.out.println((String)el));
+
+
+
+    //printStrList(objList()); // コンパイルエラー
+    //printObjList(strList()); // コンパイルエラー
+
+    printList(rawList()); // できる (型安全ではない)
+
+  }
+
+  private static class Inagon { }
+
+  private static List<Object> objList() {
+    return new ArrayList<Object>();
+  }
+
+  private static void printStrList(List<String> strList) {
+    strList.forEach(System.out::println);
+  }
+
+  private static List<String> strList() {
+    return new ArrayList<String>();
+  }
+
+  private static void printObjList(List<Object> objList) {
+    objList.forEach(System.out::println);
+  }
+
+  private static List rawList() {
+    return new ArrayList();
+  }
+
+  private static void printList(List rawList) {
+    rawList.forEach(System.out::println);
+  }
 }
