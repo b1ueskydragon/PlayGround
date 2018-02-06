@@ -33,6 +33,9 @@ public class GenericsPra {
    List<? extends Number> exNumList = new ArrayList<Integer>();
    List<?> someTypeList = new ArrayList<String>();
 
+   List<? super Integer> suNumList = new ArrayList<Number>();
+//   List<? super Integer> suNumList2 = new ArrayList<Long>();
+
 
    List<Object> objList = new ArrayList<>();
 
