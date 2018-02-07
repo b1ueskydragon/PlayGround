@@ -21,6 +21,8 @@ public class CompressingPrototype {
 //    System.out.print(System.getProperty("line.separator"));
 
     //generalCompress(makeStringList("a", "b", "c", "d"), 0).forEach(e -> System.out.printf(e + " ", e));
+
+ //   generalCompress(makeNumberList(1, 2, 3, 4, 1), 0).forEach(e -> System.out.printf(e + " ", e)); // コンパイルエラー (List<Object> と List<Number> が異なるため)
   }
 
   /**
@@ -49,10 +51,10 @@ public class CompressingPrototype {
     }
   }
 
-  private static List<String> makeStringList(String ... strs) {
-    List<String> list = new ArrayList<>();
-    for (String str : strs) {
-      list.add(str);
+  private static List<Number> makeNumberList(Number ... nums) {
+    List<Number> list = new ArrayList<>();
+    for (Number num : nums) {
+      list.add(num);
     }
     return list;
   }

@@ -19,7 +19,15 @@ public class Compressing {
     System.out.print(System.getProperty("line.separator"));
     generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
-    generalCompress(makeStringList("a", "b", "c", "d", "d", "a"), 0).forEach(e -> System.out.printf(e + " ", e));
+
+    List<?> someList = makeNumberList(5, 1, 2, 3, 3, 4, 3, 1, 2, 4, 5);
+    generalCompress(someList, 0).forEach(e -> System.out.printf(e + " ", e));
+
+//    System.out.println(someList.getClass().getTypeName());
+
+//    List<String> compileTestList = new ArrayList<>();
+//    compileTestList.add("1");
+//    compileTestList.forEach(e -> System.out.println((Integer)e));
   }
 
   /**
@@ -52,10 +60,10 @@ public class Compressing {
   /**
    * パラメータを元にリストを作成する
    *
-   * @param args 任意の要素の可変長引数
+   * @param args 任意の数字型の可変長引数
    * @return パラメータを要素として受け付けたリスト
    */
-  private static <T> List<T> makeStringList(T ... args) {
+  private static <T extends Number> List<T> makeNumberList(T ... args) {
     List<T> list = new ArrayList<>();
     for (T arg : args) {
       list.add(arg);
