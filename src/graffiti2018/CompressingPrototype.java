@@ -1,5 +1,6 @@
 package graffiti2018;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,12 +12,15 @@ import java.util.stream.Collectors;
  */
 public class CompressingPrototype {
   public static void main(String[] args) {
-    List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
-    List<Object> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
+//    List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
+//    List<Object> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
+//
+//    generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
+//    System.out.print(System.getProperty("line.separator"));
+//    generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
+//    System.out.print(System.getProperty("line.separator"));
 
-    generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
-    System.out.print(System.getProperty("line.separator"));
-    generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
+    //generalCompress(makeStringList("a", "b", "c", "d"), 0).forEach(e -> System.out.printf(e + " ", e));
   }
 
   /**
@@ -43,5 +47,13 @@ public class CompressingPrototype {
       comparisonIdx ++; // standard case のみインクリさせる. 進めてから再帰.
       return generalCompress(result, comparisonIdx);
     }
+  }
+
+  private static List<String> makeStringList(String ... strs) {
+    List<String> list = new ArrayList<>();
+    for (String str : strs) {
+      list.add(str);
+    }
+    return list;
   }
 }

@@ -1,5 +1,6 @@
 package graffiti2018;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +18,8 @@ public class Compressing {
     generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
     generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
+    System.out.print(System.getProperty("line.separator"));
+    generalCompress(makeStringList("a", "b", "c", "d", "d", "a"), 0).forEach(e -> System.out.printf(e + " ", e));
   }
 
   /**
@@ -44,5 +47,13 @@ public class Compressing {
       comparisonIdx ++; // standard case のみインクリさせる. 進めてから再帰.
       return generalCompress(result, comparisonIdx);
     }
+  }
+
+  private static List<String> makeStringList(String ... strs) {
+    List<String> list = new ArrayList<>();
+    for (String str : strs) {
+      list.add(str);
+    }
+    return list;
   }
 }
