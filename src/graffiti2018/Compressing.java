@@ -20,7 +20,7 @@ public class Compressing {
     generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
 
-    List<?> someList = makeNumberList(5, 1, 2, 3, 3, 4, 3, 1, 2, 4, 5);
+    List<Integer> someList = makeNumberList(5, 1, 2, 3, 3, 4, 3, 1, 2, 4, 5);
     generalCompress(someList, 0).forEach(e -> System.out.printf(e + " ", e));
 
 //    System.out.println(someList.getClass().getTypeName());
