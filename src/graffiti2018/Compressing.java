@@ -15,21 +15,15 @@ import java.util.stream.Collectors;
 public class Compressing {
   public static void main(String[] args) {
     List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
-    List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
-
-    generalCompress(list, 0).forEach(e -> System.out.printf(e + " ", e));
+    generalCompress(list, 0, Object.class).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
-    generalCompress(strList, 0).forEach(e -> System.out.printf(e + " ", e));
+
+    List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
+    generalCompress(strList, 0, String.class).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
 
     List<Integer> someList = makeNumberList(5, 1, 2, 3, 3, 4, 3, 1, 2, 4, 5);
-    generalCompress(someList, 0).forEach(e -> System.out.printf(e + " ", e));
-
-//    System.out.println(someList.getClass().getTypeName());
-
-//    List<String> compileTestList = new ArrayList<>();
-//    compileTestList.add("1");
-//    compileTestList.forEach(e -> System.out.println((Integer)e));
+    generalCompress(someList, 0, Integer.class).forEach(e -> System.out.printf(e + " ", e));
   }
 
   /**
@@ -40,9 +34,9 @@ public class Compressing {
    * @param <T>           この段階では決まっていない要素の型
    * @return              圧縮したリスト
    */
-  private static <T> List<T> generalCompress(List<T> list, int comparisonIdx) {
+  private static <T> List<T> generalCompress(List<T> list, int comparisonIdx, Class<T> type) {
 
-    T comparisonHead = list.get(comparisonIdx); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
+    T comparisonHead = type.cast(list.get(comparisonIdx)); // 基準となる List の head (2回目からは List の tail の head を想定) を動的に設定.
 
     List<T> result = list
         .stream()
@@ -55,7 +49,7 @@ public class Compressing {
       return result; // exit case.
     } else {
       comparisonIdx ++; // standard case のみインクリさせる. 進めてから再帰.
-      return generalCompress(result, comparisonIdx);
+      return generalCompress(result, comparisonIdx, type);
     }
   }
 
