@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * @author b1ueskydragon
+ *
  * Arrange of  http://aperiodic.net/phil/scala/s-99/ 's P08.
  *
  * 重複する要素を全て除去して, かつ, もとの順序を守って圧縮したリストを出力する.
