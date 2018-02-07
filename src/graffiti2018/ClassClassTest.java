@@ -1,8 +1,8 @@
-package graffiti;
+package graffiti2018;
 
 public class ClassClassTest {
 	public static void main(String[] args) {
-		Class<?> cinfo1 = String.class;
+		Class<?> cinfo1 = Tuple.Tuple3.class;
 		System.out.println(cinfo1.getSimpleName());
 		System.out.println(cinfo1.getName());
 		System.out.println(cinfo1.getPackage().getName());
@@ -17,4 +17,7 @@ public class ClassClassTest {
 		System.out.println(cinfo3.isArray());
 	}
 
+	private static class SomeType<T> {
+
+	}
 }
