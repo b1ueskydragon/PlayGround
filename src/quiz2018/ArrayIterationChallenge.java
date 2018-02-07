@@ -43,5 +43,10 @@ public class ArrayIterationChallenge {
     list.removeIf(s -> s.equals("var2")); // Same as above (replaced by lambda)
 
     System.out.println(list);
+
+    // (仮)
+    // 標準のコレクションインタフェースのメソッドの作りが実行時エラーを許してる. その理由は、オブジェクトに修正を加える動きであるから (== 破壊的).
+    // それに比べ、stream は非破壊的.
+    // というか、破壊的メソッド (bang method) の概念は ruby から.
   }
 }
