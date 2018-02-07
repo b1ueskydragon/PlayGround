@@ -49,10 +49,16 @@ public class Compressing {
     }
   }
 
-  private static List<String> makeStringList(String ... strs) {
-    List<String> list = new ArrayList<>();
-    for (String str : strs) {
-      list.add(str);
+  /**
+   * パラメータを元にリストを作成する
+   *
+   * @param args 任意の要素の可変長引数
+   * @return パラメータを要素として受け付けたリスト
+   */
+  private static <T> List<T> makeStringList(T ... args) {
+    List<T> list = new ArrayList<>();
+    for (T arg : args) {
+      list.add(arg);
     }
     return list;
   }
