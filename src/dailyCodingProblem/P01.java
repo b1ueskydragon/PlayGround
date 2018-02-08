@@ -25,6 +25,11 @@ public class P01 {
     return stack;
   }
 
+  private static <T> void print(Stack<T> stack) {
+    stack.forEach(el -> System.out.printf(el + " ", el));
+    System.out.print(System.getProperty("line.separator"));
+  }
+
   private static Stack<Integer> interleave(Stack<Integer> stack) {
     if (stack.isEmpty()) throw new NoSuchElementException();
     if (stack.size() == 1) return stack;
@@ -58,9 +63,9 @@ public class P01 {
   }
 
   public static void main(String... args) {
-
-    Stack<Integer> stack = createStack(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-    interleave(stack).forEach(System.out::println);
+    print(interleave(createStack(1, 2, 3, 4, 5)));
+    print(interleave(createStack(1, 2, 3, 4)));
+    print(interleave(createStack(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
+    print(interleave(createStack(1, 2, 5, 4, 5, 5, 1, 1, 2, 77, 11, -1, 199, 1)));
   }
 }
