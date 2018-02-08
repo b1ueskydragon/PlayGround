@@ -13,10 +13,9 @@ public class P02 {
   private static int[] calc(int... ints) {
     int folding = 1;
     for (int i : ints) {
+      if (folding == 0) return new int[ints.length];
       folding *= i;
     }
-
-    if (folding == 0) return new int[ints.length];
 
     for (int i = 0; i < ints.length; i++) {
       ints[i] = folding / ints[i];
