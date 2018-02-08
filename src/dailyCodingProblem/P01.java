@@ -1,7 +1,7 @@
 package dailyCodingProblem;
 
-
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -22,24 +22,42 @@ public class P01 {
     return stack;
   }
 
-  private static void interleave(Stack<Integer> stack, Queue<Integer> queue) {
+  private static Stack<Integer> interleave(Stack<Integer> stack) {
+    if (stack.isEmpty()) throw new NoSuchElementException();
+    if (stack.size() == 1) return stack;
 
-    for (int i = 0; i < stack.size() / 2; i++) {
+    int oriSize = stack.size();
+
+    // only one other queue.
+    Queue<Integer> queue = new LinkedList<>();
+    // another Stack
+    Stack<Integer> buffStack = new Stack<>();
+
+    // Using 'oriSize' helps to prevent side-effect ('stack' size is continuously modified in this loop).
+    for (int i = 0; i < oriSize / 2; i++) {
       queue.add(stack.pop());
     }
 
-    System.out.println("que");
-    queue.forEach(System.out::println);
+    int tmpSize = stack.size(); // size of 'stack' at this point in loop (using stack.size() and erase decrement is ok in this case).
+    while (true) {
+      if (tmpSize == 1) break;
+      buffStack.push(stack.pop());
+      tmpSize--;
+    }
 
+    while (true) {
+      if (stack.size() == oriSize) break;
+      if (!queue.isEmpty()) stack.push(queue.poll());
+      if (!buffStack.isEmpty()) stack.push(buffStack.pop());
+    }
+
+    return stack;
   }
 
   public static void main(String... args) {
 
-    Stack<Integer> stack = createStack(1, 2, 3, 4);
+    Stack<Integer> stack = createStack(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-    interleave(stack, new LinkedList<>());
-
-    System.out.println("sta");
-    stack.forEach(System.out::println);
+    interleave(stack).forEach(System.out::println);
   }
 }
