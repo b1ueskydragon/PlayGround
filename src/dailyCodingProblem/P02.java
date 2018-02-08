@@ -12,10 +12,13 @@ public class P02 {
 
   private static int[] calc(int... ints) {
     int folding = 1;
-    for (int i : ints) folding *= i;
+    for (int i : ints) {
+      folding *= i;
+    }
+
+    if (folding == 0) return new int[ints.length];
 
     for (int i = 0; i < ints.length; i++) {
-      if (ints[i] == 0) break;
       ints[i] = folding / ints[i];
     }
     return ints;
@@ -30,7 +33,7 @@ public class P02 {
     print(calc(1, 2, 3, 4, 5));
     print(calc(3, 2, 1));
     print(calc(3, 2, 3));
-    print(calc(2, 3, 0));
+    print(calc(2, 3, 0, 4));
     print(calc(3, 3, 3));
   }
 
