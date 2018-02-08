@@ -10,19 +10,15 @@ import java.util.Arrays;
  */
 public class P02 {
 
-  private static int[] calc(int... ii) {
-    int len = ii.length;
-    int[] result = new int[len];
+  private static int[] calc(int... ints) {
+    int folding = 1;
+    for (int i : ints) folding *= i;
 
-    int mult = 1;
-    for (int i : ii) mult *= i;
-
-    for (int i = 0; i < len; i++) {
-      if (ii[i] == 0) break;
-      result[i] = mult / ii[i];
+    for (int i = 0; i < ints.length; i++) {
+      if (ints[i] == 0) break;
+      ints[i] = folding / ints[i];
     }
-
-    return result;
+    return ints;
   }
 
   private static void print(int[] ary) {
