@@ -17,7 +17,10 @@ public class P02 {
     int mult = 1;
     for (int i : ii) mult *= i;
 
-    for (int i = 0; i < len; i++) result[i] = mult / ii[i];
+    for (int i = 0; i < len; i++) {
+      if(ii[i] == 0) break;
+      result[i] = mult / ii[i];
+    }
 
     return result;
   }
@@ -31,7 +34,7 @@ public class P02 {
     print(calc(1, 2, 3, 4, 5));
     print(calc(3, 2, 1));
     print(calc(3, 2, 3));
-    print(calc(2, 3, 4));
+    print(calc(2, 3, 0));
   }
 
   // TODO use reduce
