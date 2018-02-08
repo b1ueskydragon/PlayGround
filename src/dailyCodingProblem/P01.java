@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 public class P01 {
 
-  // TODO : Use Generics
+  // TODO : Use WildCard or Type Parameter
   // TODO : Add Test
 
   private static Stack<Integer> createStack(int... ii) {
