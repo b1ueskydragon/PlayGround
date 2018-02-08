@@ -6,6 +6,8 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
+ * @challenger b1ueskydragon
+ *
  * This problem was asked by Google.
  * Given a stack of N elements, interleave the first half of the stack with the second half reversed using only one other queue.
  * This should be done in-place.
