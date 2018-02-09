@@ -1,5 +1,6 @@
 package dailyCodingProblem;
 
+import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -29,10 +30,8 @@ public class P01 {
   }
 
   private static <T> Stack<T> interleave(Stack<T> stack) {
+    if (stack.isEmpty()) throw new EmptyStackException();
     Queue<T> queue = new LinkedList<>();
-
-    if (stack.isEmpty()) throw new NullPointerException();
-    if (stack.size() == 1) return stack;
 
     int oriSize = stack.size();
     int base = 1;
