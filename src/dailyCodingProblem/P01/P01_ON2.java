@@ -30,6 +30,7 @@ public class P01_ON2 {
   }
 
   //  O(N^2) runtime
+  //  : cause runs through the stack and for each pass, runs through a part of the stack.
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new EmptyStackException();
     Queue<T> queue = new LinkedList<>();
