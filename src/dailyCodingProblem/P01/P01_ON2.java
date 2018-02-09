@@ -16,7 +16,7 @@ import java.util.Stack;
  * <p>
  * Hint: Try working backwards from the end state.
  */
-public class P01 {
+public class P01_ON2 {
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
@@ -29,6 +29,7 @@ public class P01 {
     System.out.print(System.getProperty("line.separator"));
   }
 
+  //  O(N^2) runtime
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new EmptyStackException();
     Queue<T> queue = new LinkedList<>();
