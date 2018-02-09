@@ -1,4 +1,4 @@
-package dailyCodingProblem;
+package dailyCodingProblem.P01;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

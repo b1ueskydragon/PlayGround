@@ -1,4 +1,4 @@
-package dailyCodingProblem;
+package dailyCodingProblem.P02;
 
 import java.util.Arrays;
 
