@@ -28,17 +28,17 @@ public class P01_ON {
     Queue<T> queue = new LinkedList<>();
 
     int half = stack.size() / 2;
-    int move = (stack.size() % 2 == 0) ? half : half + 1;
+    int move = (int) Math.ceil(stack.size() / 2.0); // 切り上げ
 
-    while(!stack.isEmpty()) queue.add(stack.pop());  // Move all elements to queue.
+    while (!stack.isEmpty()) queue.add(stack.pop());  // Move all elements to queue.
 
     for (int i = 0; i < half; i++) queue.add(queue.poll()); // reverse left-half and right-half of queue.
 
     for (int i = 0; i < move; i++) stack.push(queue.poll()); // push reversed left-half to stack
 
     for (int i = 0; i < half; i++) {
-      queue.add(stack.pop());  // スタックの末尾要素をキューの末尾に入れる
-      queue.add(queue.poll()); // キューの前の要素を末尾に送る
+      queue.add(stack.pop());  // add a last element of stack to queue
+      queue.add(queue.poll()); // add a head element of queue to same queue
     }
     if (!stack.isEmpty()) queue.add(stack.pop());
 
