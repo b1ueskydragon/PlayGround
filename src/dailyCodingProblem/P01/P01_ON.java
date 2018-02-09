@@ -19,12 +19,30 @@ public class P01_ON {
   }
 
   //  O(N) runtime
+  //  Since each step is at most O(N). and since we use an extra queue, it takes up O(N) space.
+  // For example: Think about make a queue-list(1, 5, 2, 4, 3).
+  // And it is a paring of aa queue(5, 4) and stack(3, 2, 1)
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new EmptyStackException();
+
     Queue<T> queue = new LinkedList<>();
 
+    int half = stack.size() / 2;
+    int move = (stack.size() % 2 == 0) ? half : half + 1;
 
+    while(!stack.isEmpty()) queue.add(stack.pop());  // Move all elements to queue.
 
+    for (int i = 0; i < half; i++) queue.add(queue.poll()); // reverse left-half and right-half of queue.
+
+    for (int i = 0; i < move; i++) stack.push(queue.poll()); // push reversed left-half to stack
+
+    for (int i = 0; i < half; i++) {
+      queue.add(stack.pop());  // スタックの末尾要素をキューの末尾に入れる
+      queue.add(queue.poll()); // キューの前の要素を末尾に送る
+    }
+    if (!stack.isEmpty()) queue.add(stack.pop());
+
+    while (!queue.isEmpty()) stack.push(queue.poll()); // Move all elements to stack.
 
     return stack;
   }
