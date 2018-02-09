@@ -18,6 +18,7 @@ import java.util.Stack;
  */
 public class P01 {
   // TODO : Add Test
+  // TODO : No Using Another Stack
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
@@ -46,11 +47,8 @@ public class P01 {
       queue.add(stack.pop());
     }
 
-    int tmpSize = stack.size(); // size of 'stack' at this point in loop (using stack.size() and erase decrement is ok in this case).
-    while (true) {
-      if (tmpSize == 1) break;
+    while (stack.size() > 1) {
       buffStack.push(stack.pop());
-      tmpSize--;
     }
 
     while (true) {
