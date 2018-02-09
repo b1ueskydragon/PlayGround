@@ -59,6 +59,7 @@ public class Compressing {
    * @param args 任意の数字型の可変長引数
    * @return パラメータを要素として受け付けたリスト
    */
+  // TODO: Heap pollution. ref: https://docs.oracle.com/javase/jp/8/docs/technotes/guides/language/non-reifiable-varargs.html
   private static <T extends Number> List<T> makeNumberList(T ... args) {
     List<T> list = new ArrayList<>();
     for (T arg : args) {
