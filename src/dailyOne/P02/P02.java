@@ -1,32 +1,30 @@
 package dailyOne.P02;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
+import static dailyOne.CommonUtils.*;
+
 
 /**
  * @challenger b1ueskydragon
  */
 public class P02 {
 
-  private static int[] createAry(int... args) {
-    int[] ary = new int[args.length];
-    IntStream.range(0, args.length).forEach(i -> ary[i] = args[i]);
-    return ary;
-  }
-
-  private static void print(int[] ary) {
-    Arrays.stream(ary).forEach(el -> System.out.printf(el + " ", el));
-    System.out.print(System.getProperty("line.separator"));
-  }
-
+  // Given an array of integers,
+  // return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
   // Solve it without using division and in O(n) time.
   private static int[] calc(int... ary) {
+    int[] result = new int[ary.length];
 
+    result[0] = 1 * ary[1] * ary[2] * ary[3] * ary[4];
+    result[1] = ary[0] * 1 * ary[2] * ary[3] * ary[4];
+    result[2] = ary[0] * ary[1] * 1 * ary[3] * ary[4];
+    result[3] = ary[0] * ary[1] * ary[2] * 1 * ary[4];
+    result[4] = ary[0] * ary[1] * ary[2] * ary[3] * 1;
 
-    return ary;
+    return result;
   }
 
   public static void main(String... args) {
-    print(createAry(1, 2, 3, 4));
+
+    printAry(calc(1, 2, 3, 4, 5));
   }
 }

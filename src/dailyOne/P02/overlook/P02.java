@@ -1,6 +1,6 @@
 package dailyOne.P02.overlook;
 
-import java.util.Arrays;
+import static dailyOne.CommonUtils.*;
 
 /**
  * @challenger b1ueskydragon
@@ -20,17 +20,12 @@ public class P02 {
     return ints;
   }
 
-  private static void print(int[] ary) {
-    Arrays.stream(ary).forEach(el -> System.out.printf(el + " ", el));
-    System.out.print(System.getProperty("line.separator"));
-  }
-
   public static void main(String... args) {
-    print(calc(1, 2, 3, 4, 5));
-    print(calc(3, 2, 1));
-    print(calc(3, 2, 3));
-    print(calc(2, 3, 0, 4));
-    print(calc(3, 3, 3));
+    printAry(calc(1, 2, 3, 4, 5));
+    printAry(calc(3, 2, 1));
+    printAry(calc(3, 2, 3));
+    printAry(calc(2, 3, 0, 4));
+    printAry(calc(3, 3, 3));
   }
 
   // TODO use reduce

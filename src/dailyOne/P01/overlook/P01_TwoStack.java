@@ -5,22 +5,12 @@ import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Stack;
 
+import static dailyOne.CommonUtils.*;
+
 /**
  * @challenger b1ueskydragon
  */
 public class P01_TwoStack {
-  
-  private static <T> Stack<T> createStack(T... args) {
-    Stack<T> stack = new Stack<>();
-    for (T arg : args) stack.push(arg);
-    return stack;
-  }
-
-  private static <T> void print(Stack<T> stack) {
-    stack.forEach(el -> System.out.printf(el + " ", el));
-    System.out.print(System.getProperty("line.separator"));
-  }
-
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new NoSuchElementException();
     if (stack.size() == 1) return stack;
@@ -51,9 +41,9 @@ public class P01_TwoStack {
   }
 
   public static void main(String... args) {
-    print(interleave(createStack(1, 2, 3, 4, 5)));
-    print(interleave(createStack(1, 2, 3, 4)));
-    print(interleave(createStack(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
-    print(interleave(createStack(1, 2, 5, 4, 5, 5, 1, 1, 2, 77, 11, -1, 199, 1)));
+    printStack(interleave(createStack(1, 2, 3, 4, 5)));
+    printStack(interleave(createStack(1, 2, 3, 4)));
+    printStack(interleave(createStack(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)));
+    printStack(interleave(createStack(1, 2, 5, 4, 5, 5, 1, 1, 2, 77, 11, -1, 199, 1)));
   }
 }
