@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * @challenger b1ueskydragon
+ */
 public class P01_ON {
 
   private static <T> Stack<T> createStack(T... args) {
