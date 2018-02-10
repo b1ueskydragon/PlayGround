@@ -10,6 +10,11 @@ import static dailyOne.CommonUtils.*;
  * without using division and in O(n) time
  */
 public class P02 {
+  // 1    * a[2] * a[3] * a[4] * a[5],
+  // a[1] * 1    * a[3] * a[4] * a[5],
+  // a[1] * a[2] * 1    * a[4] * a[5],
+  // a[1] * a[2] * a[3] * 1    * a[5],
+  // a[1] * a[2] * a[3] * a[4] * 1
   private static int[] calc(int... ary) {
     int len = ary.length;
     int[] result = new int[len];
