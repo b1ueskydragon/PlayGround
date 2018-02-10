@@ -1,4 +1,4 @@
-package dailyCodingProblem.P01;
+package dailyOne.P01;
 
 import java.util.EmptyStackException;
 import java.util.LinkedList;

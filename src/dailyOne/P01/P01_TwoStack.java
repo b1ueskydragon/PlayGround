@@ -1,7 +1,7 @@
-package dailyCodingProblem.P01;
+package dailyOne.P01;
 
-import java.util.EmptyStackException;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -14,9 +14,11 @@ import java.util.Stack;
  * Recall that you can only push or pop from a stack, and enqueue or dequeue from a queue.
  * For example, if the stack is [1, 2, 3, 4, 5], it should become [1, 5, 2, 4, 3]. If the stack is [1, 2, 3, 4], it should become [1, 4, 2, 3].
  * <p>
- * Hint: Try working backwards from the end state.
+ * Hint: Try working backwards (訳: 逆向き解決法 ?) from the end state.
  */
-public class P01_ON2 {
+public class P01_TwoStack {
+  // TODO : Add Test
+  // TODO : No Using Another Stack
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
@@ -29,19 +31,32 @@ public class P01_ON2 {
     System.out.print(System.getProperty("line.separator"));
   }
 
-  //  O(N^2) runtime
-  //  : cause runs through the stack and for each pass, runs through a part of the stack.
   private static <T> Stack<T> interleave(Stack<T> stack) {
-    if (stack.isEmpty()) throw new EmptyStackException();
-    Queue<T> queue = new LinkedList<>();
+    if (stack.isEmpty()) throw new NoSuchElementException();
+    if (stack.size() == 1) return stack;
 
     int oriSize = stack.size();
-    int base = 1;
-    while (oriSize > base) {
-      while (stack.size() > base) queue.add(stack.pop());
-      while (queue.size() > 0) stack.push(queue.poll());
-      base++;
+
+    // only one other queue.
+    Queue<T> queue = new LinkedList<>();
+    // another Stack
+    Stack<T> buffStack = new Stack<>();
+
+    // Using 'oriSize' helps to prevent side-effect ('stack' size is continuously modified in this loop).
+    for (int i = 0; i < oriSize / 2; i++) {
+      queue.add(stack.pop());
     }
+
+    while (stack.size() > 1) {
+      buffStack.push(stack.pop());
+    }
+
+    while (true) {
+      if (stack.size() == oriSize) break;
+      if (!queue.isEmpty()) stack.push(queue.poll());
+      if (!buffStack.isEmpty()) stack.push(buffStack.pop());
+    }
+
     return stack;
   }
 

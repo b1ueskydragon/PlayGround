@@ -1,10 +1,9 @@
-package dailyCodingProblem.P01;
+package dailyOne.P01;
 
 import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 /**
  * @challenger b1ueskydragon
@@ -17,7 +16,7 @@ import java.util.stream.IntStream;
  * <p>
  * Hint: Try working backwards from the end state.
  */
-public class P01_Stream {
+public class P01_ON2 {
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
@@ -30,14 +29,19 @@ public class P01_Stream {
     System.out.print(System.getProperty("line.separator"));
   }
 
+  //  O(N^2) runtime
+  //  : cause runs through the stack and for each pass, runs through a part of the stack.
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new EmptyStackException();
     Queue<T> queue = new LinkedList<>();
 
     int oriSize = stack.size();
-
-    // try here
-
+    int base = 1;
+    while (oriSize > base) {
+      while (stack.size() > base) queue.add(stack.pop());
+      while (queue.size() > 0) stack.push(queue.poll());
+      base++;
+    }
     return stack;
   }
 
