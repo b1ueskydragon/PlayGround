@@ -19,13 +19,18 @@ public class P02 {
     int left = 1; // ex. result[0] is 1 before for-loop
     int right = 1; // ex. result[4] is 1 before for-loop
     // ex.
-    // r[2] = left          x     right
-    // r[2] = r[1] x r[1]   x     r[3] x a[3]
-    for (int i = 0; i < len - 1; i++) {
-      left *= ary[i];
-      result[i + 1] *= left;
-      right *= ary[len - (i + 1)];
-      result[len - (i + 2)] *= right;
+    // r[2] is a center.
+    // right side : r[3] == a[4]
+    // left side : r[1] == a[0]
+    // r[2] = a[0] x a[1] x   1   x    a[3] x a[4]
+    // r[2] = left            x        right
+    // r[2] = (r[1] x r[1])   x        (r[3] x a[3])
+    for (int i = 0; i < len; i++) {
+      result[i] = result[i] * right; // 1st loop: r[0]
+      result[(len - 1) - i] = left * result[(len - 1) - i]; // 1st loop: r[4]
+
+      right = right * ary[i];
+      left = ary[(len - 1) - i] * left;
     }
     return result;
   }
