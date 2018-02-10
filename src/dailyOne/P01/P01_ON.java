@@ -4,7 +4,6 @@ import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 /**
  * @challenger b1ueskydragon
@@ -13,7 +12,7 @@ public class P01_ON {
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
-    IntStream.range(0, args.length).forEach(i -> stack.push(args[i])); //for (T arg : args) stack.push(arg);
+    for (T arg : args) stack.push(arg);
     return stack;
   }
 
