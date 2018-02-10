@@ -16,7 +16,7 @@ public class P02 {
     int[] result = new int[len];
     IntStream.range(0, len).forEach(i -> result[i] = 1); // make all of elements of result 1
 
-    int left = 1; // Noting in before for-loop (at it is multiple.. init value is 1)
+    int left = 1; // Noting in before for-loop (and it is multiple.. init value is 1)
     int right = 1; // same as above
 
     int last = len - 1;
@@ -33,5 +33,4 @@ public class P02 {
   public static void main(String... args) {
     printAry(calc(1, 2, 3, 4, 5));
   }
-  // かけ算を reduce 処理でしても O(n^2).
 }

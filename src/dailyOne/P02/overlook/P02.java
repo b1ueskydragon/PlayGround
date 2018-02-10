@@ -6,7 +6,7 @@ import static dailyOne.CommonUtils.*;
  * @challenger b1ueskydragon
  */
 public class P02 {
-
+  // 掛け算の reduce 処理でしても O(n^2) ?
   private static int[] calc(int... ints) {
     int folding = 1;
     for (int i : ints) {
@@ -27,6 +27,4 @@ public class P02 {
     printAry(calc(2, 3, 0, 4));
     printAry(calc(3, 3, 3));
   }
-
-  // TODO use reduce
 }
