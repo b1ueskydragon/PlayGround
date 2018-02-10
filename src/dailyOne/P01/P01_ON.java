@@ -4,6 +4,7 @@ import java.util.EmptyStackException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 /**
  * @challenger b1ueskydragon
@@ -12,7 +13,7 @@ public class P01_ON {
 
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
-    for (T arg : args) stack.push(arg);
+    IntStream.range(0, args.length).forEach(i -> stack.push(args[i])); //for (T arg : args) stack.push(arg);
     return stack;
   }
 
@@ -21,10 +22,9 @@ public class P01_ON {
     System.out.print(System.getProperty("line.separator"));
   }
 
-  //  O(N) runtime
-  //  Since each step is at most O(N). and since we use an extra queue, it takes up O(N) space.
-  // For example: Think about make a queue-list(1, 5, 2, 4, 3).
-  // And it is a paring of aa queue(5, 4) and stack(3, 2, 1)
+  // O(N) runtime.
+  // Since each step is at most O(N). and since we use an extra queue, it takes up O(N) space.
+  // For example: make a queue-list(1, 5, 2, 4, 3). a pare of queue(5, 4) and stack(3, 2, 1)
   private static <T> Stack<T> interleave(Stack<T> stack) {
     if (stack.isEmpty()) throw new EmptyStackException();
 
