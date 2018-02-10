@@ -1,4 +1,4 @@
-package dailyOne.P01;
+package dailyOne.P01.overlook;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
@@ -9,9 +9,7 @@ import java.util.Stack;
  * @challenger b1ueskydragon
  */
 public class P01_TwoStack {
-  // TODO : Add Test
-  // TODO : No Using Another Stack
-
+  
   private static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();
     for (T arg : args) stack.push(arg);
