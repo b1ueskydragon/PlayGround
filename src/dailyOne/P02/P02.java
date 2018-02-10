@@ -16,21 +16,16 @@ public class P02 {
     int[] result = new int[len];
     IntStream.range(0, len).forEach(i -> result[i] = 1); // make all of elements of result 1
 
-    int left = 1; // ex. result[0] is 1 before for-loop
-    int right = 1; // ex. result[4] is 1 before for-loop
-    // ex.
-    // r[2] is a center.
-    // right side : r[3] == a[4]
-    // left side : r[1] == a[0]
-    // r[2] = a[0] x a[1] x   1   x    a[3] x a[4]
-    // r[2] = left            x        right
-    // r[2] = (r[1] x r[1])   x        (r[3] x a[3])
-    for (int i = 0; i < len; i++) {
-      result[i] = result[i] * right; // 1st loop: r[0]
-      result[(len - 1) - i] = left * result[(len - 1) - i]; // 1st loop: r[4]
+    int left = 1; // Noting in before for-loop (at it is multiple.. init value is 1)
+    int right = 1; // same as above
 
-      right = right * ary[i];
-      left = ary[(len - 1) - i] * left;
+    int last = len - 1;
+    for (int i = 0; i < len; i++) {
+      result[i] = left * result[i]; // 1st loop: r[0]. r[0] == 1, left == 1 at this time.
+      result[last - i] = result[last - i] * right; // 1st loop: r[4]. r[4] == 1, right == 1 at this time.
+
+      left = left * ary[i];
+      right = ary[last - i] * right;
     }
     return result;
   }
@@ -38,5 +33,5 @@ public class P02 {
   public static void main(String... args) {
     printAry(calc(1, 2, 3, 4, 5));
   }
-  // かけ算を reduce 処理でしても O(n^2) ?
+  // かけ算を reduce 処理でしても O(n^2).
 }
