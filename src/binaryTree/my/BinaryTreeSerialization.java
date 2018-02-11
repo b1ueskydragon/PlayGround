@@ -20,25 +20,26 @@ public class BinaryTreeSerialization {
       this.right = null;
     }
 
-    int getNodeAsInt(Node node) {
-      return node.data;
+    String getNodeAsString(Node node) {
+      return String.valueOf(node.data);
     }
   }
 
   // append node as String
   // O(N) 意識 - 再帰の場合?
-  private static String serialize(Node node, List<String> result) {
+  private static List<String> serialize(Node node, List<String> result) {
     if (node == null) {
       result.add("[null]");
-      return "[null]";
+      return result;
     }
 
-    result.add(("[" + node.getNodeAsInt(node) + "]"));
-
-    return node.getNodeAsInt(node) + serialize(node.left, result) + serialize(node.right, result);
+    result.add(("[" + node.getNodeAsString(node) + "]"));
+    serialize(node.left, result);
+    serialize(node.right, result);
+    return result;
   }
 
-  private static Node deserialize(String data) {
+  private static List<Node> deserialize(String data) {
     return null;
   }
 
@@ -51,9 +52,8 @@ public class BinaryTreeSerialization {
     root.right.right = new Node(6);
 
     List<String> result = new ArrayList<>();
-    System.out.println(serialize(root, result));
 
-    result.forEach(System.out::print);
+    serialize(root, result).forEach(System.out::print);
 
   }
 }
