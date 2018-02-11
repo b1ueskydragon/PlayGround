@@ -1,5 +1,8 @@
 package binaryTree.my;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @challenger b1ueskydragon
  */
@@ -24,12 +27,14 @@ public class BinaryTreeSerialization {
 
   // append node as String
   // O(N) 意識 - 再帰の場合?
-  private static String serialize(Node node, String result) {
+  private static String serialize(Node node, List<String> result) {
     if (node == null) {
+      result.add("[null]");
       return "[null]";
     }
 
- //   result += ("[" + node.getNodeAsInt(node) + "]");
+    result.add(("[" + node.getNodeAsInt(node) + "]"));
+
     return node.getNodeAsInt(node) + serialize(node.left, result) + serialize(node.right, result);
   }
 
@@ -43,9 +48,12 @@ public class BinaryTreeSerialization {
     root.left.left = new Node(1);
     root.left.right = new Node(2);
     root.right = new Node(5);
-//    root.right.right = new Node(6);
+    root.right.right = new Node(6);
 
-    String result = "";
+    List<String> result = new ArrayList<>();
     System.out.println(serialize(root, result));
+
+    result.forEach(System.out::print);
+
   }
 }
