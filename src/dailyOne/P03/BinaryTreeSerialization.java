@@ -1,4 +1,4 @@
-package binaryTree.my;
+package dailyOne.P03;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +14,11 @@ public class BinaryTreeSerialization {
     Node left;
     Node right;
 
+    Node() {
+      this.left = null;
+      this.right = null;
+    }
+
     Node(int data) {
       this.data = data;
       this.left = null;
@@ -25,22 +30,37 @@ public class BinaryTreeSerialization {
     }
   }
 
+  private static String NONE = ".";
+
   // append node as String
   // O(N) 意識 - 再帰の場合?
   private static List<String> serialize(Node node, List<String> result) {
     if (node == null) {
-      result.add("[null]");
+      result.add(NONE);
       return result;
     }
 
-    result.add(("[" + node.getNodeAsString(node) + "]"));
+    result.add(node.getNodeAsString(node));
     serialize(node.left, result);
     serialize(node.right, result);
     return result;
   }
 
-  private static List<Node> deserialize(String data) {
-    return null;
+  private static Node deserialize(Node node, List<String> serial) {
+    node.left = dataToNode(serial);
+    node.right = dataToNode(serial);
+    return node;
+  }
+
+  private static Node dataToNode(List<String> serial) {
+    int path = (int)serial.stream().filter(s -> !s.equals(NONE)).count();
+
+    int point = path;
+
+    if (serial.get(point).equals(NONE)) {
+      return null; // empty node
+    }
+    return new Node(Integer.parseInt(serial.get(point)));
   }
 
   public static void main(String... args) {
@@ -52,8 +72,14 @@ public class BinaryTreeSerialization {
     root.right.right = new Node(6);
 
     List<String> result = new ArrayList<>();
+    //StringBuilder sb = new StringBuilder();
+    //serialize(root, result).forEach(sb::append);
 
-    serialize(root, result).forEach(System.out::print);
+    List<String> seResult = serialize(root,result);
+    seResult.forEach(System.out::print);
+    System.out.println();
 
+    Node node = new Node();
+    deserialize(node, seResult);
   }
 }
