@@ -23,12 +23,14 @@ public class BinaryTreeSerialization {
   }
 
   // append node as String
+  // O(N) 意識 - 再帰の場合?
   private static String serialize(Node node, String result) {
     if (node == null) {
-      return "null";
+      return "[null]";
     }
-    result += node.getNodeAsInt(node);
-    return serialize(node.left, result) + serialize(node.right, result);
+
+ //   result += ("[" + node.getNodeAsInt(node) + "]");
+    return node.getNodeAsInt(node) + serialize(node.left, result) + serialize(node.right, result);
   }
 
   private static Node deserialize(String data) {
@@ -41,6 +43,7 @@ public class BinaryTreeSerialization {
     root.left.left = new Node(1);
     root.left.right = new Node(2);
     root.right = new Node(5);
+//    root.right.right = new Node(6);
 
     String result = "";
     System.out.println(serialize(root, result));
