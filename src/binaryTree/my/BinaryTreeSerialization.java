@@ -1,4 +1,5 @@
 package binaryTree.my;
+
 /**
  * @challenger b1ueskydragon
  */
@@ -27,9 +28,7 @@ public class BinaryTreeSerialization {
       return "null";
     }
     result += node.getNodeAsInt(node);
-    serialize(node.left, result);
-    serialize(node.right, result);
-    return result;
+    return serialize(node.left, result) + serialize(node.right, result);
   }
 
   private static Node deserialize(String data) {
@@ -44,7 +43,6 @@ public class BinaryTreeSerialization {
     root.right = new Node(5);
 
     String result = "";
-
     System.out.println(serialize(root, result));
   }
 }
