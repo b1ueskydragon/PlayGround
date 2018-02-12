@@ -10,14 +10,9 @@ public class BinaryTreeSerializationList {
 
   // a node instance
   private static class Node {
-    int data;
+    Integer data = null;
     Node left;
     Node right;
-
-    Node() {
-      this.left = null;
-      this.right = null;
-    }
 
     Node(int data) {
       this.data = data;
@@ -25,42 +20,46 @@ public class BinaryTreeSerializationList {
       this.right = null;
     }
 
-    String getNodeAsString(Node node) {
-      return String.valueOf(node.data);
+    Integer getNodeAsInteger(Node node) {
+      return node.data;
     }
   }
 
   private static String NONE = ".";
 
-  // append node as String
-  // O(N) 意識 - 再帰の場合?
   private static List<String> serialize(Node node, List<String> result) {
     if (node == null) {
       result.add(NONE);
       return result;
     }
 
-    result.add(node.getNodeAsString(node));
+    result.add(String.valueOf(node.getNodeAsInteger(node)));
     serialize(node.left, result);
     serialize(node.right, result);
     return result;
   }
 
-  private static Node deserialize(Node node, List<String> serial) {
+  private static Node deserialize(List<String> serial) {
+    if (serial.isEmpty()) return null;
+    return dataToNode(serial);
+  }
+
+  private static int point = 0;
+
+  private static Node dataToNode(List<String> serial) {
+    if (point >= serial.size()) return null; // searched all of the split datas
+
+    if (serial.get(point).equals(NONE)) {
+      point++; // go to the next point even if node is null
+      return null; // empty node
+    }
+
+    Node node = new Node(Integer.parseInt(serial.get(point))); // root
+    point++;
+
     node.left = dataToNode(serial);
     node.right = dataToNode(serial);
     return node;
-  }
-
-  private static Node dataToNode(List<String> serial) {
-    int path = (int)serial.stream().filter(s -> !s.equals(NONE)).count();
-
-    int point = path;
-
-    if (serial.get(point).equals(NONE)) {
-      return null; // empty node
-    }
-    return new Node(Integer.parseInt(serial.get(point)));
   }
 
   public static void main(String... args) {
@@ -72,14 +71,16 @@ public class BinaryTreeSerializationList {
     root.right.right = new Node(6);
 
     List<String> result = new ArrayList<>();
-    //StringBuilder sb = new StringBuilder();
-    //serialize(root, result).forEach(sb::append);
-
-    List<String> seResult = serialize(root,result);
+    List<String> seResult = serialize(root, result);
     seResult.forEach(System.out::print);
     System.out.println();
 
-    Node node = new Node();
-    deserialize(node, seResult);
+    Node newTree = deserialize(seResult);
+    System.out.println(newTree.getNodeAsInteger(newTree));
+    System.out.println(newTree.getNodeAsInteger(newTree.left));
+    System.out.println(newTree.getNodeAsInteger(newTree.left.left));
+    System.out.println(newTree.getNodeAsInteger(newTree.left.right));
+    System.out.println(newTree.getNodeAsInteger(newTree.right));
+    System.out.println(newTree.getNodeAsInteger(newTree.right.right));
   }
 }
