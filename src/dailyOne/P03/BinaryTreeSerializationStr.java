@@ -30,25 +30,32 @@ public class BinaryTreeSerializationStr {
     if (node == null) {
       return NONE;
     }
-    // if forgot to add root-node at first every each time, data of node will be overwritten when recursion-depth begins reduction.
-    return node.getNodeAsInteger(node) + serialize(node.left) + serialize(node.right); }
+    // if forgot to add root-node at first every each time, data of node will be overwritten when recursion-depth begins reduction
+    return node.getNodeAsInteger(node) + serialize(node.left) + serialize(node.right);
+  }
 
   private static Node deserialize(String serial) {
     if (serial.isEmpty()) return null;
     String[] datas = serial.split("");
 
-    return deserializeRecursion(datas, 0);
+    return deserializeRecursion(datas);
   }
 
-  private static int i = 0; // `i` should be placed outside the scope of the function.
+  private static int i = 0; // `i` should be placed outside the scope of the recursion(function)
 
-  private static Node deserializeRecursion(String[] datas, int i) {
-    String data = datas[i++];
-    if (data.equals(NONE)) return null;
+  private static Node deserializeRecursion(String[] datas) {
+    if (i >= datas.length) {
+      return null;
+    }
 
-    Node node = new Node(Integer.parseInt(data));
-    node.left = deserializeRecursion(datas, i);
-    node.right = deserializeRecursion(datas, i);
+    if (datas[i].equals(NONE)) {
+      i++; // move a pointer for a next recursion
+      return null;
+    }
+
+    Node node = new Node(Integer.parseInt(datas[i++])); //  move a pointer for a next recursion
+    node.left = deserializeRecursion(datas);
+    node.right = deserializeRecursion(datas);
 
     return node;
   }
