@@ -29,7 +29,8 @@ public class FindLowPosInt {
     return point;
   }
 
-  // O(NlogN * N) == O(N^2)
+  // O(N logN * N) == O(N^2 * logN)
+  // Sort first and look, so O(N logN + N) == O(N logN)
   private static Integer findBySort(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
 
@@ -40,6 +41,7 @@ public class FindLowPosInt {
 
     Integer put = args[last] + 1;
 
+    // TODO Simplify
     for (int i = 0; i < len; i++) {
       if (args[i] < 1) {
         args[i] = 1;
@@ -96,5 +98,6 @@ public class FindLowPosInt {
 
 
   public static void main(String... args) {
+    System.out.println(findBySort(3, -1, 4, 1));
   }
 }
