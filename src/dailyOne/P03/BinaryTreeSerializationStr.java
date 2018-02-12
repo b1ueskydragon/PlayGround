@@ -3,7 +3,7 @@ package dailyOne.P03;
 /**
  * @challenger b1ueskydragon
  */
-public class BinaryTreeSerialization_ {
+public class BinaryTreeSerializationStr {
 
   // a node instance
   private static class Node {

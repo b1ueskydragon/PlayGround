@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @challenger b1ueskydragon
  */
-public class BinaryTreeSerialization {
+public class BinaryTreeSerializationList {
 
   // a node instance
   private static class Node {
