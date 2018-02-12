@@ -40,12 +40,12 @@ public class BinaryTreeSerializationStr {
     return deserializeRecursion(datas, 0);
   }
 
-  private static Node deserializeRecursion(String[] datas, int i) {
+  private static Node deserializeRecursion(String[] datas, int i) { //  `i` variable is still inside the scope of the function :(
     String data = datas[i++];
     if (data.equals(NONE)) return null;
 
     Node node = new Node(Integer.parseInt(data));
-    node.left = deserializeRecursion(datas, i++);
+    node.left = deserializeRecursion(datas, i);
     node.right = deserializeRecursion(datas, i);
 
     return node;
