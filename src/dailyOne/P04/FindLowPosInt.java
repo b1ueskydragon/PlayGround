@@ -1,6 +1,7 @@
 package dailyOne.P04;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @challenger b1ueskydragon
@@ -11,26 +12,36 @@ public class FindLowPosInt {
 
   // O(N): each data should be searched at only one time.
   // can modify the input array in-place
-  // TODO O(N^N) to O(N)
-  private static Integer find(Integer... args) {
+  // TODO O(N) ?
+  private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
     if (!Arrays.asList(args).contains(1)) return 1;
+    return findByContainsHelper(args);
+  }
 
-    if (!Arrays.asList(args).contains(point)) {
+  private static Integer findByContainsHelper(Integer[] ary) {
+    if (!Arrays.asList(ary).contains(point)) {
       return point;
     } else {
       point++;
-      find(args);
+      findByContainsHelper(ary);
     }
     return point;
   }
 
-  public static void main(String... args) {
-//    System.out.println(find(3, 4, -1, 1)); // 2
-//    System.out.println(find(1, 2, 0)); // 3
-//    System.out.println(find(2, 5)); // 1
-//    System.out.println(find(-2, 1, 2, 5)); // 3
+//  private static Integer findBySort(Integer... args) {
+//    Collections.sort(Arrays.asList(args));
+//    Integer head = args[0];
+//    Integer last = args[args.length - 1];
+//    return point;
+//  }
 
-    System.out.println(find(5, 3, 2, 4, 1)); // 6
+  public static void main(String... args) {
+    System.out.println(findByContains(3, 4, -1, 1)); // 2
+    System.out.println(findByContains(1, 2, 0)); // 3
+    System.out.println(findByContains(2, 5)); // 1
+    System.out.println(findByContains(-2, 1, 2, 5)); // 3
+
+    System.out.println(findByContains(5, 3, 2, 4, 1)); // 6
   }
 }
