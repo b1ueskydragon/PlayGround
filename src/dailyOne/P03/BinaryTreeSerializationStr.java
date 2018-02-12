@@ -2,6 +2,7 @@ package dailyOne.P03;
 
 /**
  * @challenger b1ueskydragon
+ * should be O(N): working same as on O(N) in recursion too.
  */
 public class BinaryTreeSerializationStr {
 
@@ -25,13 +26,12 @@ public class BinaryTreeSerializationStr {
   private static final String NONE = ".";
 
   // append node as String
-  // O(N) 意識 - 再帰の場合?
   private static String serialize(Node node) {
     if (node == null) {
       return NONE;
     }
-    return node.getNodeAsInteger(node) + serialize(node.left) + serialize(node.right); // root-node 足しがない場合, 再び登る際に上書きされる
-  }
+    // if forgot to add root-node at first every each time, data of node will be overwritten when recursion-depth begins reduction.
+    return node.getNodeAsInteger(node) + serialize(node.left) + serialize(node.right); }
 
   private static Node deserialize(String serial) {
     if (serial.isEmpty()) return null;
@@ -40,7 +40,9 @@ public class BinaryTreeSerializationStr {
     return deserializeRecursion(datas, 0);
   }
 
-  private static Node deserializeRecursion(String[] datas, int i) { //  `i` variable is still inside the scope of the function :(
+  private static int i = 0; // `i` should be placed outside the scope of the function.
+
+  private static Node deserializeRecursion(String[] datas, int i) {
     String data = datas[i++];
     if (data.equals(NONE)) return null;
 
