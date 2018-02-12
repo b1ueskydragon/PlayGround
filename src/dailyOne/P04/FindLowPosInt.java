@@ -61,11 +61,42 @@ public class FindLowPosInt {
     Collections.sort(Arrays.asList(ary));
   }
 
+
+  // O(N)
+  private static Integer find(Integer... args) {
+    if (args.length == 0) throw new NullPointerException();
+
+    int len = args.length;
+    int last = len - 1;
+
+    Integer put = args[last] + 1;
+    Integer maxValue;
+
+    for (int i = 0; i < len; i++) {
+      if (args[i] < 1) {
+        args[i] = 1;
+      } else {
+        Integer next = (i == last) ? args[last] : args[i + 1];
+
+        maxValue = (args[next] >= args[i]) ? args[next] : args[i];
+
+        if (i != 0 && args[i - 1] == 0 && args[i] != 1) {
+          return 1;
+        }
+        if (next - args[i] > 1) {
+          put = args[i] + 1;
+        }
+      }
+    }
+    return put;
+  }
+
   public static void main(String... args) {
-    System.out.println(findBySort(3, 4, -1, 1));
-    System.out.println(findBySort(2, 2, 2, 1, 0));
-    System.out.println(findBySort(1, 2, 3, 5, 6));
-    System.out.println(findBySort(-3, -4, -2, 1, 2, 5));
-    System.out.println(findBySort(1, 19, 1, 1, 1, 10));
+    System.out.println(find(3, 4, -1, 1));
+    System.out.println(find(2, 2, 2, 1, 0));
+    System.out.println(find(2, 2, 2, 1, 0));
+    System.out.println(find(1, 2, 3, 5, 6));
+    System.out.println(find(-3, -4, -2, 1, 2, 5));
+    System.out.println(find(1, 19, 1, 1, 1, 10));
   }
 }
