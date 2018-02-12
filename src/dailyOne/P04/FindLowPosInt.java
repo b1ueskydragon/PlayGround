@@ -5,13 +5,13 @@ import java.util.Collections;
 
 /**
  * @challenger b1ueskydragon
+ * O(N): each data should be searched at only one time.
+ * can modify the input array in-place
  */
 public class FindLowPosInt {
 
   private static Integer point = 1; // Tentatively setting: outside scope (is it need?)
 
-  // O(N): each data should be searched at only one time.
-  // can modify the input array in-place
   // TODO Arrays.contains -> return indexOf contains for-loop of array. maximum: O(N^N)
   private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
@@ -29,18 +29,43 @@ public class FindLowPosInt {
     return point;
   }
 
-//  private static Integer findBySort(Integer... args) {
-//    Collections.sort(Arrays.asList(args));
-//    Integer head = args[0];
-//    Integer last = args[args.length - 1];
-//    return point;
-//  }
+  // O(NlogN * N) == O(N^2)
+  private static Integer findBySort(Integer... args) {
+    if (args.length == 0) throw new NullPointerException();
+
+    quickSort(args);
+
+    int len = args.length;
+    int last = len - 1;
+
+    Integer put = args[last] + 1;
+
+    for (int i = 0; i < len; i++) {
+      if (args[i] < 1) {
+        args[i] = 1;
+      } else {
+        Integer next = (i == last) ? args[last] : args[i + 1];
+        if (i != 0 && args[i - 1] == 0 && args[i] != 1) {
+          return 1;
+        }
+        if (next - args[i] > 1) {
+          put = args[i] + 1;
+        }
+      }
+    }
+    return put;
+  }
+
+  // TODO make sort
+  private static void quickSort(Integer[] ary) {
+    Collections.sort(Arrays.asList(ary));
+  }
 
   public static void main(String... args) {
-    System.out.println(findByContains(3, 4, -1, 1)); // 2
-    System.out.println(findByContains(1, 2, 0)); // 3
-    System.out.println(findByContains(2, 5)); // 1
-    System.out.println(findByContains(-2, 1, 2, 5)); // 3
-    System.out.println(findByContains(5, 3, 2, 4, 1)); // 6
+    System.out.println(findBySort(3, 4, -1, 1));
+    System.out.println(findBySort(2, 2, 2, 1, 0));
+    System.out.println(findBySort(1, 2, 3, 5, 6));
+    System.out.println(findBySort(-3, -4, -2, 1, 2, 5));
+    System.out.println(findBySort(1, 19, 1, 1, 1, 10));
   }
 }
