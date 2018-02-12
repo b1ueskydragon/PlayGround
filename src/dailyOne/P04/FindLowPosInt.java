@@ -12,7 +12,7 @@ public class FindLowPosInt {
 
   // O(N): each data should be searched at only one time.
   // can modify the input array in-place
-  // TODO O(N) ?
+  // TODO Arrays.contains -> return indexOf contains for-loop of array. maximum: O(N^N)
   private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
     if (!Arrays.asList(args).contains(1)) return 1;
@@ -41,7 +41,6 @@ public class FindLowPosInt {
     System.out.println(findByContains(1, 2, 0)); // 3
     System.out.println(findByContains(2, 5)); // 1
     System.out.println(findByContains(-2, 1, 2, 5)); // 3
-
     System.out.println(findByContains(5, 3, 2, 4, 1)); // 6
   }
 }
