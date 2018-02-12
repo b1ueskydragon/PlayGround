@@ -2,7 +2,7 @@ package dailyOne.P03;
 
 /**
  * @challenger b1ueskydragon
- * should be O(N): working same as on O(N) in recursion too.
+ * should be O(N): it O(N) even if it's recursion, cause it visits through each node
  */
 public class BinaryTreeSerializationStr {
 
