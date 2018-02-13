@@ -11,7 +11,9 @@ public class FindLowPosInt {
 
   private static Integer point = 1; // Tentatively setting: outside scope (is it need?)
 
-  // ?: Arrays.contains -> return indexOf contains for-loop of array.
+  // O(N ^N):
+  // ・Arrays.contains return indexOf and it contains for-loop of array.
+  // ・at each element of the array looking at a part of the entire array again
   private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
     if (!Arrays.asList(args).contains(1)) return 1;
@@ -56,9 +58,10 @@ public class FindLowPosInt {
     return put;
   }
 
-  // O(N): why?
+  // O(N): Unlike List (List have to search the entire list),
+  // Set can be implemented with dic or hash table and it's worst-case performance is O(N).
   private static Integer findBySet(Integer... args) {
-    Set<Integer> set = new TreeSet<>();
+    Set<Integer> set = new HashSet<>(); // TODO HashSet or TreeSet ?
     set.addAll(Arrays.asList(args));
     Integer i = 1;
     while (set.contains(i)) {
