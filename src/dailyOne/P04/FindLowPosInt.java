@@ -58,7 +58,7 @@ public class FindLowPosInt {
 
   // O(N): why?
   private static Integer findBySet(Integer... args) {
-    Set<Integer> set = new HashSet<>();
+    Set<Integer> set = new TreeSet<>();
     set.addAll(Arrays.asList(args));
     Integer i = 1;
     while (set.contains(i)) {
