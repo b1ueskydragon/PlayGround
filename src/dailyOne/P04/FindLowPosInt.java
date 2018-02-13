@@ -1,7 +1,6 @@
 package dailyOne.P04;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 /**
  * @challenger b1ueskydragon
@@ -12,7 +11,7 @@ public class FindLowPosInt {
 
   private static Integer point = 1; // Tentatively setting: outside scope (is it need?)
 
-  // Arrays.contains -> return indexOf contains for-loop of array. maximum: O(N^N)
+  // ?: Arrays.contains -> return indexOf contains for-loop of array.
   private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
     if (!Arrays.asList(args).contains(1)) return 1;
@@ -29,8 +28,7 @@ public class FindLowPosInt {
     return point;
   }
 
-  // O(N logN * N) == O(N^2 * logN)
-  // Sort first and look, so O(N logN + N) == O(N logN)
+  // O(N logN): since sort first only one time and look, so O(N logN + N)
   private static Integer findBySort(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
 
@@ -58,46 +56,20 @@ public class FindLowPosInt {
     return put;
   }
 
-  // TODO O(N)
-//  private static Integer find(Integer... args) {
-//    if (args.length == 0) throw new NullPointerException();
-//    int divisionIdx = (int) Math.ceil((args.length - 1) / 2.0);
-//
-//    int leftFind = 0;
-//    int rightFind = 0;
-//
-//
-//    for (int i = 0; i < divisionIdx; i++) {
-//      if (args[i] < 0) {
-//        args[i] = 0;
-//      }
-//
-//      if (args[0] > args[1]) {
-//        leftFind = args[1] + 1;
-//      } else {
-//        leftFind = args[0] + 1;
-//      }
-//    }
-//
-//    for (int i = divisionIdx; i< args.length -1 ; i ++) {
-//      if (args[i] < 0) {
-//        args[i] = 0;
-//      }
-//
-//      if (args[2] > args[3]) {
-//        rightFind = args[3] + 1;
-//      } else {
-//        rightFind = args[2] + 1;
-//      }
-//    }
-//
-//    int result = (leftFind < rightFind)? leftFind : rightFind;
-//
-//    return result;
-//  }
-
+  // O(N): why?
+  private static Integer findBySet(Integer... args) {
+    Set<Integer> set = new HashSet<>();
+    set.addAll(Arrays.asList(args));
+    Integer i = 1;
+    while (set.contains(i)) {
+      i += 1;
+    }
+    return i;
+  }
 
   public static void main(String... args) {
-    System.out.println(findBySort(3, -1, 4, 1));
+    System.out.println(findBySet(3, -1, 4, 1));
+    System.out.println(findBySet(2, 0, 1));
+    System.out.println(findBySet(2, 6, 4, 5, 1, 3));
   }
 }
