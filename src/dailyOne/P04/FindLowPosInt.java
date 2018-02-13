@@ -11,9 +11,9 @@ public class FindLowPosInt {
 
   private static Integer point = 1; // Tentatively setting: outside scope (is it need?)
 
-  // O(N ^N):
+  // O(N^2):
   // ・Arrays.contains return indexOf and it contains for-loop of array.
-  // ・at each element of the array looking at a part of the entire array again
+  // ・At each element of the array looking at a part of the entire array again
   private static Integer findByContains(Integer... args) {
     if (args.length == 0) throw new NullPointerException();
     if (!Arrays.asList(args).contains(1)) return 1;
@@ -38,14 +38,14 @@ public class FindLowPosInt {
 
     int len = args.length;
     int last = len - 1;
-
     Integer put = args[last] + 1;
 
     // TODO Simplify
     for (int i = 0; i < len; i++) {
       if (args[i] < 1) {
         args[i] = 1;
-      } else {
+      }
+      else {
         Integer next = (i == last) ? args[last] : args[i + 1];
         if (i != 0 && args[i - 1] == 0 && args[i] != 1) {
           return 1;
@@ -70,8 +70,12 @@ public class FindLowPosInt {
   }
 
   public static void main(String... args) {
-    System.out.println(findBySet(3, -1, 4, 1));
-    System.out.println(findBySet(2, 0, 1));
-    System.out.println(findBySet(2, 6, 4, 5, 1, 3));
+//    System.out.println(findBySet(3, -1, 4, 1));
+//    System.out.println(findBySet(2, 0, 1));
+//    System.out.println(findBySet(2, 6, 4, 5, 1, 3));
+
+    System.out.println(findBySort(3, -1, 4, 1));
+//    System.out.println(findBySort(2, 0, 1));
+
   }
 }
