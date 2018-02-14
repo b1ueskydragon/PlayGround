@@ -24,9 +24,9 @@ public class ClosuresByFunction {
   }
 
   private static <T, U> void exeClosures(T k, U v) {
-    BiFunction<T,  U, Pair<T, U>> cons = (a, b) -> new Pair<>(a, b); // Pair::new
-    Function<Pair<T, U>, T> car = pair -> pair.getT(); // Pair::getKey
-    Function<Pair<T, U>, U> cdr = pair -> pair.getU(); // Pair::getValue
+    BiFunction<T,  U, Pair<T, U>> cons = (a, b) -> new Pair<>(a, b);
+    Function<Pair<T, U>, T> car = pair -> pair.getT();
+    Function<Pair<T, U>, U> cdr = pair -> pair.getU();
 
     Pair<T, U> pair = cons.apply(k, v);
     System.out.println(car.apply(pair));
@@ -34,6 +34,7 @@ public class ClosuresByFunction {
   }
 
   public static void main(String... args) {
-    exeClosures(3, "4");
+    exeClosures(3, 4);
+    exeClosures(3, new Pair<>(2, "1")); // !!
   }
 }
