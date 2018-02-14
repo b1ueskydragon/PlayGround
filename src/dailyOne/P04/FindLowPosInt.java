@@ -78,7 +78,7 @@ public class FindLowPosInt {
   // O(N): Unlike List (List have to search the entire list),
   // Set can be implemented with dic or hash table and it's worst-case performance is O(N).
   private static Integer findBySet(Integer... args) {
-    Set<Integer> set = new HashSet<>(Arrays.asList(args)); // TODO HashSet? TreeSet?
+    Set<Integer> set = new HashSet<>(Arrays.asList(args)); // Order of elements is not a matter since each elements has a hash
     Integer i = 1;
     while (set.contains(i)) {
       i += 1;
