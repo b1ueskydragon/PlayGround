@@ -2,6 +2,11 @@ package dailyOne.P05;
 
 import javafx.util.Pair;
 
+/**
+ * @b1ueskydragon
+ *
+ * Can it be a 'Closure' ?
+ */
 public class Closures {
 
   private static <T, U> Pair<T, U> cons(T a, U b) {

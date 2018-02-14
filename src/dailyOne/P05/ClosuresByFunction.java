@@ -3,6 +3,9 @@ package dailyOne.P05;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * @b1ueskydragon
+ */
 public class ClosuresByFunction {
 
   private static class Pair<T, U> {
@@ -24,7 +27,7 @@ public class ClosuresByFunction {
   }
 
   private static <T, U> void exeClosures(T k, U v) {
-    BiFunction<T,  U, Pair<T, U>> cons = (a, b) -> new Pair<>(a, b);
+    BiFunction<T, U, Pair<T, U>> cons = (a, b) -> new Pair<>(a, b);
     Function<Pair<T, U>, T> car = pair -> pair.getT();
     Function<Pair<T, U>, U> cdr = pair -> pair.getU();
 

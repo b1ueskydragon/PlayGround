@@ -3,6 +3,9 @@ package dailyOne.P05;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+/**
+ * @b1ueskydragon
+ */
 public class ClosuresByClass {
   private static class Pair<T, U> {
     private T t;
