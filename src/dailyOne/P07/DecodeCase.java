@@ -1,18 +1,9 @@
 package dailyOne.P07;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
- * @b1lueskydragon
+ * @b1ueskydragon
  */
 public class DecodeCase {
-
-  private static String encode(int k) {
-    return String.valueOf((char) (k + 96));
-  }
 
   /**
    * count all of the decode cases
@@ -21,24 +12,31 @@ public class DecodeCase {
    * @return case of decode
    */
   private static int countDecodeCase(String msg) {
-    Set<String> resultSet = new HashSet<>();
-    List<String> resultList = new ArrayList<>();
-    int count = 1;
-
     int parseMsg = Integer.parseInt(msg);
     if (parseMsg < 11) return 1;
     if (parseMsg < 27) return 2;
 
-    for (int i = 0; i < msg.length() - 1; i++) {
-      String pair = msg.substring(i, i + 2);
+    return countHelper(msg);
+  }
 
-      int parsedPair = Integer.parseInt(pair);
-
-      if (parsedPair < 27) {
-        resultList.add(pair);
-      }
+  private static int countHelper(String msg) {
+    if (msg.length() == 0) { // basic case
+      return 1;
     }
-    return count + resultList.size();
+    int count = 0; // out scope of for loop
+    for (int i = 1; i <= 2; i++) {
+      if (i > msg.length()) {
+        continue; // skip this loop ?
+      }
+      String head = msg.substring(0, i);
+      String tail = msg.substring(i);
+
+      if (head.startsWith("0") || Integer.parseInt(head) > 26) {
+        break;
+      }
+      count += countHelper(tail);
+    }
+    return count;
   }
 
   public static void main(String... args) {
