@@ -12,7 +12,7 @@ public class ExceptionValueChallenge {
   }
 
   static int lightningOfZeus(int i) throws Exception {
-    throw new Exception("Wowww!"); // if we change here to `Exception` than catch block can print out
+    throw new StackOverflowError("Wowww!"); // if we change here to `Exception` than catch block can print out
   }
 
   static int test(int a, int b, int c) {
