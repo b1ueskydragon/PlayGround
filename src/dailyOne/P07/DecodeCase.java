@@ -6,6 +6,8 @@ package dailyOne.P07;
 public class DecodeCase {
 
   /**
+   * O(2^n)
+   *
    * count all of the decode cases
    *
    * @param msg message that given
@@ -26,7 +28,7 @@ public class DecodeCase {
     int count = 0; // out scope of for loop
     for (int i = 1; i <= 2; i++) {
       if (i > msg.length()) {
-        continue; // skip this loop ?
+        break;
       }
       String head = msg.substring(0, i);
       String tail = msg.substring(i);
