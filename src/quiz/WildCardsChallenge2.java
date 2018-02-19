@@ -10,7 +10,7 @@ public class WildCardsChallenge2 {
     List<Number> list = wild2(new ArrayList<Number>()); // Object cannot be cast to Number
    // List<Object> list = wild2(new ArrayList<>());
 
-    list.forEach(System.out::println);
+    list.forEach(System.out::println); // list.size() == 3, but throws cast exception
   }
 
   static class Generic<T extends Object> {
