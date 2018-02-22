@@ -8,9 +8,12 @@ public class WildCardsChallenge2 {
   public static void main(String[] args) {
     wild(new Generic<String>());
     List<Number> list = wild2(new ArrayList<Number>()); // Object cannot be cast to Number
-   // List<Object> list = wild2(new ArrayList<>());
 
     list.forEach(System.out::println); // list.size() == 3, but throws cast exception
+
+//    for (Object o : list) {
+//      System.out.println(o);
+//    } // it' s ok !
   }
 
   static class Generic<T extends Object> {
