@@ -19,8 +19,8 @@ public class _P02 {
     int[] right = new int[len];
     IntStream.range(0, len).forEach(i -> right[i] = 1);
 
-    for (int i = 2; i <= len; i++) {
-      right[len - i] = right[len - i + 1] * ary[len - i + 1];
+    for (int i = 1; i < len; i++) {
+      right[len - i - 1] = right[len - i] * ary[len - i];
     }
 
     int[] result = new int[len];
