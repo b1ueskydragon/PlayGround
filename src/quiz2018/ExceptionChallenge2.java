@@ -23,7 +23,7 @@ public class ExceptionChallenge2 {
   private static class CloseIt implements Closeable {
     @Override
     public void close() throws IOException {
-      System.out.println("close");
+      System.out.println("close"); // close first and catch if there is exception
     }
   }
 }
