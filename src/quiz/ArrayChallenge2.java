@@ -1,6 +1,7 @@
 package quiz;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class ArrayChallenge2 {
   public static void main(String... args) {
@@ -12,8 +13,8 @@ public class ArrayChallenge2 {
     anyArray[4] = 8;
 
     int[] otherArray = anyArray;
-    doSum(anyArray);
-    doSum(otherArray);
+    doSumStream(anyArray);
+    doSumStream(otherArray);
 
     Arrays.stream(anyArray).forEach(System.out::println);
   }
@@ -22,5 +23,9 @@ public class ArrayChallenge2 {
     for (int i = 0; i < anyArray.length; i++) {
       anyArray[i] += 2;
     }
+  }
+
+  private static void doSumStream(int[] anyArray) {
+    IntStream.range(0, anyArray.length).forEach(i -> anyArray[i] += 2);
   }
 }
