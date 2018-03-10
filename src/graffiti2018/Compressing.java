@@ -12,26 +12,36 @@ import java.util.stream.Collectors;
  */
 public class Compressing {
   public static void main(String[] args) {
+    List<Object> list =
+        Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
 
-    // Set 使えばいいけど 笑 (順番は..)
-    List<Object> eelist = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
-    Set<Object> set = new HashSet<>();
-    set.addAll(eelist);
-
-    set.forEach(e -> System.out.printf(e + " ", e));
-    System.out.print(System.getProperty("line.separator"));
-
-
-    List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
     generalCompress(list, 0, Object.class).forEach(e -> System.out.printf(e + " ", e));
+
     System.out.print(System.getProperty("line.separator"));
 
-    List<String> strList = Arrays.asList("c", "a", "b", "b", "c", "a", "d", "b");
-    generalCompress(strList, 0, String.class).forEach(e -> System.out.printf(e + " ", e));
-    System.out.print(System.getProperty("line.separator"));
+    tableCompress(list).forEach(e -> System.out.printf(e + " ", e));
+  }
 
-    List<Integer> someList = makeNumberList(5, 1, 2, 3, 3, 4, 3, 1, 2, 4, 5);
-    generalCompress(someList, 0, Integer.class).forEach(e -> System.out.printf(e + " ", e));
+  /**
+   * Compressing using hash table.
+   *
+   * @param list a list
+   * @param <T> type
+   * @return result
+   */
+  private static <T> List<T> tableCompress(List<T> list) {
+    Set<T> table = new HashSet<>();
+    List<T> result = new ArrayList<>();
+
+    for (T el : list) {
+      int oriSize = table.size();
+      table.add(el);
+      int afSize = table.size();
+
+      if(oriSize < afSize) result.add(el);
+    }
+
+    return result;
   }
 
   /**
