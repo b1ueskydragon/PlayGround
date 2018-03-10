@@ -1,8 +1,6 @@
 package graffiti2018;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -14,6 +12,16 @@ import java.util.stream.Collectors;
  */
 public class Compressing {
   public static void main(String[] args) {
+
+    // Set 使えばいいけど 笑 (順番は..)
+    List<Object> eelist = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
+    Set<Object> set = new HashSet<>();
+    set.addAll(eelist);
+
+    set.forEach(e -> System.out.printf(e + " ", e));
+    System.out.print(System.getProperty("line.separator"));
+
+
     List<Object> list = Arrays.asList("a", Arrays.asList(1,2,3), "b", 1, "b", 99, "e", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, "a", 1, "b", 1, "b", "c", "c", "d", "a", 1, Arrays.asList(1,2,3));
     generalCompress(list, 0, Object.class).forEach(e -> System.out.printf(e + " ", e));
     System.out.print(System.getProperty("line.separator"));
