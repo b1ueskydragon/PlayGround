@@ -1,0 +1,18 @@
+package quiz2018;
+
+public class IntegerChallenge {
+
+  public static void main(String... args) {
+    Integer number1 = 5;
+    Integer number2 = 5;
+
+    Integer number3 = 128;
+    Integer number4 = 128;
+
+    System.out.println(number1 == number2); // t  why?
+
+    System.out.println(number3 == number4); // f
+
+    System.out.println(new Integer(1) == new Integer(1)); // f
+  }
+}
