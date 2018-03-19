@@ -1,14 +1,22 @@
 package quiz2018;
 
 /**
- * A range of Integer, autoboxing or Wrappers.
+ * (a Part's of language specification)
+ *
+ * a range of Integer, autoboxing or Wrappers.
  */
 public class IntegerChallenge {
 
   public static void main(String... args) {
+    /**
+     * number 1 and 2 taken from constant pool [-128; 127].
+     */
     Integer number1 = 5;
     Integer number2 = 5;
 
+    /**
+     * number 3 and 3 are created from scratch.
+     */
     Integer number3 = 128;
     Integer number4 = 128;
 
@@ -23,6 +31,9 @@ public class IntegerChallenge {
     Integer number10 = -129;
     Integer number11 = -129;
 
+    /**
+     * [[ == ]] compares references, not values.
+     */
     System.out.println(number1 == number2); // t
 
     System.out.println(number3 == number4); // f
