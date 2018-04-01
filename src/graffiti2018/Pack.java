@@ -9,9 +9,9 @@ import java.util.*;
  */
 public class Pack {
   private static <T> List<T> pList(T element) {
-    List<T> outer = new ArrayList<>(); // add in here
-    outer.add(element);
-    return outer;
+    return new ArrayList<>() {{
+      add(element);
+    }};
   }
 
   private static <T> List<List<T>> pack(List<T> unpacked) {
@@ -33,7 +33,6 @@ public class Pack {
     }
     return outer;
   }
-
 
   public static void main(String... args) {
     List<Character> sample = Arrays.asList('a', 'a', 'c', 'a', 'b', 'b', 'c', 'a', 'c');
