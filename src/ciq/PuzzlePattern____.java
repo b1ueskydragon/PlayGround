@@ -1,9 +1,4 @@
-package codeiq;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+package ciq;
 
 /**
  * 0 の数でわけて、すべての場合の数を足したのがGOAL　（0<= Z <=8）

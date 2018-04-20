@@ -1,4 +1,4 @@
-package codeiq;
+package ciq;
 
 public class RecursionPra {
 

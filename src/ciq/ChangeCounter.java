@@ -1,4 +1,4 @@
-package codeiq;
+package ciq;
 
 public class ChangeCounter {
     int cents[] = {50, 25, 10, 5, 1};

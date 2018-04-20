@@ -1,4 +1,4 @@
-package codeiq;
+package ciq;
 
 import java.util.ArrayList;
 import java.util.Arrays;
