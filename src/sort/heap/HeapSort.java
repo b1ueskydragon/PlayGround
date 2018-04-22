@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class HeapSort {
   /**
-   * ary[left, right) をヒープ化
+   * ary[left, right] をヒープ化.
    * ary[left] 以外はヒープ化されている前提で,
-   * ary[left] を下流の適切な位置へ下ろしていく
+   * ary[left] を下流の適切な位置へ下ろしていく.
    *
    * @param ary   origin
    * @param left  配列の区間の先頭の idx
@@ -25,6 +25,29 @@ public class HeapSort {
       ary[parent] = ary[child];
     }
     ary[parent] = temp;
+  }
+
+  /**
+   * ary[i, n-1] をヒープ化する.
+   * その後,
+   * 最大要素と未ソート部末尾要素を交換し,
+   * a[0, i-1] をヒープ化する.
+   *
+   * @param ary origin
+   * @param n   the number of elements
+   * @return sorted array
+   */
+  private static int[] heapSort(int[] ary, int n) {
+    for (int i = (n - 1) / 2; i >= 0; i--) {
+      downHeap(ary, i, n - 1);
+    }
+
+    for (int i = n - 1; i > 0; i--) {
+      swap(ary, 0, i);
+      downHeap(ary, 0, i - 1);
+    }
+
+    return ary;
   }
 
   /**
@@ -73,5 +96,11 @@ public class HeapSort {
     }
     Arrays.stream(aryAnother).forEach(System.out::println);
 
+    System.out.println();
+
+    int[] aryTheOther = {8, 11, 9, 2, 10, 16};
+    Arrays.stream(
+        heapSort(aryTheOther, aryTheOther.length))
+        .forEach(System.out::println);
   }
 }
