@@ -3,13 +3,6 @@ package sort.heap;
 import java.util.Arrays;
 
 public class HeapSort {
-
-  private static void swap(int ary[], int inxA, int inxB) {
-    int box = ary[inxA];
-    ary[inxA] = ary[inxB];
-    ary[inxB] = box;
-  }
-
   /**
    * ary[left, right) をヒープ化
    * ary[left] 以外はヒープ化されている前提で,
@@ -34,13 +27,51 @@ public class HeapSort {
     ary[parent] = temp;
   }
 
+  /**
+   * ary[idx, max) を再帰的にヒープ化.
+   * 親, 左子, 右子 三つの要素を繰り返して比較・交換していく.
+   *
+   * @param ary current origin
+   * @param idx current parent's idx
+   * @param max excluded right idx of current interval
+   */
+  private static void heapify(int ary[], int idx, int max) {
+    int largest = idx; // 親の idx (根が子どもたちより小さくないと仮定する)
+    int left = 2 * idx + 1;
+    int right = 2 * idx + 2;
+
+    if (left < max && ary[left] > ary[idx]) { // left child is bigger than parent
+      largest = left;
+    }
+    if (right < max && ary[right] > ary[largest]) { // right child is bigger than left child and parent
+      largest = right;
+    }
+    if (largest != idx) { // 三つの要素のうち largest がそのまま親の場合は何もしない
+      swap(ary, idx, largest);
+      heapify(ary, largest, max);
+    }
+  }
+
+  private static void swap(int ary[], int inxA, int inxB) {
+    int box = ary[inxA];
+    ary[inxA] = ary[inxB];
+    ary[inxB] = box;
+  }
+
   public static void main(String... args) {
     int[] ary = {8, 11, 9, 2, 10, 16};
-
     for (int i = ary.length / 2 - 1; i >= 0; i--) {
       downHeap(ary, i, ary.length - 1);
     }
-
     Arrays.stream(ary).forEach(System.out::println);
+
+    System.out.println();
+
+    int[] aryAnother = {8, 11, 9, 2, 10, 16};
+    for (int i = aryAnother.length / 2 - 1; i >= 0; i--) {
+      heapify(aryAnother, i, aryAnother.length);
+    }
+    Arrays.stream(aryAnother).forEach(System.out::println);
+
   }
 }
