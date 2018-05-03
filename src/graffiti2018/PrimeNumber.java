@@ -29,6 +29,6 @@ public class PrimeNumber {
       }
     }
 
-    Arrays.stream(primes).filter(p -> p != 0).forEach(System.out::println);
+    Arrays.stream(primes).takeWhile(i -> i != 0).forEach(System.out::println);
   }
 }
