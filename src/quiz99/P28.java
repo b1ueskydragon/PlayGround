@@ -1,6 +1,8 @@
 package quiz99;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class P28 {
@@ -16,19 +18,33 @@ public class P28 {
    * @return return a new list (sorted)
    */
   private static <T> List<Tuple<List<T>, Integer>> lsort(List<List<T>> lists) {
-
     List<Tuple<List<T>, Integer>> pairs = new ArrayList<>();
-
     for (List<T> list : lists) {
       pairs.add(new Tuple<>(list, list.size()));
     }
-
+    sortTuple(pairs);
     return pairs;
+  }
+
+  /**
+   * Sort by Collections.sort(Comparator).
+   *
+   * @param pairs List of pairs
+   * @param <T>   Type
+   */
+  private static <T> void sortTuple(List<Tuple<List<T>, Integer>> pairs) {
+    // TODO Simplify.
+    Collections.sort(pairs, new Comparator<Tuple<List<T>, Integer>>() {
+      @Override
+      public int compare(Tuple<List<T>, Integer> pair1, Tuple<List<T>, Integer> pair2) {
+        return pair1._2() - pair2._2();
+      }
+    });
   }
 }
 
 /**
- * Pairs
+ * Pairs.
  *
  * @param <T> Type 1
  * @param <V> Type 2
@@ -52,7 +68,7 @@ class Tuple<T, V> {
 }
 
 /**
- * Sample datum
+ * Sample datum.
  */
 class Given {
   static final List<List<String>> lists = new ArrayList<>() {{
