@@ -1,11 +1,13 @@
 package quiz99;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class P28 {
   public static void main(String... args) {
-    List<List<String>> given = new ArrayList<>() {{
+    final List<List<String>> given = new ArrayList<>() {{
       add(new ArrayList<>() {{
             add("a");
             add("b");
@@ -46,5 +48,18 @@ public class P28 {
           }}
       );
     }};
+
+    lsort(given).forEach(System.out::println);
+  }
+
+  /**
+   * Sort by each length.
+   *
+   * @param <T>      Type
+   * @param listList given
+   * @return return a new list (sorted)
+   */
+  private static <T> List<HashMap<T, Integer>> lsort(List<List<T>> listList) {
+    return listList.stream().map(ls -> new HashMap<T, Integer>() {{put((T)ls, ls.size());}}).collect(Collectors.toList());
   }
 }
