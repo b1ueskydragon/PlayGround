@@ -33,6 +33,7 @@ public class PartialSum {
   }
 
   public static void main(String... args) {
+    if (sc != null) sc.close();
     /*
      * e.g.
      * n = 4
@@ -40,6 +41,5 @@ public class PartialSum {
      * k = 13
      */
     System.out.println(dfs(0, 0));
-    sc.close();
   }
 }
