@@ -22,7 +22,7 @@ public class PartialSum {
    * @return
    */
   private static boolean dfs(int i, int sum) {
-    // n 個決め終わった状態
+    // compare `k` and stack of `sum` until current after cursor beyonds final index
     if (i == n) return sum == k;
     // sum not use a[i]
     if (dfs(i + 1, sum)) return true;
