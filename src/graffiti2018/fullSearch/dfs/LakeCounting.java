@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class LakeCounting {
   private static Scanner sc = new Scanner(System.in);
 
-  // width
-  private final static int N = sc.nextInt();
   // height
+  private final static int N = sc.nextInt();
+  // width
   private final static int M = sc.nextInt();
   // ground
-  private final static char[][] ground = new char[N][M]; // TODO
+  private final static char[][] ground = new char[N][M];
 
   // use dfs
   private static int countLake() {
@@ -22,10 +22,18 @@ public class LakeCounting {
 
   public static void main(String... args) {
     if (sc != null) sc.close();
+
+    // test before
+    for (char[] ary : ground) {
+      for (char n : ary) {
+        System.out.print(n);
+      }
+      System.out.println();
+    }
     /*
      * e.g.
-     * N = 12
-     * M = 13
+     * N = 10
+     * M = 12
      * ground
      * W........WW.
      * .WWW.....WWW
