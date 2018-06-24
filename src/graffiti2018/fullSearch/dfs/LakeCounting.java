@@ -17,12 +17,28 @@ public class LakeCounting {
   /***
    * 1 dfs == 1 search (8-neighbored)
    *
-   * @param n current position H
-   * @param m current position W
+   * @param x current position H
+   * @param y current position W
    */
-  private static void countLake(int n, int m) {
-    ground[n][m] = "."; // mark a current position first
-    // TODO
+  private static void countLake(int x, int y) {
+    ground[x][y] = "."; // mark a current position first
+    for (int dx = -1; dx <= 1; dx++) {
+      for (int dy = -1; dy <= 1; dy++) {
+        // new position of each x and y
+        int nx = x + dx;
+        int ny = y + dy;
+
+        // does both of new x and y in a range ?
+        if (0 <= nx && nx < N
+            && 0 <= ny && ny < M) {
+
+          // is it a pond ?
+          if (ground[nx][ny].equals("W")) {
+            countLake(nx, ny);
+          }
+        }
+      }
+    }
   }
 
   public static void main(String... args) {
@@ -30,7 +46,7 @@ public class LakeCounting {
      * e.g.
      * N = 10
      * M = 12
-     * ground
+     * ground (`W` is a pond)
      * W........WW.
      * .WWW.....WWW
      * ....WW...WW.
@@ -42,21 +58,31 @@ public class LakeCounting {
      * .W.W......W.
      * ..W.......W.
      */
-    lake();
-    // countLake(0, 0);
-    System.out.println(count);
+    lakeInGround();
     if (sc != null) sc.close();
+
+    for (int x = 0; x < N; x++) {
+      for (int y = 0; y < M; y++) {
+        if (ground[x][y].equals("W")) {
+          countLake(x, y);
+          count++;
+        }
+      }
+    }
+
+    System.out.println(count);
   }
 
-  // TODO Turn to stdin.
-  private static void lake() {
+  private static void lakeInGround() {
     for (int i = 0; i < ground.length; i++) {
       for (int j = 0; j < ground[N - 1].length; j++) {
+        // TODO Turn to stdin.
         //ground[i][j] = sc.next();
         ground[i][j] = ".";
       }
     }
 
+    // TODO Remove after turning to stdin.
     ground[0][0] = "W";
     ground[0][9] = "W";
     ground[0][10] = "W";
