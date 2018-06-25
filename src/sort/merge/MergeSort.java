@@ -12,11 +12,11 @@ public class MergeSort {
    * @param right 右のインデックス
    * @param buff  共有バッファ
    */
-  public static void mergeSort(int[] ary, int left, int right, int[] buff) {
+  private static void mergeSort(int[] ary, int left, int right, int[] buff) {
 
     if (left < right) {
       int center = (left + right) / 2;
-      mergeSort(ary, left, center, buff);           // 左半分
+      mergeSort(ary, left, center, buff);      // 左半分
       mergeSort(ary, center + 1, right, buff); // 右半分
 
       int p = 0;    // 左半分の個数
@@ -48,8 +48,8 @@ public class MergeSort {
 
   public static void main(String[] args) {
 
-    int n = 11; // 配列の総要素数
     int[] testAry = {2, 3, 6, 5, 7, 9, 8, 1, 0, 4, 10};
+    int n = testAry.length;
     int[] buff = new int[n];
 
     mergeSort(testAry, 0, n - 1, buff);
