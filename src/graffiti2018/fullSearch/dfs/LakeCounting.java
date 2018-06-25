@@ -11,69 +11,8 @@ public class LakeCounting {
   private final static int M = sc.nextInt();
   // ground
   private static String[][] ground = new String[N][M];
-  // lake counter
-  private static int count = 0;
 
-  /***
-   * 1 dfs == 1 search (8-neighbored)
-   *
-   * @param x current position H
-   * @param y current position W
-   */
-  private static void countLake(int x, int y) {
-    ground[x][y] = "."; // mark a current position first
-    for (int dx = -1; dx <= 1; dx++) {
-      for (int dy = -1; dy <= 1; dy++) {
-        // new position of each x and y
-        int nx = x + dx;
-        int ny = y + dy;
-
-        // does both of new x and y in a range ?
-        if (0 <= nx && nx < N
-            && 0 <= ny && ny < M) {
-
-          // is it a pond ?
-          if (ground[nx][ny].equals("W")) {
-            countLake(nx, ny);
-          }
-        }
-      }
-    }
-  }
-
-  public static void main(String... args) {
-    /*
-     * e.g.
-     * N = 10
-     * M = 12
-     * ground (`W` is a pond)
-     * W........WW.
-     * .WWW.....WWW
-     * ....WW...WW.
-     * .........WW.
-     * .........W..
-     * ..W......W..
-     * .W.W.....WW.
-     * W.W.W.....W.
-     * .W.W......W.
-     * ..W.......W.
-     */
-    lakeInGround();
-    if (sc != null) sc.close();
-
-    for (int x = 0; x < N; x++) {
-      for (int y = 0; y < M; y++) {
-        if (ground[x][y].equals("W")) {
-          countLake(x, y);
-          count++;
-        }
-      }
-    }
-
-    System.out.println(count);
-  }
-
-  private static void lakeInGround() {
+  private static void makeLake() {
     for (int i = 0; i < ground.length; i++) {
       for (int j = 0; j < ground[N - 1].length; j++) {
         // TODO Turn to stdin.
@@ -121,5 +60,67 @@ public class LakeCounting {
       }
       System.out.println();
     }
+  }
+
+  /***
+   * 1 dfs == 1 search (8-neighbored)
+   *
+   * @param x current position H
+   * @param y current position W
+   */
+  private static void dfs(int x, int y) {
+    ground[x][y] = "."; // mark a current position first
+    for (int dx = -1; dx <= 1; dx++) {
+      for (int dy = -1; dy <= 1; dy++) {
+        // new position of each x and y
+        int nx = x + dx;
+        int ny = y + dy;
+
+        // does both of new x and y in a range ?
+        if (0 <= nx && nx < N
+            && 0 <= ny && ny < M) {
+
+          // is it a pond ?
+          if (ground[nx][ny].equals("W")) {
+            dfs(nx, ny);
+          }
+        }
+      }
+    }
+  }
+
+  private static int countLake() {
+    int count = 0;
+    for (int x = 0; x < N; x++) {
+      for (int y = 0; y < M; y++) {
+        if (ground[x][y].equals("W")) {
+          dfs(x, y);
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  public static void main(String... args) {
+    /*
+     * e.g.
+     * N = 10
+     * M = 12
+     * ground (`W` is a pond)
+     * W........WW.
+     * .WWW.....WWW
+     * ....WW...WW.
+     * .........WW.
+     * .........W..
+     * ..W......W..
+     * .W.W.....WW.
+     * W.W.W.....W.
+     * .W.W......W.
+     * ..W.......W.
+     */
+    makeLake();
+    if (sc != null) sc.close();
+    System.out.println(countLake());
   }
 }
