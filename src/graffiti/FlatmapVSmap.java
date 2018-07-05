@@ -34,6 +34,13 @@ public class FlatmapVSmap {
         .collect(Collectors.toList());
 
 
+    collects.forEach(System.out::println);
+    collectb.forEach(System.out::println);
+
+    System.out.println(collects.getClass());
+    System.out.println(collectb.getClass());
+
+
     // map VS flatMap
 
     List<List<String>> finalList = Arrays.asList(sampleList, anotherList);
