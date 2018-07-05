@@ -3,7 +3,6 @@ package quiz99;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class P35 {
@@ -16,11 +15,10 @@ public class P35 {
 
   private static List<Integer> primeFactors(int given) {
     List<Integer> rst = new ArrayList<>();
-    List<Integer> primes =
-        IntStream.rangeClosed(1, given).filter(P35::isPrime).boxed().collect(Collectors.toList());
+    int[] primes = IntStream.rangeClosed(1, given).filter(P35::isPrime).toArray();
 
-    for (int i = 0; i < primes.size(); i++) {
-      int current = primes.get(i);
+    for (int i = 0; i < primes.length; i++) {
+      int current = primes[i];
       if (given % current != 0) continue;
 
       int tmp = given / current;
@@ -33,7 +31,7 @@ public class P35 {
     return rst;
   }
 
-  private static boolean isPrime(int given) {
+  public static boolean isPrime(int given) {
     if (given < 2) return false;
     else if (given % 2 == 0) return false;
 
