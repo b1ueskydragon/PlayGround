@@ -25,7 +25,7 @@ public class P35 {
       if (tmp % current == 0) i--;
       given = tmp;
 
-      if (given <= 0) break;
+      if (given == 0) break;
       rst.add(current);
     }
     return rst;
