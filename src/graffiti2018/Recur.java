@@ -28,6 +28,10 @@ public class Recur {
   /**
    * Remove a tail recursion.
    * 末尾再帰の除去.
+   *
+   * recur(n - 2)
+   * n - 2 を引数に受け, recur を呼び出す役割.
+   * == n を n - 2 に更新し, メソッドの先頭に戻る.
    */
   private static void recur_(int n) {
     while (n > 0) {
