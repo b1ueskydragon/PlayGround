@@ -32,10 +32,10 @@ public class P35 {
   }
 
   public static boolean isPrime(int given) {
-    if (given < 2) return false;
-    else if (given % 2 == 0) return false;
-
     if (given == 2) return true;
+    if (given % 2 == 0) return false;
+    if (given < 2) return false;
+
     for (int i = 3; i * i <= given; i += 2) {
       if (given % i == 0) return false;
     }
