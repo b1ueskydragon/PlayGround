@@ -1,6 +1,7 @@
 package dailyOne.P177;
 
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 /**
@@ -14,24 +15,18 @@ import java.util.stream.IntStream;
  */
 public class RotateRight {
   public static void main(String... args) {
+    Scanner sc = new Scanner(System.in);
+
     LinkedList<Integer> given = new LinkedList<>();
-    int k;
+    System.out.println("input length");
+    int len = sc.nextInt();
+    System.out.println("input elements");
+    IntStream.range(0, len).forEach(i -> given.add(sc.nextInt()));
+    System.out.println("input rotation counter");
+    int k = sc.nextInt();
 
-    // test case
-    k = 3;
-    int len = 5;
-    IntStream.rangeClosed(1, len).forEach(given::add);
     System.out.println(rotateRight(given, k));
-
-    given.clear();
-
-    // test case
-    k = 2;
-    given.add(7);
-    given.add(7);
-    given.add(3);
-    given.add(5);
-    System.out.println(rotateRight(given, k));
+    sc.close();
   }
 
   // initial approach
@@ -40,4 +35,6 @@ public class RotateRight {
     IntStream.range(0, k).forEach(i -> given.addFirst(given.removeLast()));
     return given;
   }
+
+  // TODO (len - k) left rotate logic.
 }
