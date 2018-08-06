@@ -5,11 +5,14 @@ import java.util.List;
 
 /**
  * Reference: javax.swing.tree.TreeNode
+ * <p>
+ * TODO: T to int, implements and override TreeNode
+ *
  * @param <T> Type of node element
  */
-public class Node<T>  { // TODO: T to int, implements and override TreeNode
+public class Node<T> {
   /* Initialization */
-  private List<Node<T>> children = new ArrayList<Node<T>>();
+  private List<Node<T>> children = new ArrayList<>();
   private Node<T> parent = null;
   private T data = null;
 
@@ -34,7 +37,7 @@ public class Node<T>  { // TODO: T to int, implements and override TreeNode
   }
 
   public void addChild(T data) {
-    Node<T> child = new Node<T>(data);
+    Node<T> child = new Node<>(data);
     child.setParent(this);
     this.children.add(child);
   }
@@ -57,10 +60,7 @@ public class Node<T>  { // TODO: T to int, implements and override TreeNode
   }
 
   public boolean isLeaf() {
-    if(this.children.size() == 0)
-      return true;
-    else
-      return false;
+    return this.children.size() == 0;
   }
 
   public void removeParent() {
