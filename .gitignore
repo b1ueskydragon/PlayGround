@@ -5,3 +5,5 @@ src/codeiq/PuzzlePattern_.java
 
 # practice
 src/ignore/
+
+*.DS_Store
