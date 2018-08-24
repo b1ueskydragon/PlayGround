@@ -36,5 +36,7 @@ public class Closures01 {
     System.out.println(
         new Closures<String, Integer>().car.apply(closures.cdr.apply(pair))
     );
+
+    System.out.println(pair.getU().getT());
   }
 }
