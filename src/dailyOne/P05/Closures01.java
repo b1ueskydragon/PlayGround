@@ -32,11 +32,10 @@ public class Closures01 {
     Closures<Integer, Pair<String, Integer>> closures = new Closures<>();
     Pair<Integer, Pair<String, Integer>> pair = closures.cons.apply(1, new Pair<>("A", 0));
 
-    // get "A"
-    System.out.println(
-        new Closures<String, Integer>().car.apply(closures.cdr.apply(pair))
-    );
+    Object o1 = new Closures<String, Integer>().car.apply(closures.cdr.apply(pair));
+    Object o2 = pair.getU().getT();
+    Object o3 = new Object();
 
-    System.out.println(pair.getU().getT());
+    System.out.println();
   }
 }
