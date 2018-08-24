@@ -4,7 +4,7 @@ package dailyOne.P05;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public class ClosuresInterface<T, U> {
+public class Closures03<T, U> {
 
   private interface Pair<T, U> {
     T getT();
@@ -29,7 +29,7 @@ public class ClosuresInterface<T, U> {
   private Function<Pair<T, U>, U> cdr = Pair::getU;
 
   public static void main(String... args) {
-    ClosuresInterface<String, Integer> closures = new ClosuresInterface<>();
+    Closures03<String, Integer> closures = new Closures03<>();
     Pair aPair = closures.cons.apply("a", 0);
     String t = closures.car.apply(aPair);
     Integer u = closures.cdr.apply(aPair);

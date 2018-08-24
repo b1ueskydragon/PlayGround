@@ -3,10 +3,7 @@ package dailyOne.P05;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-/**
- * @b1ueskydragon
- */
-public class ClosuresByClass {
+public class Closures01 {
   private static class Pair<T, U> {
     private T t;
     private U u;
@@ -32,13 +29,12 @@ public class ClosuresByClass {
   }
 
   public static void main(String... args) {
-    Closures<Integer, Pair<Integer, Integer>> closures = new Closures<>();
-    Pair<Integer, Pair<Integer, Integer>> pair = closures.cons.apply(3, new Pair<>(3, 4));
+    Closures<Integer, Pair<String, Integer>> closures = new Closures<>();
+    Pair<Integer, Pair<String, Integer>> pair = closures.cons.apply(1, new Pair<>("A", 0));
 
-    System.out.println(closures.car.apply(pair)); // 3
-
-    Closures<Integer, Integer> integerClosures = new Closures<>();
-    System.out.println(integerClosures.car.apply(closures.cdr.apply(pair))); // 3
-    System.out.println(integerClosures.cdr.apply(closures.cdr.apply(pair))); // 4
+    // get "A"
+    System.out.println(
+        new Closures<String, Integer>().car.apply(closures.cdr.apply(pair))
+    );
   }
 }
