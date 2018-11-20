@@ -16,7 +16,7 @@ public class KmpSearch {
     int p = 0; // cursor of pattern
     int[] table = new int[pattern.length() + 1];
 
-    table[t] = 0;
+    table[t] = 0; // 照合を再開する index (pattern 1文字目はその位置から再開するため 0)
     while (t != pattern.length()) {
       if (pattern.charAt(t) == pattern.charAt(p)) table[++t] = ++p;
       else if (p == 0) table[++t] = p;
