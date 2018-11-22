@@ -26,9 +26,31 @@ public class KmpSearch {
     return table;
   }
 
+  private static int search(String text, String pattern) {
+    int t = 0;
+    int p = 0;
+
+    while (t != text.length() && p != pattern.length()) {
+      if (text.charAt(t) == pattern.charAt(p)) {
+        t++;
+        p++;
+      } else if (p == 0) {
+        t++;
+      } else {
+        p = skipTable(pattern)[p];
+      }
+    }
+
+    if (p == pattern.length()) return t - p;
+    return -1;
+  }
+
 
   public static void main(String... args) {
-    String pat = "ABCABD";
-    System.out.println(Arrays.toString(skipTable(pat)));
+    String text = "ABABABABC";
+    String pattern = "ABABC";
+
+    System.out.println(Arrays.toString(skipTable(pattern)));
+    System.out.println(search(text, pattern));
   }
 }
