@@ -24,7 +24,14 @@ public class LRUCache {
    */
   void set(int x, int y) {
     // invalidate the least recently map item
-    if (map.size() == capacity) for (int key : queue) if (!map.containsKey(key)) queue.remove(x);
+    if (map.size() == capacity) {
+      for (int key : queue) {
+        if (!map.containsKey(key)) {
+          int last = queue.removeLast();
+          map.remove(last);
+        }
+      }
+    }
 
     queue.addFirst(x); // inserting the new item at the head
     capacity++;
@@ -39,7 +46,7 @@ public class LRUCache {
    * @return the value of the x if present else -1
    */
   int get(int x) {
-    if (map.containsKey(x)) {
+    if (map.containsKey(x) && queue.contains(x)) {
       queue.add(x); // store references of key at the end
 
       capacity--;
