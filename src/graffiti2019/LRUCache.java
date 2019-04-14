@@ -2,58 +2,54 @@ package graffiti2019;
 
 import java.util.*;
 
-// TODO: generic type
-public class LRUCache {
-  private static Deque<Integer> queue; // store keys of cache
-  private static HashMap<Integer, Integer> map; // store references of key in cache
-  private static int capacity; // maximum capacity of cache
+class LRUCache<T> {
+  /*
+   * Store keys of cache.
+   * Most left is newest, most right is an oldest.
+   */
+  private Deque<T> queue;
+
+  /*
+   * Store references of key in cache
+   */
+  private HashSet<T> refTable;
+
+  /*
+   * Maximum capacity of cache
+   */
+  private static int capacity;
 
   LRUCache(int n) {
     queue = new LinkedList<>();
-    map = new HashMap<>();
+    refTable = new HashSet<>();
     capacity = n;
   }
 
   /**
-   * Sets the value of the key x with value y
-   * If the cache reaches its capacity,
-   * invalidate the least recently map item
+   * Input
    *
-   * @param x key
-   * @param y value
+   * @param x key (item)
    */
-  void set(int x, int y) {
-    // invalidate the least recently map item
-    if (map.size() == capacity) {
-      for (int key : queue) {
-        if (!map.containsKey(key)) {
-          int last = queue.removeLast();
-          map.remove(last);
-        }
+  void refer(T x) {
+    if (!refTable.contains(x)) {
+      if (queue.size() == capacity) {
+        refTable.remove(queue.removeLast());
       }
+    } else { // referred
+      queue.removeLast();
     }
 
-    queue.addFirst(x); // inserting the new item at the head
-    capacity++;
-
-    map.put(x, y);
+    queue.addFirst(x);
+    refTable.add(x);
   }
 
-  /**
-   * Reference and get item
-   *
-   * @param x key
-   * @return the value of the x if present else -1
-   */
-  int get(int x) {
-    if (map.containsKey(x) && queue.contains(x)) {
-      queue.add(x); // store references of key at the end
-
-      capacity--;
-      return map.get(x);
-    }
-
-    return -1; // not present
+  void debug() { // only to display
+    System.out.print("stored: ");
+    queue.forEach(x -> System.out.print(x + " "));
+    System.out.println();
+    System.out.print("referred: ");
+    refTable.forEach(x -> System.out.print(x + " "));
+    System.out.println();
   }
 
 }
