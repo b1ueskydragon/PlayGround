@@ -1,9 +1,5 @@
 .idea/
 out/
-src/codeiq/PuzzlePattern.java
-src/codeiq/PuzzlePattern_.java
-
-# practice
-src/ignore/
-
+target/
+*.iml
 *.DS_Store
