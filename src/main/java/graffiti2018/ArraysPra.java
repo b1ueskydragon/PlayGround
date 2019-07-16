@@ -2,9 +2,10 @@ package graffiti2018;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unchecked")
 public class ArraysPra {
   public static void main(String... args) {
-   // checkId(3);
+    // checkId(3);
 
     printArgs(new int[]{1, 2, 3});
     printArgs(new Integer[]{1, 2, 3});

@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
+@SuppressWarnings("unchecked")
 public class RefExecute {
 	public static void main(String [] args) throws Exception {
 

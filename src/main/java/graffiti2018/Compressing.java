@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
  *
  * 重複する要素を全て除去して, かつ, もとの順序を守って圧縮したリストを出力する.
  */
+@SuppressWarnings("unchecked")
 public class Compressing {
   public static void main(String[] args) {
     List<Object> list =

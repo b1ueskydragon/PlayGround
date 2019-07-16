@@ -3,6 +3,7 @@ package dailyOne.P05;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+@SuppressWarnings("unchecked")
 public class Closures04<T, U> {
   private interface Pair<T, U> {
     T getT();

@@ -2,6 +2,7 @@ package fe.afternoon.h29a;
 
 import java.util.Comparator;
 
+@Deprecated
 public class TableSorterTester {
   public static void main(String... args) {
     /*

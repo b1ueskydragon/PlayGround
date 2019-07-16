@@ -3,6 +3,7 @@ package quiz2018;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class GenericsChallenge {
   public static void main(String... args) {
     SimpsonFactory<Simpson> simpsonFactory = new SimpsonFactory<>(new Simpson("Homer"));

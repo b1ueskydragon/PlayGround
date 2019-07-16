@@ -3,6 +3,7 @@ package effective.generics.n25;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class Reduce {
 
   // 並行性の欠陥

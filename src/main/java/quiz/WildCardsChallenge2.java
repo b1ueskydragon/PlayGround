@@ -3,6 +3,7 @@ package quiz;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class WildCardsChallenge2 {
 
   public static void main(String[] args) {

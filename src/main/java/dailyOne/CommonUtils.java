@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.stream.IntStream;
 
+@SuppressWarnings("unchecked")
 public class CommonUtils {
   public static <T> Stack<T> createStack(T... args) {
     Stack<T> stack = new Stack<>();

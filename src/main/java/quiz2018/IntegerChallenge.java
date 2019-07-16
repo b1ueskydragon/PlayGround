@@ -5,6 +5,7 @@ package quiz2018;
  *
  * a range of Integer, autoboxing or Wrappers.
  */
+@Deprecated
 public class IntegerChallenge {
 
   public static void main(String... args) {

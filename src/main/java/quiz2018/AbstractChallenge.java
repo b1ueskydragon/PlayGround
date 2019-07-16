@@ -1,5 +1,6 @@
 package quiz2018;
 
+@Deprecated
 public class AbstractChallenge {
   static final int FORCE = 10;
 

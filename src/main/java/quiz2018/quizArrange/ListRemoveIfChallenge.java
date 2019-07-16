@@ -3,6 +3,7 @@ package quiz2018.quizArrange;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class ListRemoveIfChallenge {
   public static void main(String... args) {
     List<Integer> list = new ArrayList<>();

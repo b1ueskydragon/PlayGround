@@ -1,5 +1,6 @@
 package quiz2018;
 
+@SuppressWarnings("unchecked")
 public class GenericChallenge7 {
   public static void main(String... args) {
     String number = calculate(); // Number など Double より上位なら成り立つ

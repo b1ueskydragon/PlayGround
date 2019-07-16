@@ -1,5 +1,6 @@
 package quiz;
 
+@SuppressWarnings("unchecked")
 public class GenericsChallenge2 {
 
   public static void main(String[] args) {
