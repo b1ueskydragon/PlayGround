@@ -1,0 +1,28 @@
+Explanation of 2^n (n length)
+
+[a, b, c]
+
+i) Bit-op
+
+000    Ø
+001    a
+010    b
+011   ab (001 + 010)
+100    c
+101   ac (001 + 100)
+110   bc (010 + 100)
+111  abc (001 + 010 + 100)
+
+
+ii) DFS
+
+left child  : do nothing (no append)
+right child : append more than right element
+
+            Ø
+       /        \
+      Ø          a
+    /   \      /   \
+   Ø    b      a    ab
+  / \  / \    / \  /  \
+ Ø  c b  bc  a  ac ab abc  ---> 8 == 2^3 sets
