@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SubSetSpec {
 
   @Test
-  void testCharList() {
+  void test_3length_CharList() {
     var expected = List.of(
         List.of(),
         List.of('a'),
