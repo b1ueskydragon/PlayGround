@@ -19,4 +19,21 @@ class SubSet {
     }
     return ps;
   }
+
+  /** Recursion (DFS) */
+  static void generate(String xs, int pos, String ps) {
+    if (pos == xs.length()) {
+      System.out.println(ps);
+      return;
+    }
+    generate(xs, pos + 1, ps);
+    var head = xs.charAt(pos);
+    generate(xs, pos + 1, head + ps);
+  }
+
+  public static void main(String[] args) {
+    var xs = "abc";
+    SubSet.generate(xs, 0, "");
+  }
+
 }
