@@ -21,7 +21,7 @@ class SubSetSpec {
         List.of('a', 'b', 'c')
     );
     var actual = SubSet.generate(List.of('a', 'b', 'c'));
-    assertEquals(actual, expected);
+    assertEquals(expected, actual);
   }
 
 }
