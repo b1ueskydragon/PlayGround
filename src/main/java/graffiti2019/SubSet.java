@@ -8,7 +8,7 @@ class SubSet {
   static <T> List<List<T>> generate(List<T> xs) {
     var ps = new ArrayList<List<T>>();
     var len = xs.size();
-    long breadth = 2 << (len - 1);
+    long breadth = 1 << len;
 
     for (var i = 0; i < breadth; i++) {
       var chunk = new ArrayList<T>();  // init 2^N times
