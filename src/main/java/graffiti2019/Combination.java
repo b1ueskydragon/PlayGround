@@ -1,3 +1,4 @@
+
 package graffiti2019;
 
 import java.util.ArrayList;
@@ -13,18 +14,20 @@ class Combination {
       add(new ArrayList<>());
     }};
     var i = 0;
-
-    while (!queue.isEmpty() && i < xs.size()) {
+    while (i < xs.size()) {
       var currNode = xs.get(i);
       for (var j = 0; j < (1 << i); j++) {
-        var parent = queue.removeFirst();
-        var leftChild = new ArrayList<>(parent) {{
+        var parent = queue.remove();
+        var child = new ArrayList<>(parent) {{
           add(currNode);
         }};
-        var rightChild = new ArrayList<>(parent);
 
-        if (leftChild.size() <= n) queue.addLast(leftChild);
-        if (rightChild.size() <= n) queue.addLast(rightChild);
+        // child after append a current node to a parent.
+        queue.add(child);
+
+        // another child is the parent that does not append a current node.
+        // same as parent itself.
+        queue.add(parent);
       }
       i += 1;
     }
