@@ -1,11 +1,36 @@
 package graffiti2019;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 class SubSet {
+  /** BFS */
+  static <T> List<List<T>> generateWithDq(List<T> xs) {
+    Deque<List<T>> queue = new LinkedList<>() {{
+      add(new ArrayList<>());
+    }};
+
+    for (var i = 0; i < xs.size(); i++) {
+      var currNode = xs.get(i);
+
+      for (var j = 0; j < (1 << i); j++) {
+        var parent = queue.removeFirst();
+        var leftChild = new ArrayList<>(parent) {{
+          add(currNode);
+        }};
+        var rightChild = new ArrayList<>(parent);
+
+        queue.addLast(leftChild);
+        queue.addLast(rightChild);
+      }
+    }
+    return new ArrayList<>(queue);
+  }
+
   /** Bit-op */
-  static <T> List<List<T>> generate(List<T> xs) {
+  static <T> List<List<T>> generateWithBitwise(List<T> xs) {
     var ps = new ArrayList<List<T>>();
     var len = xs.size();
     long breadth = 1 << len;
@@ -21,7 +46,7 @@ class SubSet {
   }
 
   /** Recursion (DFS) */
-  static void generate(String xs, int pos, String ps) {
+  private static void generate(String xs, int pos, String ps) {
     if (pos == xs.length()) {
       System.out.println(ps);
       return;
