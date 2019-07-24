@@ -4,33 +4,32 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Combination {
 
-  static <T> List<List<T>> combination_(List<T> xs, int n) {
-    List<List<T>> res = new ArrayList<>();
-    var len = xs.size();
+  static <T> List<List<T>> combinationBfs(List<T> xs, int n) {
     Deque<List<T>> queue = new LinkedList<>() {{
       add(new ArrayList<>());
     }};
+    var i = 0;
 
-    for (var i = 0; i <= len; i++) {
-      System.out.println(queue);
+    while (!queue.isEmpty() && i < xs.size()) {
+      var currNode = xs.get(i);
       for (var j = 0; j < (1 << i); j++) {
         var parent = queue.removeFirst();
-
-        var x = i;
         var leftChild = new ArrayList<>(parent) {{
-          add(xs.get(x));
+          add(currNode);
         }};
         var rightChild = new ArrayList<>(parent);
 
-        queue.addLast(leftChild);
-        queue.addLast(rightChild);
+        if (leftChild.size() <= n) queue.addLast(leftChild);
+        if (rightChild.size() <= n) queue.addLast(rightChild);
       }
+      i += 1;
     }
-
-    return res;
+    return queue.stream().filter(t -> t.size() == n)
+        .collect(Collectors.toList());
   }
 
   static <T> List<List<T>> combination(List<T> xs, int n) {
