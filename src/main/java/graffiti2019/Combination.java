@@ -8,36 +8,25 @@ import java.util.List;
 class Combination {
 
   static <T> List<List<T>> combination_(List<T> xs, int n) {
-
     List<List<T>> res = new ArrayList<>();
-
-    Deque<List<T>> lookup = new LinkedList<>() {{
+    var len = xs.size();
+    Deque<List<T>> queue = new LinkedList<>() {{
       add(new ArrayList<>());
     }};
-    var pos = 0;
 
-    while (pos < xs.size()) {
-      List<T> currLeft = new ArrayList<>();
-      List<T> currRight = new ArrayList<>();
-      if (!lookup.isEmpty()) currLeft = lookup.removeFirst();
-      if (!lookup.isEmpty()) currRight = lookup.removeFirst();
+    for (var i = 0; i <= len; i++) {
+      System.out.println(queue);
+      for (var j = 0; j < (1 << i); j++) {
+        var parent = queue.removeFirst();
 
-      var currElem = xs.get(pos);
+        var x = i;
+        var leftChild = new ArrayList<>(parent) {{
+          add(xs.get(x));
+        }};
+        var rightChild = new ArrayList<>(parent);
 
-      lookup.add(new ArrayList<>(currLeft) {{
-        add(currElem);
-      }});
-      lookup.add(currLeft);
-
-      lookup.add(new ArrayList<>(currRight) {{
-        add(currElem);
-      }});
-      lookup.add(currRight);
-
-      pos += 1;
-
-      for (List<T> each: lookup) {
-        if (each.size() == n) res.add(each);
+        queue.addLast(leftChild);
+        queue.addLast(rightChild);
       }
     }
 
