@@ -15,7 +15,7 @@ class SubSet {
     for (var i = 0; i < xs.size(); i++) {
       var currNode = xs.get(i);
 
-      for (var j = 0; j < (1 << i); j++) {
+      for (var j = 0; j < (1 << i); j++) { // OUT one and IN two, per 1 loop
         var parent = queue.removeFirst();
         var leftChild = new ArrayList<>(parent) {{
           add(currNode);
