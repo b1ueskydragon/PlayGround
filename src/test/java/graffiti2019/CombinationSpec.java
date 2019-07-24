@@ -2,7 +2,6 @@ package graffiti2019;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static graffiti2019.Combination.combination;
@@ -43,7 +42,7 @@ class CombinationSpec {
 
   @Test
   void testBfs() {
-    var res =
+    var expected =
         List.of(
             List.of('a', 'b', 'c'),
             List.of('a', 'b', 'd'),
@@ -69,12 +68,7 @@ class CombinationSpec {
 
     var xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
     var n = 3;
-
-    var expected = new HashSet<>(res);
-    assertEquals(res.size(), expected.size());
-
-    var actual = new HashSet<>(combinationBfs(xs, n));
-    assertEquals(expected, actual);
+    assertEquals(expected, combinationBfs(xs, n));
   }
 
 }
