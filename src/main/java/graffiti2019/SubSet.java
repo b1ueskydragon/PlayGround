@@ -46,19 +46,24 @@ class SubSet {
   }
 
   /** Recursion (DFS) */
-  private static void generate(String xs, int pos, String ps) {
-    if (pos == xs.length()) {
-      System.out.println(ps);
-      return;
-    }
-    generate(xs, pos + 1, ps);
-    var head = xs.charAt(pos);
-    generate(xs, pos + 1, head + ps);
-  }
+  static <T> List<List<T>> generateWithDfs(List<T> xs) {
+    List<List<T>> ps = new ArrayList<>();
 
-  public static void main(String[] args) {
-    var xs = "abc";
-    SubSet.generate(xs, 0, "");
+    class Dfs {
+      private void generate(int pos, List<T> chunk) {
+        if (pos == xs.size()) {
+          ps.add(chunk);
+          return;
+        }
+        generate(pos + 1, new ArrayList<>(chunk) {{
+          add(xs.get(pos));
+        }});
+        generate(pos + 1, chunk);
+      }
+    }
+
+    new Dfs().generate(0, new ArrayList<>());
+    return ps;
   }
 
 }
