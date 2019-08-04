@@ -64,4 +64,21 @@ class SubSet {
     return ps;
   }
 
+  static <T> List<List<T>> generateWithDfs_(List<T> xs) {
+    List<List<T>> res = new ArrayList<>();
+    var n = xs.size();
+    var last = n - 1;
+
+    if (!xs.isEmpty()) {
+      for (List<T> x : generateWithDfs_(xs.subList(0, last))) {
+        res.add(new ArrayList<>(x) {{ add(xs.get(last)); }});
+        res.add(x);
+      }
+    } else {
+      res.add(List.of());
+    }
+
+    return res;
+  }
+
 }

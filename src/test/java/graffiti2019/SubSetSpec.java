@@ -57,4 +57,20 @@ class SubSetSpec {
     assertEquals(expected, actual);
   }
 
+  @Test
+  void test_DFS_generate_same_order_like_bfs() {
+    var expected = List.of(
+        List.of(1, 2, 3),
+        List.of(1, 2),
+        List.of(1, 3),
+        List.of(1),
+        List.of(2, 3),
+        List.of(2),
+        List.of(3),
+        List.of()
+    );
+    var actual = generateWithDfs_(List.of(1, 2, 3));
+    assertEquals(expected, actual);
+  }
+
 }
