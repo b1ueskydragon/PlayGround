@@ -55,9 +55,7 @@ class SubSet {
           ps.add(chunk);
           return;
         }
-        generate(pos + 1, new ArrayList<>(chunk) {{
-          add(xs.get(pos));
-        }});
+        generate(pos + 1, new ArrayList<>(chunk) {{ add(xs.get(pos)); }});
         generate(pos + 1, chunk);
       }
     }
