@@ -69,7 +69,7 @@ class SubSetSpec {
         List.of(3),
         List.of()
     );
-    var actual = generateWithDfs_(List.of(1, 2, 3));
+    var actual = generateWithDfs_(new Integer[]{1, 2, 3});
     assertEquals(expected, actual);
   }
 

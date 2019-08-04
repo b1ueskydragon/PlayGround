@@ -1,9 +1,6 @@
 package graffiti2019;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 class SubSet {
   /** BFS */
@@ -64,14 +61,14 @@ class SubSet {
     return ps;
   }
 
-  static <T> List<List<T>> generateWithDfs_(List<T> xs) {
+  static <T> List<List<T>> generateWithDfs_(T[] xs) {
     List<List<T>> res = new ArrayList<>();
-    var n = xs.size();
+    var n = xs.length;
     var last = n - 1;
 
-    if (!xs.isEmpty()) {
-      for (List<T> x : generateWithDfs_(xs.subList(0, last))) {
-        res.add(new ArrayList<>(x) {{ add(xs.get(last)); }});
+    if (n > 0) {
+      for (List<T> x : generateWithDfs_(Arrays.copyOf(xs, last))) {
+        res.add(new ArrayList<>(x) {{ add(xs[last]); }});
         res.add(x);
       }
     } else {
