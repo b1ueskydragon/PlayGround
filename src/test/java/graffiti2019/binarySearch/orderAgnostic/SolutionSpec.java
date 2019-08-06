@@ -18,7 +18,7 @@ class SolutionSpec {
 
   @Test
   void test_given_is_sorted_desc() {
-    int[] arr = new int[]{0, 6, 4};
+    int[] arr = new int[]{10, 6, 4};
     int key = 10;
     int expected = 0;
     assertEquals(expected, searchKeyIndexFromSortedArray(arr, key));
