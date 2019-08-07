@@ -13,13 +13,31 @@ class ArrayReader {
 
 }
 
-class Solution {
+public class Solution {
 
-  private static int searchBound() {
-    return -1;
+  public static int searchInfiniteSortedArray(ArrayReader reader, int key) {
+    // find a proper bound first
+    int start = 0, end = 1;
+
+    while (reader.get(end) < key) {
+      var bound = end - start + 1;
+      start = end + 1;
+      end += bound * 2; // increase to double
+    }
+
+    return binarySearch(reader, key, start, end);
   }
 
-  static int searchInfiniteSortedArray(ArrayReader reader, int key) {
+  private static int binarySearch(ArrayReader reader, int key, int start, int end) {
+    while (start <= end) {
+      int middle = start + (end - start) / 2;
+      var midVal = reader.get(middle);
+
+      if (key == midVal) return middle;
+
+      if (key < midVal) end = middle - 1;
+      else start = middle + 1;
+    }
 
     return -1;
   }
