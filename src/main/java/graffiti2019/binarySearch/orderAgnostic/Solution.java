@@ -1,6 +1,6 @@
 package graffiti2019.binarySearch.orderAgnostic;
 
-class Solution {
+public class Solution {
 
   /**
    * Order-Agnostic Binary Search
@@ -9,7 +9,7 @@ class Solution {
    * @param key to find. key is present in the array
    * @return index of the key if it is present. otherwise -1
    */
-  static int searchKeyIndexFromSortedArray(int[] arr, int key) {
+  public static int searchKeyIndexFromSortedArray(int[] arr, int key) {
     int start = 0, end = arr.length - 1;
     boolean isAsc = arr[start] < arr[end];
 
