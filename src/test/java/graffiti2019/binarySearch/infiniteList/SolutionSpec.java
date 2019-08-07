@@ -30,11 +30,13 @@ class SolutionSpec {
 
   @Test
   void test_bigBound_bound_none_fixed() {
-    // maxMemory is 2^31 -1 in my env. freeMemory is about 128647168.
     var heapSizeAvailable = Runtime.getRuntime().freeMemory();
+    var maxSize = (int) (heapSizeAvailable << 3) + 500000000;
+
     // TODO Stream.iterate
     var step = 3;
-    var input = IntStream.rangeClosed(0, (int) heapSizeAvailable / step).map(i -> i * step).toArray();
+    var input = IntStream.rangeClosed(0, maxSize / step).map(i -> i * step).toArray();
+
     var reader = new ArrayReader(input);
     var key = 4194303;
     var expected = 1398101;
@@ -44,8 +46,10 @@ class SolutionSpec {
   @Test
   void test_bigBound_bound_fixed() {
     var heapSizeAvailable = Runtime.getRuntime().freeMemory();
+    var maxSize = (int) (heapSizeAvailable << 3) + 500000000;
+
     var step = 3;
-    var input = IntStream.rangeClosed(0, (int) heapSizeAvailable / step).map(i -> i * step).toArray();
+    var input = IntStream.rangeClosed(0, maxSize / step).map(i -> i * step).toArray();
     var key = 4194303;
     var expected = 1398101;
     assertEquals(expected, searchKeyIndexFromSortedArray(input, key));
