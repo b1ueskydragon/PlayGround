@@ -2,18 +2,53 @@ package graffiti2019.binarySearch.infiniteList;
 
 import org.junit.jupiter.api.Test;
 
-import static graffiti2019.binarySearch.infiniteList.Solution.searchInfiniteSortedArray;
+import java.util.stream.IntStream;
 
+import static graffiti2019.binarySearch.infiniteList.Solution.searchInfiniteSortedArray;
+import static graffiti2019.binarySearch.orderAgnostic.Solution.searchKeyIndexFromSortedArray;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SolutionSpec {
+class SolutionSpec {
 
   @Test
   void test_searchInfiniteSortedArray() {
     var input = new int[]{4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30};
     var reader = new ArrayReader(input);
-    var key = 16;
-    var expected = 6;
+    var key = 28;
+    var expected = 12;
     assertEquals(expected, searchInfiniteSortedArray(reader, key));
   }
+
+  @Test
+  void test_not_found() {
+    var input = new int[]{4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30};
+    var reader = new ArrayReader(input);
+    var key = 11;
+    var expected = -1;
+    assertEquals(expected, searchInfiniteSortedArray(reader, key));
+  }
+
+  @Test
+  void test_bigBound_bound_none_fixed() {
+    // maxMemory is 2^31 -1 in my env. freeMemory is about 128647168.
+    var heapSizeAvailable = Runtime.getRuntime().freeMemory();
+    // TODO Stream.iterate
+    var step = 3;
+    var input = IntStream.rangeClosed(0, (int) heapSizeAvailable / step).map(i -> i * step).toArray();
+    var reader = new ArrayReader(input);
+    var key = 4194303;
+    var expected = 1398101;
+    assertEquals(expected, searchInfiniteSortedArray(reader, key));
+  }
+
+  @Test
+  void test_bigBound_bound_fixed() {
+    var heapSizeAvailable = Runtime.getRuntime().freeMemory();
+    var step = 3;
+    var input = IntStream.rangeClosed(0, (int) heapSizeAvailable / step).map(i -> i * step).toArray();
+    var key = 4194303;
+    var expected = 1398101;
+    assertEquals(expected, searchKeyIndexFromSortedArray(input, key));
+  }
+
 }
