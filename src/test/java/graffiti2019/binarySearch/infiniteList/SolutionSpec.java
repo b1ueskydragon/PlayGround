@@ -33,7 +33,6 @@ class SolutionSpec {
     var heapSizeAvailable = Runtime.getRuntime().freeMemory();
     var maxSize = (int) (heapSizeAvailable << 3) + 500000000;
 
-    // TODO Stream.iterate
     var step = 3;
     var input = IntStream.rangeClosed(0, maxSize / step).map(i -> i * step).toArray();
 
