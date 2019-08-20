@@ -10,10 +10,8 @@ public class KthSmallestInSortedMatrix {
 
     while (startValue < endValue) {
       int middleValue = (endValue - startValue) / 2 + startValue;
-      int count = countLessOrEqualThan(middleValue, matrix);
-
-      // (small, big)
-      IntPair pair = new IntPair(matrix[0][0], matrix[n - 1][n - 1]);
+      int[] pair = {matrix[0][0], matrix[n - 1][n - 1]};
+      int count = countAndAdjust(middleValue, matrix, pair);
 
       if (k == count) {
         // return result
@@ -30,34 +28,29 @@ public class KthSmallestInSortedMatrix {
     return startValue;
   }
 
+  /**
+   * Count less or equal than target.
+   * And adjust if target is too big or small.
+   */
   @VisibleForTesting
-  static int countLessOrEqualThan(int middleValue, int[][] matrix) {
+  static int countAndAdjust(int target, int[][] matrix, int[] pair) {
     var count = 0;
-    for (int[] column : matrix) {
-      for (int el : column) { // row
-        if (el <= middleValue) count += 1;
+    int n = matrix.length;
+    int row = n - 1, column = 0;
+
+    while (row >= 0 && column < n) {
+      var curVal = matrix[row][column];
+      if (curVal > target) {
+        pair[1] = Math.min(pair[1], curVal);
+        row -= 1;
+      } else {
+        count += row + 1; // since columns are sorted too
+        pair[0] = Math.max(pair[0], curVal);
+        column += 1;
       }
     }
+
     return count;
-  }
-
-}
-
-class IntPair {
-  private final int x;
-  private final int y;
-
-  IntPair(int x, int y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  int _1() {
-    return x;
-  }
-
-  int _2() {
-    return y;
   }
 
 }

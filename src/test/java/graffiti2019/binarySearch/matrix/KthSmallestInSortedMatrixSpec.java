@@ -2,17 +2,25 @@ package graffiti2019.binarySearch.matrix;
 
 import org.junit.jupiter.api.Test;
 
-import static graffiti2019.binarySearch.matrix.KthSmallestInSortedMatrix.countLessOrEqualThan;
+import static graffiti2019.binarySearch.matrix.KthSmallestInSortedMatrix.countAndAdjust;
 import static graffiti2019.binarySearch.matrix.KthSmallestInSortedMatrix.findKthSmallest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class KthSmallestInSortedMatrixSpec {
 
   @Test
-  void test_countLessOrEqualThan() {
-    int[][] matrix = {{2, 6, 8}, {3, 7, 10}, {5, 8, 11}};
-    var expected = 4;
-    assertEquals(expected, countLessOrEqualThan(6, matrix));
+  void test_countAndAdjust() {
+    int[][] matrix = {
+        {2, 6, 8},
+        {3, 7, 10},
+        {5, 8, 11}
+    };
+    int[] pair = {2, 11};
+    int midVal = 6;
+
+    assertEquals(4, countAndAdjust(midVal, matrix, pair));
+    assertEquals(6, pair[0]);
+    assertEquals(7, pair[1]);
   }
 
   @Test
