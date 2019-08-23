@@ -39,4 +39,9 @@ class SolutionSpec {
     assertEquals(expected, underTest.subsetsWithDup(nums));
   }
 
+  @Test
+  void test_subsetsWithDup_all_duplicated() {
+    int[] nums = {1, 1, 2, 2};
+  }
+
 }
