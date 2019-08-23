@@ -42,6 +42,17 @@ class SolutionSpec {
   @Test
   void test_subsetsWithDup_all_duplicated() {
     int[] nums = {1, 1, 2, 2};
+    var expected = List.of(
+        List.of(),
+        List.of(1),
+        List.of(1, 1),
+        List.of(1, 1, 2),
+        List.of(1, 1, 2, 2),
+        List.of(1, 2),
+        List.of(1, 2, 2),
+        List.of(2),
+        List.of(2, 2));
+    assertEquals(expected, underTest.subsetsWithDup(nums));
   }
 
 }
