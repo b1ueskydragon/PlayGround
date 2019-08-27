@@ -25,7 +25,7 @@ public class JacksonParse {
   /**
    * java Object -> JSON
    */
-  public String javaObjToJson(Object obj) throws JsonProcessingException {
+  public <T> String javaObjToJson(T obj) throws JsonProcessingException {
     return mapper.writeValueAsString(obj);
   }
 
