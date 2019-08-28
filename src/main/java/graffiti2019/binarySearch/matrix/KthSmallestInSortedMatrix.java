@@ -13,16 +13,10 @@ public class KthSmallestInSortedMatrix {
       int[] pair = {matrix[0][0], matrix[n - 1][n - 1]};
       int count = countAndAdjust(middleValue, matrix, pair);
 
-      if (k == count) {
-        // return result
-      }
+      if (k == count) return pair[0];
 
-      if (k > count) {
-        // search higher
-      } else {
-        // search lower
-      }
-
+      if (k > count) startValue = pair[1];
+      else endValue = pair[0];
     }
 
     return startValue;
@@ -33,14 +27,14 @@ public class KthSmallestInSortedMatrix {
    * And adjust if target is too big or small.
    */
   @VisibleForTesting
-  static int countAndAdjust(int target, int[][] matrix, int[] pair) {
+  static int countAndAdjust(int middle, int[][] matrix, int[] pair) {
     var count = 0;
     int n = matrix.length;
     int row = n - 1, column = 0;
 
     while (row >= 0 && column < n) {
       var curVal = matrix[row][column];
-      if (curVal > target) {
+      if (curVal > middle) {
         pair[1] = Math.min(pair[1], curVal);
         row -= 1;
       } else {
