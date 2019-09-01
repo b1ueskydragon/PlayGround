@@ -5,7 +5,7 @@ public interface DragonBuilder {
 
   Dragon build();
 
-  DragonBuilder setAge(final int age);
+  DragonBuilder setAge(final Integer age);
 
   DragonBuilder setColor(final String color);
 

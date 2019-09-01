@@ -9,7 +9,7 @@ public class DragonBuildDirector {
     this.builder = builder;
   }
 
-  public Dragon construct(int age, String color) {
+  public Dragon construct(Integer age, String color) {
     return builder.setAge(age).setColor(color).build();
   }
 

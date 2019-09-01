@@ -3,12 +3,12 @@ package graffiti2019.builder;
 /** Model */
 public class Dragon {
 
-  private int age;
+  private Integer age;
   private String color;
 
   public Dragon() { /* empty-param public constructor */ }
 
-  public int getAge() {
+  public Integer getAge() {
     return age;
   }
 
@@ -16,7 +16,7 @@ public class Dragon {
     return color;
   }
 
-  public void setAge(final int age) {
+  public void setAge(final Integer age) {
     this.age = age;
   }
 
