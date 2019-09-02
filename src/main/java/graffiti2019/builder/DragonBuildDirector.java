@@ -13,13 +13,4 @@ public class DragonBuildDirector {
     return builder.setAge(age).setColor(color).build();
   }
 
-  public static void main(String[] args) {
-
-    final DragonBuilder builder = new DragonBuilderImpl();
-    final DragonBuildDirector director = new DragonBuildDirector(builder);
-
-    System.out.println(director.construct(11101, "skyblue"));
-
-  }
-
 }
