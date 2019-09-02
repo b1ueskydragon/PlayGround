@@ -2,7 +2,7 @@ package graffiti2019.builder;
 
 public class DragonBuilderImpl implements DragonBuilder {
 
-  private Dragon dragon;
+  private Dragon dragon; // cons; Cannot separate Model and Builder.
 
   public DragonBuilderImpl() {
     this.dragon = new Dragon();
