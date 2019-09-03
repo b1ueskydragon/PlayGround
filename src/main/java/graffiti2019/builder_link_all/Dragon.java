@@ -9,12 +9,12 @@ public class Dragon {
   private final Integer age; // optional
 
   /** Field required */
-  public interface ColorBuilder {
+  private interface ColorBuilder {
     Builder color(String color);
   }
 
   /** Field required */
-  public interface NameBuilder {
+  private interface NameBuilder {
     Builder name(String name);
   }
 
@@ -55,7 +55,7 @@ public class Dragon {
     private String name;
     private Integer age;
 
-    private Builder() { /* only for to private */ }
+    private Builder() { /* prevent instantiation in client-side */ }
 
     @Override
     public Builder color(String color) {
