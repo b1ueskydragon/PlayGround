@@ -2,6 +2,9 @@ package graffiti2019.jsons;
 
 import java.util.List;
 
+/**
+ * Usage of this bean as an example; json-formatted RequestBody.
+ */
 public class MyNotification {
 
   private final String name; // NotNull
