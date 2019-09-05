@@ -13,6 +13,14 @@ public class TestObject {
     this.status = status;
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
   @Override
   public String toString() {
     return String.format("id: %s\tstatus: %s", id, status);
