@@ -2,6 +2,7 @@ package graffiti2019;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
 
@@ -19,7 +20,8 @@ public class JacksonParse {
   private ObjectMapper mapper;
 
   private JacksonParse() {
-    mapper = new ObjectMapper();
+    mapper = new ObjectMapper()
+        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
   }
 
   /**
