@@ -6,14 +6,16 @@ public class TestObject {
 
   private String status;
 
-  TestObject(int id, String status) {
+  public TestObject() { /* for Deserialization, object must have a zero-arg constructor */ }
+
+  public TestObject(int id, String status) {
     this.id = id;
     this.status = status;
   }
 
   @Override
   public String toString() {
-    return String.format("%s status: %s", id, status);
+    return String.format("id: %s\tstatus: %s", id, status);
   }
 
 }
