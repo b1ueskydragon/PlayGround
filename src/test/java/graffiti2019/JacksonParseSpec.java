@@ -1,23 +1,27 @@
 package graffiti2019;
 
+import factory.TestObject;
 import factory.TestObjectFactory;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 class JacksonParseSpec {
 
-  private JacksonParse underTest = JacksonParse.getInstance();
-
-  private TestObjectFactory factory = new TestObjectFactory();
-
   @Test
-  void test_javaObject_to_JSON() throws Exception {
-    var json = "{\"id\":123, \"status\":\"200\"}";
-    // TODO parse before compare
-  }
+  void test_parse_obj_to_json_and_reparse_to_obj() throws Exception {
+    var factory = new TestObjectFactory();
+    var underTest = JacksonParse.getInstance();
 
-  @Test
-  void test_JSON_to_javaObject() throws Exception {
+    TestObject obj = factory.create(101, "202");
+    String parsedJson = underTest.javaObjToJson(obj);
+    TestObject reparsedObj = underTest.jsonToJavaObj(parsedJson, TestObject.class);
 
+    var expected = new TestObject(101, "202");
+
+    assertThat(reparsedObj.getId(), equalTo(expected.getId()));
+    assertThat(reparsedObj.getStatus(), equalTo(expected.getStatus()));
   }
 
 }
