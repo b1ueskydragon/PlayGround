@@ -2,8 +2,11 @@ package leetcode.p0524;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.hamcrest.core.IsEqual.equalTo;
+
 
 public class SolutionSpec {
 
@@ -21,6 +24,26 @@ public class SolutionSpec {
     var entire = "aewfafwafjlwajflwajflwafj";
     var x = "awefawfwaf";
     assertFalse(underTest.isSubSeq(entire, x));
+  }
+
+  @Test
+  public void testFindLongestWord() {
+    var s = "aewfafwafjlwajflwajflwafj";
+    var d = List.of("apple", "awefawfwaf", "ewaf", "awef", "aafj", "abc", "awefe", "ewafeffewafewf");
+
+    var expected = "aafj";
+    var actual = underTest.findLongestWord(s, d);
+    assertThat(actual, equalTo(expected));
+  }
+
+  @Test
+  public void testFindLongestWordHasOnlyTwoChars() {
+    var s = "bab";
+    var d = List.of("ba", "ab", "a", "b");
+
+    var expected = "ab";
+    var actual = underTest.findLongestWord(s, d);
+    assertThat(actual, equalTo(expected));
   }
 
 }
