@@ -8,11 +8,20 @@ import java.util.stream.Collectors;
 
 public class FoldLeft {
 
-  static class Basic {
+  static class BasicRecursion {
 
     static <T, U> U foldLeft(List<T> seq, U acc, BiFunction<U, T, U> f) {
       if (seq.isEmpty()) return acc;
       else return foldLeft(seq.subList(1, seq.size()), f.apply(acc, seq.get(0)), f);
+    }
+
+  }
+
+  static class BasicLoop {
+
+    static <T, U> U foldLeft(List<T> seq, U acc, BiFunction<U, T, U> f) {
+      for (T t : seq) acc = f.apply(acc, t);
+      return acc;
     }
 
   }

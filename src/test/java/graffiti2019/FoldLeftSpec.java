@@ -16,9 +16,12 @@ public class FoldLeftSpec {
     final int expected = seq.stream().mapToInt(Integer::parseInt).sum();
 
     final BiFunction<Integer, String, Integer> bf = (acc, x) -> acc += Integer.parseInt(x);
-    final int actual = FoldLeft.Basic.foldLeft(seq, 0, bf);
 
-    assertThat(actual, equalTo(expected));
+    final int actualA = FoldLeft.BasicRecursion.foldLeft(seq, 0, bf);
+    final int actualB = FoldLeft.BasicLoop.foldLeft(seq, 0, bf);
+
+    assertThat(actualA, equalTo(expected));
+    assertThat(actualB, equalTo(expected));
   }
 
 }
