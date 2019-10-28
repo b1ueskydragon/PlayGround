@@ -1,2 +1,1 @@
-### Practice, Quiz, anything else
-#### Individual-parted program
+algorithms, data structures, quizzes, design patterns🦁
