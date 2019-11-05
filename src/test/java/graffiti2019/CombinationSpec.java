@@ -71,4 +71,18 @@ class CombinationSpec {
     assertEquals(expected, combinationBfs(xs, n));
   }
 
+  @Test
+  void testBfsPos() {
+    var expected =
+        List.of(
+            List.of('a', 'b'),
+            List.of('a', 'c'),
+            List.of('b', 'c')
+        );
+
+    var xs = List.of('a', 'b', 'c');
+    var n = 2;
+    assertEquals(expected, combinationBfsPos(xs, n));
+  }
+
 }

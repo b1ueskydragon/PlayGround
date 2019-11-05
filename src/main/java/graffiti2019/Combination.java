@@ -6,10 +6,31 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 class Combination {
+
+  static <T> List<List<T>> combinationBfsPos(List<T> xs, int n) {
+    Deque<List<T>> queue = new LinkedList<>();
+    queue.add(new ArrayList<>());
+    int i = 0;
+    while (i < xs.size()) { // go deeper
+      T curr = xs.get(i);
+      int j = 0;
+      while (j < (1 << i)) { // go wider
+        List<T> parent = queue.remove();
+        if (parent.size() < n) { // TODO generate condition
+          List<T> leaf = new ArrayList<>(parent);
+          leaf.add(curr);
+          queue.add(leaf);
+          queue.add(parent);
+        }
+        j += 1;
+      }
+      i += 1;
+    }
+    return new ArrayList<>(queue);
+  }
 
   static <T> List<List<T>> combinationBfs(List<T> xs, int n) {
     Deque<List<T>> queue = new LinkedList<>() {{
