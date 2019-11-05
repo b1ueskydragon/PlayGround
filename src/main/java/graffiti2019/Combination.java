@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 class Combination {
@@ -53,6 +54,28 @@ class Combination {
     }
 
     new Dfs().generate(xs, new ArrayList<>());
+    return res;
+  }
+
+  static <T> List<List<T>> combinationPos(List<T> xs, int n) {
+    List<List<T>> res = new ArrayList<>();
+
+    class Dfs {
+      private void generate(int pos, List<T> ps) {
+        if (ps.size() == n) {
+          res.add(ps);
+          return;
+        }
+        if (xs.size() - pos + ps.size() >= n) {
+          List<T> nps = new ArrayList<>(ps);
+          nps.add(xs.get(pos));
+          generate(pos + 1, nps);
+          generate(pos + 1, ps);
+        }
+      }
+    }
+
+    new Dfs().generate(0, new ArrayList<>());
     return res;
   }
 

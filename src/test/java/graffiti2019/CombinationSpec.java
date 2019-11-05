@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static graffiti2019.Combination.combination;
-import static graffiti2019.Combination.combinationBfs;
+import static graffiti2019.Combination.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CombinationSpec {
@@ -38,6 +37,7 @@ class CombinationSpec {
     var xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
     var n = 3;
     assertEquals(expected, combination(xs, n));
+    assertEquals(expected, combinationPos(xs, n));
   }
 
   @Test
