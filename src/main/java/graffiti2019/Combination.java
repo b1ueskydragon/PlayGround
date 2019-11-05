@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -60,8 +61,10 @@ class Combination {
   static <T> List<List<T>> combinationPos(List<T> xs, int n) {
     List<List<T>> res = new ArrayList<>();
 
-    class Dfs {
-      private void generate(int pos, List<T> ps) {
+    // side-effect
+    BiConsumer<Integer, List<T>> dfs = new BiConsumer<>() {
+      @Override
+      public void accept(Integer pos, List<T> ps) {
         if (ps.size() == n) {
           res.add(ps);
           return;
@@ -69,13 +72,13 @@ class Combination {
         if (xs.size() - pos + ps.size() >= n) {
           List<T> nps = new ArrayList<>(ps);
           nps.add(xs.get(pos));
-          generate(pos + 1, nps);
-          generate(pos + 1, ps);
+          accept(pos + 1, nps);
+          accept(pos + 1, ps);
         }
       }
-    }
+    };
 
-    new Dfs().generate(0, new ArrayList<>());
+    dfs.accept(0, new ArrayList<>());
     return res;
   }
 
