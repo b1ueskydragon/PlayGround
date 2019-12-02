@@ -1,17 +1,15 @@
 package graffiti2019;
 
-import java.util.Arrays;
-
 class OneToHundred {
 
-  private int num = 0;
+  private int num;
 
   public static int count;
 
   OneToHundred() {
     count++;
     num = count;
-    System.out.println(num);
+    System.out.println(num); // print count is ok
   }
 
   public static void main(String[] args) {
