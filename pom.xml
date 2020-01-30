@@ -9,6 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- guava seems to be needed to load at first ... https://github.com/google/guava/issues/2786 -->
+        <!-- A suite of core and expanded libraries that include utility classes, google's collections, io classes, and much more -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>26.0-jre</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -141,13 +149,6 @@
             <groupId>it.unimi.dsi</groupId>
             <artifactId>fastutil</artifactId>
             <version>8.3.0</version>
-        </dependency>
-
-        <!-- A suite of core and expanded libraries that include utility classes, google's collections, io classes, and much more  m-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>26.0-jre</version>
         </dependency>
 
     </dependencies>
