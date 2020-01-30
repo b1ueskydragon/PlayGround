@@ -24,7 +24,7 @@ public class RateLimiterTest {
     final long startTime = ZonedDateTime.now().getSecond();
     IntStream.range(0, 1000).forEach(i -> {
       // acquire 1000 times.
-      rateLimiter.acquire();
+      rateLimiter.acquire(); // blocking method
       myFunction();
     });
     final long elapsedTimeSeconds = ZonedDateTime.now().getSecond() - startTime;
