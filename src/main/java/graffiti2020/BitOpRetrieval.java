@@ -1,15 +1,14 @@
 package graffiti2020;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 // TODO add a spec, migrate to scala.
 public class BitOpRetrieval {
 
-  private static final List<String> res = new ArrayList<>();
+  private static List<Integer> retrievalAll(final int depth) {
+    final List<Integer> res = new ArrayList<>();
 
-  // TODO set params.
-  private static void retrievalAll() {
     // if there were 3 digits, 2^3 - 1.
 
     // 0 is not selected, 1 is selected.
@@ -18,30 +17,39 @@ public class BitOpRetrieval {
     // node := (1 << depth) | (selected flag)
 
     // [001,   011, 010,   111, 110, 101, 100]
-    // well, the list has a bfs-order :p
-    final int depth = 3;
+    final int resSize = (1 << depth) - 1;
 
-    // TODO Add a root.
+    // well, the list has a bfs-order :p
+    final Deque<Integer> queue = new LinkedList<>();
+    // a root.
+    queue.addLast(1);
 
     // not 2 * digit, 2 ^ digit.
     // O(2^N)
-    for (int i = 1; i < depth; i++) {
-      final int seed = 1 << i;
-      int selectFlag = 1;
-      int nonSelectFlag = 0;
-      for (int j = i; j < seed; j++) {
-        res.add(Integer.toBinaryString(seed | selectFlag)); // left
-        res.add(Integer.toBinaryString(seed | nonSelectFlag)); // right
-        selectFlag <<= 1;
-        nonSelectFlag = (int) Math.pow(2, j);
-      }
+    while (res.size() < resSize) {
+      int parent = queue.removeFirst();
+      queue.addLast((parent << 1) | 1); // left
+      queue.addLast(parent << 1); // right
+      res.add(parent);
     }
 
+    return res;
   }
 
   public static void main(String[] args) {
-    retrievalAll();
-    System.out.println(res);
+    Scanner input = new Scanner(System.in);
+    final int depth = input.nextInt();
+
+    final List<String> zeroFilledRes = retrievalAll(depth)
+        .stream()
+        .map(x -> {
+          String s = Integer.toBinaryString(x);
+          int count = depth - s.length();
+          return (count > 0) ? String.format("0".repeat(count) + "%s", s) : s;
+        })
+        .collect(Collectors.toUnmodifiableList());
+
+    System.out.println(zeroFilledRes);
   }
 
 }
