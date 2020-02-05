@@ -32,6 +32,7 @@ class Combination {
     return new ArrayList<>(queue);
   }
 
+  // TODO discard retrieval before generate all elements.
   static <T> List<List<T>> combinationBfs(List<T> xs, int n) {
     Deque<List<T>> queue = new LinkedList<>() {{
       add(new ArrayList<>());
