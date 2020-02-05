@@ -6,57 +6,35 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 class Combination {
+  // cut-off: discard retrieval before generate all elements.
+  static <T> List<List<T>> combinationBfs(final List<T> xs, final int n) {
+    Deque<T> remDepth = new LinkedList<>(xs);
+    Deque<List<T>> res = new LinkedList<>();
 
-  static <T> List<List<T>> combinationBfsPos(List<T> xs, int n) {
-    Deque<List<T>> queue = new LinkedList<>();
-    queue.add(new ArrayList<>());
-    int i = 0;
-    while (i < xs.size()) { // go deeper
-      T curr = xs.get(i);
-      int j = 0;
-      while (j < (1 << i)) { // go wider
-        List<T> parent = queue.remove();
-        if (parent.size() < n) { // TODO generate condition
-          List<T> leaf = new ArrayList<>(parent);
-          leaf.add(curr);
-          queue.add(leaf);
-          queue.add(parent);
+    res.addLast(new ArrayList<>());
+    int d = 0; // current position of generate head from xs
+    while (!remDepth.isEmpty()) {
+      T x = remDepth.removeFirst();
+      for (int b = 0; b < (1 << d); b++) { // breadth b
+        List<T> curr = res.removeFirst();
+        if (curr.size() > n) continue; // cut-off
+
+        // TODO one more cut-off. append eventually `curr` is necessary for the next.
+
+        List<T> accCurr = new ArrayList<>(curr);
+
+        // append children
+        if (accCurr.size() < n) { // cut-off
+          accCurr.add(x);
+          res.add(accCurr);
         }
-        j += 1;
+        res.add(curr);
       }
-      i += 1;
+      d += 1;
     }
-    return new ArrayList<>(queue);
-  }
-
-  // TODO discard retrieval before generate all elements.
-  static <T> List<List<T>> combinationBfs(List<T> xs, int n) {
-    Deque<List<T>> queue = new LinkedList<>() {{
-      add(new ArrayList<>());
-    }};
-    var i = 0;
-    while (i < xs.size()) {
-      var currNode = xs.get(i);
-      for (var j = 0; j < (1 << i); j++) {
-        var parent = queue.remove();
-        var child = new ArrayList<>(parent) {{
-          add(currNode);
-        }};
-
-        // child after append a current node to a parent.
-        queue.add(child);
-
-        // another child is the parent that does not append a current node.
-        // same as parent itself.
-        queue.add(parent);
-      }
-      i += 1;
-    }
-    return queue.stream().filter(t -> t.size() == n)
-        .collect(Collectors.toList());
+    return new ArrayList<>(res);
   }
 
   static <T> List<List<T>> combination(List<T> xs, int n) {
