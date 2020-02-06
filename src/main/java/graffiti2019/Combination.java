@@ -1,4 +1,3 @@
-
 package graffiti2019;
 
 import java.util.ArrayList;
@@ -10,29 +9,34 @@ import java.util.function.BiConsumer;
 class Combination {
   // cut-off: discard retrieval before generate all elements.
   static <T> List<List<T>> combinationBfs(final List<T> xs, final int n) {
-    Deque<T> remDepth = new LinkedList<>(xs);
-    Deque<List<T>> res = new LinkedList<>();
+    Deque<List<T>> res = new LinkedList<>() {{
+      addLast(new ArrayList<>());
+    }};
 
-    res.addLast(new ArrayList<>());
     int d = 0; // current position of generate head from xs
-    while (!remDepth.isEmpty()) {
-      T x = remDepth.removeFirst();
+    int rem = xs.size() - d;
+
+    while (rem > 0) {
+      T x = xs.get(d);
       for (int b = 0; b < (1 << d); b++) { // breadth b
-        List<T> curr = res.removeFirst();
-        if (curr.size() > n) continue; // cut-off
-
-        // TODO one more cut-off. append eventually `curr` is necessary for the next.
-
-        List<T> accCurr = new ArrayList<>(curr);
-
-        // append children
-        if (accCurr.size() < n) { // cut-off
-          accCurr.add(x);
-          res.add(accCurr);
+        List<T> curr = res.removeFirst(); // parent
+        if (curr.size() + rem < n) {
+          continue; // cannot generate a proper length
         }
-        res.add(curr);
+        if (curr.size() < n) {
+          List<T> accCurr = new ArrayList<>(curr) {{
+            add(x);
+          }};
+          res.addLast(accCurr); // left
+        }
+        if (d < n) {
+          res.addLast(curr); // right
+        }
       }
+      System.out.println(res);
+
       d += 1;
+      rem -= 1;
     }
     return new ArrayList<>(res);
   }
