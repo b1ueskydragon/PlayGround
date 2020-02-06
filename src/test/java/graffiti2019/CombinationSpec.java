@@ -34,8 +34,8 @@ class CombinationSpec {
             List.of('c', 'e', 'f'),
             List.of('d', 'e', 'f')
         );
-    var xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
-    var n = 3;
+    List<Character> xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
+    int n = 3;
     assertEquals(expected, combination(xs, n));
     assertEquals(expected, combinationPos(xs, n));
   }
@@ -65,9 +65,19 @@ class CombinationSpec {
             List.of('c', 'e', 'f'),
             List.of('d', 'e', 'f')
         );
+    List<Character> xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
+    int n = 3;
+    assertEquals(expected, combinationBfs(xs, n));
+  }
 
-//    var xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
-//    int n = 3;
+  @Test
+  void testBfsSimplify() {
+    var expected =
+        List.of(
+            List.of('a', 'b'),
+            List.of('a', 'c'),
+            List.of('b', 'c')
+        );
     var xs = List.of('a', 'b', 'c');
     int n = 2;
     assertEquals(expected, combinationBfs(xs, n));

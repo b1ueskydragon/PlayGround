@@ -38,14 +38,14 @@ class Combination {
   }
 
   static <T> List<List<T>> combination(List<T> xs, int n) {
-    var res = new ArrayList<List<T>>();
+    List<List<T>> res = new ArrayList<>();
 
     class Dfs {
       private void generate(List<T> xs, List<T> ps) {
-        var k = ps.size();
+        int k = ps.size();
         if (xs.isEmpty() && k < n) return;
         if (k < n) {
-          var tail = xs.subList(1, xs.size());
+          List<T> tail = xs.subList(1, xs.size());
           generate(tail, new ArrayList<>(ps) {{
             add(xs.get(0));
           }});
