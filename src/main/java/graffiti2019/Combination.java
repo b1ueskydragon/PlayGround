@@ -9,36 +9,28 @@ import java.util.function.BiConsumer;
 class Combination {
   // cut-off: discard retrieval before generate all elements.
   static <T> List<List<T>> combinationBfs(final List<T> xs, final int n) {
-    Deque<List<T>> res = new LinkedList<>() {{
-      addLast(new ArrayList<>());
+    // much memory is used than DFS
+    Deque<List<T>> queue = new LinkedList<>() {{
+      add(new ArrayList<>());
     }};
-
-    int d = 0; // current position of generate head from xs
-    int rem = xs.size() - d;
-
-    while (rem > 0) {
-      T x = xs.get(d);
-      for (int b = 0; b < (1 << d); b++) { // breadth b
-        List<T> curr = res.removeFirst(); // parent
-        if (curr.size() + rem < n) {
-          continue; // cannot generate a proper length
-        }
-        if (curr.size() < n) {
-          List<T> accCurr = new ArrayList<>(curr) {{
-            add(x);
-          }};
-          res.addLast(accCurr); // left
-        }
-        if (d < n) {
-          res.addLast(curr); // right
-        }
+    List<List<T>> res = new ArrayList<>();
+    int d = 0;
+    while (d < xs.size()) {
+      T seed = xs.get(d);
+      for (int b = 0; b < (1 << d); b++) { // retrieval breadth
+        List<T> curr = queue.removeFirst();
+        if (curr.size() > n) continue;
+        List<T> currAcc = new ArrayList<>(curr) {{
+          add(seed);
+        }};
+        if (currAcc.size() == n) res.add(currAcc);
+        queue.addLast(currAcc);
+        queue.addLast(curr);
       }
-      System.out.println(res);
-
-      d += 1;
-      rem -= 1;
+      d++;
     }
-    return new ArrayList<>(res);
+    System.out.printf("(%s, %s)", queue.size(), queue);
+    return res;
   }
 
   static <T> List<List<T>> combination(List<T> xs, int n) {
