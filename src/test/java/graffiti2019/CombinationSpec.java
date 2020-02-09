@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CombinationSpec {
 
   @Test
-  void testDfs() {
+  void testDfs6C3() {
     final var expected =
         List.of(
             List.of('a', 'b', 'c'),
@@ -41,7 +41,7 @@ class CombinationSpec {
   }
 
   @Test
-  void testBfs() {
+  void testBfs6C3() {
     final var expected =
         List.of(
             List.of('a', 'b', 'c'),
@@ -71,15 +71,39 @@ class CombinationSpec {
   }
 
   @Test
-  void testBfsSimplify() {
+  void testBfs3C2() {
     final var expected =
         List.of(
             List.of('a', 'b'),
             List.of('a', 'c'),
             List.of('b', 'c')
         );
-    // 3C2
     final List<Character> xs = List.of('a', 'b', 'c');
+    final int n = 2;
+    assertEquals(expected, combinationBfs(xs, n));
+  }
+
+  @Test
+  void testBfs6C2() {
+    final var expected =
+        List.of(
+            List.of('a', 'b'),
+            List.of('a', 'c'),
+            List.of('b', 'c'),
+            List.of('a', 'd'),
+            List.of('b', 'd'),
+            List.of('c', 'd'),
+            List.of('a', 'e'),
+            List.of('b', 'e'),
+            List.of('c', 'e'),
+            List.of('d', 'e'),
+            List.of('a', 'f'),
+            List.of('b', 'f'),
+            List.of('c', 'f'),
+            List.of('d', 'f'),
+            List.of('e', 'f')
+        );
+    final List<Character> xs = List.of('a', 'b', 'c', 'd', 'e', 'f');
     final int n = 2;
     assertEquals(expected, combinationBfs(xs, n));
   }
