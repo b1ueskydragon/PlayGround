@@ -19,7 +19,6 @@ class Combination {
       T seed = xs.get(d);
       for (int b = 0; b < (1 << d); b++) { // retrieval breadth
         List<T> curr = queue.removeFirst();
-        if (curr.size() > n) continue;
         List<T> currAcc = new ArrayList<>(curr) {{
           add(seed);
         }};
@@ -29,7 +28,7 @@ class Combination {
       }
       d++;
     }
-    System.out.printf("(%s, %s)", queue.size(), queue);
+    // System.out.printf("(%s, %s)", queue.size(), queue);
     return res;
   }
 
