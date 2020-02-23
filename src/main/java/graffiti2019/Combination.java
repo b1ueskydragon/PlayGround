@@ -1,4 +1,3 @@
-
 package graffiti2019;
 
 import java.util.ArrayList;
@@ -6,67 +5,42 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 class Combination {
-
-  static <T> List<List<T>> combinationBfsPos(List<T> xs, int n) {
-    Deque<List<T>> queue = new LinkedList<>();
-    queue.add(new ArrayList<>());
-    int i = 0;
-    while (i < xs.size()) { // go deeper
-      T curr = xs.get(i);
-      int j = 0;
-      while (j < (1 << i)) { // go wider
-        List<T> parent = queue.remove();
-        if (parent.size() < n) { // TODO generate condition
-          List<T> leaf = new ArrayList<>(parent);
-          leaf.add(curr);
-          queue.add(leaf);
-          queue.add(parent);
-        }
-        j += 1;
-      }
-      i += 1;
-    }
-    return new ArrayList<>(queue);
-  }
-
-  static <T> List<List<T>> combinationBfs(List<T> xs, int n) {
+  // cut-off: discard retrieval before generate all elements.
+  static <T> List<List<T>> combinationBfs(final List<T> xs, final int n) {
+    // much memory is used than DFS
     Deque<List<T>> queue = new LinkedList<>() {{
       add(new ArrayList<>());
     }};
-    var i = 0;
-    while (i < xs.size()) {
-      var currNode = xs.get(i);
-      for (var j = 0; j < (1 << i); j++) {
-        var parent = queue.remove();
-        var child = new ArrayList<>(parent) {{
-          add(currNode);
+    List<List<T>> res = new ArrayList<>();
+    int d = 0;
+    while (d < xs.size()) {
+      T seed = xs.get(d);
+      for (int b = 0; b < (1 << d); b++) { // retrieval breadth
+        List<T> curr = queue.removeFirst();
+        List<T> currAcc = new ArrayList<>(curr) {{
+          add(seed);
         }};
-
-        // child after append a current node to a parent.
-        queue.add(child);
-
-        // another child is the parent that does not append a current node.
-        // same as parent itself.
-        queue.add(parent);
+        if (currAcc.size() == n) res.add(currAcc);
+        queue.addLast(currAcc);
+        queue.addLast(curr);
       }
-      i += 1;
+      d++;
     }
-    return queue.stream().filter(t -> t.size() == n)
-        .collect(Collectors.toList());
+    // System.out.printf("(%s, %s)", queue.size(), queue);
+    return res;
   }
 
   static <T> List<List<T>> combination(List<T> xs, int n) {
-    var res = new ArrayList<List<T>>();
+    List<List<T>> res = new ArrayList<>();
 
     class Dfs {
       private void generate(List<T> xs, List<T> ps) {
-        var k = ps.size();
+        int k = ps.size();
         if (xs.isEmpty() && k < n) return;
         if (k < n) {
-          var tail = xs.subList(1, xs.size());
+          List<T> tail = xs.subList(1, xs.size());
           generate(tail, new ArrayList<>(ps) {{
             add(xs.get(0));
           }});
