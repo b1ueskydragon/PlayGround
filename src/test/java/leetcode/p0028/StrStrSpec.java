@@ -56,4 +56,14 @@ public class StrStrSpec {
     assertThat(skipTable("issip"), equalTo(new int[]{0, 0, 0, 0, 1, 0}));
   }
 
+  @Test
+  public void shouldReturnIndexEventHasRepetitionB() {
+    assertThat(a.strStr("aabaaabaaac", "aabaaac"), equalTo(4));
+  }
+
+  @Test
+  public void shouldFindSkipPatternE() {
+    assertThat(skipTable("aabaaac"), equalTo(new int[]{0, 0, 1, 0, 1, 2, 2, 0}));
+  }
+
 }
