@@ -24,4 +24,9 @@ public class StrStrSpec {
     public void shouldReturnNegativeIndexIfNotFound() {
         assertThat(a.strStr("aaaaa", "bba"), equalTo(-1));
     }
+
+    @Test
+    public void shouldReturnTheFirstOccurrenceIndexRepeated() {
+        assertThat(a.strStr("bacbbbbbbbbab", "bab"), equalTo(10));
+    }
 }
