@@ -66,4 +66,9 @@ public class StrStrSpec {
     assertThat(skipTable("aabaaac"), equalTo(new int[]{0, 0, 1, 0, 1, 2, 2, 0}));
   }
 
+  @Test
+  public void shouldMakeSkipTableWhichLastIsNonZero() {
+    assertThat(skipTable("aabaaab"), equalTo(new int[]{0, 0, 1, 0, 1, 2, 2, 3}));
+  }
+
 }
