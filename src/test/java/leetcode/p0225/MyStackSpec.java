@@ -28,4 +28,12 @@ class MyStackSpec {
     assertTrue(myStack.empty());
   }
 
+  @Test
+  void pushContinuously() {
+    final MyStack myStack = new MyStack();
+    myStack.push(1);
+    myStack.push(2);
+    myStack.push(3);
+    assertEquals(3, myStack.top());
+  }
 }
