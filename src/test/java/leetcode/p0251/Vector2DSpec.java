@@ -14,10 +14,7 @@ class Vector2DSpec {
     final List<List<Integer>> vec2d = List.of(List.of(1, 2), List.of(3), List.of(), List.of(4, 5, 6));
     final Vector2D underTest = new Vector2D(vec2d);
     final List<Integer> actual = new ArrayList<>();
-
-    while (underTest.hasNext()) {
-      actual.add(underTest.next());
-    }
+    underTest.forEachRemaining(actual::add); // invokes hasNext() and operate action to each element.
     assertEquals(List.of(1, 2, 3, 4, 5, 6), actual);
   }
 
@@ -26,10 +23,7 @@ class Vector2DSpec {
     final List<List<Integer>> vec2d = List.of(List.of(1), List.of(2), List.of(3, 4, 5), List.of(6));
     final Vector2D underTest = new Vector2D(vec2d);
     final List<Integer> actual = new ArrayList<>();
-
-    while (underTest.hasNext()) {
-      actual.add(underTest.next());
-    }
+    underTest.forEachRemaining(actual::add);
     assertEquals(List.of(1, 2, 3, 4, 5, 6), actual);
   }
 
@@ -38,10 +32,7 @@ class Vector2DSpec {
     final List<List<Integer>> vec2d = List.of(List.of(7, 9), List.of(5));
     final Vector2D underTest = new Vector2D(vec2d);
     final List<Integer> actual = new ArrayList<>();
-
-    while (underTest.hasNext()) {
-      actual.add(underTest.next());
-    }
+    underTest.forEachRemaining(actual::add);
     assertEquals(List.of(7, 9, 5), actual);
   }
 
@@ -50,10 +41,7 @@ class Vector2DSpec {
     final List<List<Integer>> vec2d = List.of(List.of(), List.of(7, 9), List.of(), List.of(5), List.of(), List.of(), List.of());
     final Vector2D underTest = new Vector2D(vec2d);
     final List<Integer> actual = new ArrayList<>();
-
-    while (underTest.hasNext()) {
-      actual.add(underTest.next());
-    }
+    underTest.forEachRemaining(actual::add);
     assertEquals(List.of(7, 9, 5), actual);
   }
 
@@ -62,10 +50,7 @@ class Vector2DSpec {
     final List<List<Integer>> vec2d = List.of(List.of(), List.of(), List.of(), List.of(), List.of());
     final Vector2D underTest = new Vector2D(vec2d);
     final List<Integer> actual = new ArrayList<>();
-
-    while (underTest.hasNext()) {
-      actual.add(underTest.next());
-    }
+    underTest.forEachRemaining(actual::add);
     assertEquals(List.of(), actual);
   }
 
