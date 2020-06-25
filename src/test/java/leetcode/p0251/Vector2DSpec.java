@@ -88,7 +88,7 @@ class Vector2DSpec {
     final List<Integer> actual = new ArrayList<>();
     underTest.forEachRemaining(actual::add);
     assertEquals(List.of(1, 2, 3, 4, 5, 6), actual);
-    assertThrows(IndexOutOfBoundsException.class, underTest::next);
+    assertThrows(IndexOutOfBoundsException.class, underTest::next); // here throws.
   }
 
 }
