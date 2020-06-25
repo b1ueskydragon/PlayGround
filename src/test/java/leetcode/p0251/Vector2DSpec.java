@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class Vector2DSpec {
 
@@ -52,6 +53,42 @@ class Vector2DSpec {
     final List<Integer> actual = new ArrayList<>();
     underTest.forEachRemaining(actual::add);
     assertEquals(List.of(), actual);
+  }
+
+  @Test
+  void testCouldIgnoreDuplicatedNext() {
+    final List<List<Integer>> vec2d = List.of(List.of(1, 2), List.of(3), List.of(), List.of(4, 5, 6));
+    final Vector2D underTest = new Vector2D(vec2d);
+    final List<Integer> actual = new ArrayList<>();
+    while (underTest.hasNext()) {
+      underTest.hasNext();
+      underTest.hasNext();
+      underTest.hasNext();
+      underTest.hasNext();
+      actual.add(underTest.next());
+    }
+    assertEquals(List.of(1, 2, 3, 4, 5, 6), actual);
+  }
+
+  @Test
+  void testCouldGetNextWithoutHasNext() {
+    final List<List<Integer>> vec2d = List.of(List.of(1, 2), List.of(3), List.of(), List.of(4, 5, 6));
+    final Vector2D underTest = new Vector2D(vec2d);
+    assertEquals(1, underTest.next());
+    assertEquals(2, underTest.next());
+    final List<Integer> rem = new ArrayList<>();
+    underTest.forEachRemaining(rem::add);
+    assertEquals(List.of(3, 4, 5, 6), rem);
+  }
+
+  @Test
+  void testCouldThrowProperExceptionWhenReachedToEnd() {
+    final List<List<Integer>> vec2d = List.of(List.of(1, 2), List.of(3), List.of(), List.of(4, 5, 6));
+    final Vector2D underTest = new Vector2D(vec2d);
+    final List<Integer> actual = new ArrayList<>();
+    underTest.forEachRemaining(actual::add);
+    assertEquals(List.of(1, 2, 3, 4, 5, 6), actual);
+    assertThrows(IndexOutOfBoundsException.class, underTest::next);
   }
 
 }
