@@ -46,4 +46,15 @@ class FindTheSmallestNotInSubSetSumSpec {
     assertThat(underTest.findTheSmallestNotInSubSetSum(sortedArray), equalTo(23));
   }
 
+  @Test
+  void caseConsecutiveNumberAndLastIsBig() {
+    final int[] sortedArray =  {1, 2, 3, 4, 5, 100};
+    assertThat(underTest.findTheSmallestNotInSubSetSum(sortedArray), equalTo(16));
+  }
+
+  @Test
+  void caseNoOne() {
+    final int[] sortedArray =  {101, 102, 104};
+    assertThat(underTest.findTheSmallestNotInSubSetSum(sortedArray), equalTo(1));
+  }
 }
