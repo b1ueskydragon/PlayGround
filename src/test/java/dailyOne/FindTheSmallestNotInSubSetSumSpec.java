@@ -57,4 +57,10 @@ class FindTheSmallestNotInSubSetSumSpec {
     final int[] sortedArray =  {101, 102, 104};
     assertThat(underTest.findTheSmallestNotInSubSetSum(sortedArray), equalTo(1));
   }
+
+  @Test
+  void caseHasABlankButSumSoFarIsSmallerThanNextNumOfTheBlank() {
+    final int[] sortedArray = {1, 1, 2, 5, 6, 7};
+    assertThat(underTest.findTheSmallestNotInSubSetSum(sortedArray), equalTo(23));
+  }
 }

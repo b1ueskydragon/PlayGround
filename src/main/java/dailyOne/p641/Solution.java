@@ -1,18 +1,14 @@
 package dailyOne.p641;
 
+// As long as the array is sorted asc and includes 1,
+// sumSoFar is valid to represent [1, sumSoFar-1].
 public class Solution {
   public int findTheSmallestNotInSubSetSum(int[] sortedArr) {
-    int prev = 0;
-    int sumSoFar = 0;
-
+    int sumSoFar = 1;
     for (int x : sortedArr) {
-      if (x == 1 || sumSoFar > x) prev++; // since next num could be built up do +1.
-      else if (x - prev == 1) prev = x;
-      else break;
-
+      if (x > sumSoFar) break;
       sumSoFar += x;
     }
-    return sumSoFar + 1;
+    return sumSoFar;
   }
-
 }
