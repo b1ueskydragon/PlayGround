@@ -1,6 +1,5 @@
-package dailyOne;
+package dailyOne.p641;
 
-import dailyOne.p641.Solution;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.core.IsEqual.equalTo;
