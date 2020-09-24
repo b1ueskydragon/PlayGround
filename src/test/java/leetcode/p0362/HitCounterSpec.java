@@ -41,4 +41,20 @@ public class HitCounterSpec {
 
     assertThat(counter.getHits(301), equalTo(3));
   }
+
+  @Test
+  public void testInvokeManyTimes() {
+    HitCounter counter = new HitCounter();
+
+    counter.hit(1);
+    counter.hit(2);
+    counter.hit(3);
+
+    assertThat(counter.getHits(4), equalTo(3));
+
+    counter.hit(300);
+
+    assertThat(counter.getHits(300), equalTo(4));
+    assertThat(counter.getHits(301), equalTo(3));
+  }
 }
