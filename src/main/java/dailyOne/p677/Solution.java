@@ -18,13 +18,13 @@ public class Solution {
       isPrime[i] = true;
     }
 
-    for (int k = 2; k <= Math.pow(n, 0.5); k++) {
+    for (int k = 2; k * k <= n; k++) {
       // even numbers was filtered in k = 2
       if (k != 2 && k % 2 == 0) continue;
 
       for (int i = k; i <= n / k; ) {
         // System.out.printf("%s x %s, ", k, i);
-        isPrime[(k * i)] = false;
+        isPrime[k * i] = false;
 
         if (k == 2) i++;
         else i += 2; // it's unnecessary to check 3x4, 3x6 .. or 5x6, 5x8 ..
