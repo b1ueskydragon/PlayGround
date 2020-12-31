@@ -20,16 +20,20 @@ public class Solution {
     queue.add(root);
 
     while (!queue.isEmpty()) {
-      Node parent = queue.poll();
-
-      if (parent.left != null) {
+      int size = queue.size();
+      for (int i = 0; i < size; i++) {
+        Node parent = queue.poll();
+        if (parent == null) {
+          continue;
+        }
+        System.out.printf("%s ", parent.val);
         queue.add(parent.left);
-      }
-      if (parent.right != null) {
         queue.add(parent.right);
       }
 
-      System.out.printf("%s%s", parent.val, (queue.isEmpty()) ? " " : ", ");
+      if (!queue.isEmpty()) {
+        System.out.println(); // end of the level
+      }
     }
   }
 
