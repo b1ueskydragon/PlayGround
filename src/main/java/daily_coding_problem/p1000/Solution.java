@@ -15,7 +15,7 @@ class Solution {
         return nums[l];
       }
 
-      // l > r
+      // nums[l] > nums[r]
 
       if (nums[l] < nums[p]) {
         l = p;
