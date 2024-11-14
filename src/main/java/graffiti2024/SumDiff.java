@@ -2,7 +2,7 @@ package graffiti2024;
 
 // The sum of the absolute differences of all possible combinations.
 // |xi - xj| の総当たり sum を求める
-class DiffSum {
+class SumDiff {
     // 元のシグマで表現された数式に充実
     // O(N^2)
     static int version0() {
